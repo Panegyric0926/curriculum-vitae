@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Li Miqi - CV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary: #1a237e;
+      --secondary: #3949ab;
+      --accent: #00bcd4;
+      --bg: #f7f9fa;
+      --paper: #fff;
+      --text: #233;
+      --muted: #697080;
+      --divider: #e0e4ea;
+    }
+    html, body {
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: var(--text);
+    }
+    .cv-container {
+      max-width: 850px;
+      margin: 32px auto;
+      background: var(--paper);
+      box-shadow: 0 2px 12px 0 #0001;
+      border-radius: 12px;
+      padding: 32px 28px 36px 28px;
+    }
+    @media (max-width: 600px) {
+      .cv-container {
+        margin: 0;
+        padding: 18px 5vw 28px 5vw;
+        border-radius: 0;
+      }
+    }
+    .cv-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    .cv-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+    .cv-contact {
+      font-size: 0.98rem;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.6;
+    }
+    .cv-section {
+      margin-bottom: 28px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      color: var(--secondary);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 7px;
+    }
+    .divider {
+      border: none;
+      border-top: 1.5px solid var(--divider);
+      margin: 22px 0 18px 0;
+    }
+    ul.main-list {
+      margin: 0 0 0 18px;
+      padding: 0;
+      list-style-type: disc;
+    }
+    ul.sub-list {
+      margin: 10px 0 14px 30px;
+      padding: 0;
+      list-style-type: circle;
+      color: var(--muted);
+    }
+    .cv-edu,
+    .cv-job {
+      margin-bottom: 14px;
+    }
+    .cv-edu-title, .cv-job-title {
+      font-weight: 600;
+      font-size: 1.07rem;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .cv-edu-meta, .cv-job-meta {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .cv-job-role {
+      font-size: 1.01rem;
+      font-weight: 500;
+      color: var(--secondary);
+      margin-bottom: 3px;
+    }
+    .cv-ability-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 38px;
+      margin: 12px 0 0 0;
+      padding: 0;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .cv-ability-list li {
+      list-style-type: square;
+      margin-left: 18px;
+    }
+    @media (max-width: 600px) {
+      .cv-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px 0;
+      }
+      .cv-contact {
+        text-align: left;
+      }
+      .cv-name {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <div class="cv-header">
+      <div class="cv-name">Li Miqi</div>
+      <div class="cv-contact">
+        Address: Shatin, New Territories, Hong Kong<br>
+        Mobile: (+86) 18801330288 (WeChat), (+852) 53928750 (WhatsApp)<br>
+        Email: <a href="mailto:limiqi@connect.hku.hk">limiqi@connect.hku.hk</a>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <div class="section-title">Education</div>
+      <div class="cv-edu">
+        <div class="cv-edu-title">Beijing University of Posts and Telecommunications (BUPT)</div>
+        <div class="cv-edu-meta">2018.9 - 2022.6</div>
+        <ul class="main-list">
+          <li>School of Computer Science | Bachelor of Engineering | Major in Data Science and Big Data Technology</li>
+        </ul>
+      </div>
+      <div class="cv-edu">
+        <div class="cv-edu-title">The University of Hong Kong (HKU)</div>
+        <div class="cv-edu-meta">2022.9 - 2024.6</div>
+        <ul class="main-list">
+          <li>Faculty of Science, Department of Statistics and Actuarial Science | Master of Science | Major in Data Science</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="cv-section">
+      <div class="section-title">Work Experience</div>
+      <div class="cv-job">
+        <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab &mdash; Hong Kong</div>
+        <div class="cv-job-meta">Full-Time | R&D Engineer | 2024.6 – Present</div>
+        <ul class="main-list">
+          <li>Contributed to the development of AI and LLM technologies for automating and enhancing multiple aspects of chip design and manufacturing processes, with a focus on scalable solutions that address both schematic review and other critical tasks.</li>
+          <li>Retrieval-Augmented Generation (RAG) System for Schematic Review
+            <ul class="sub-list">
+              <li>Designed and implemented a multi-modal data processing pipeline for RAG, supporting various document formats (PDF, DOCX, PPTX, PNG, JPG).</li>
+              <li>Integrated visual LLM models for image-based information extraction alongside text extraction systems.</li>
+              <li>Built a vector database storing both dense and sparse embeddings, enabling advanced semantic and keyword-based search; applied the reciprocal rank fusion (RRF) algorithm and a rerank model to further refine and present the most relevant results.</li>
+              <li>Developed a Gradio-based frontend, allowing users to query PCB chip-related issues with high accuracy. The system now serves enterprise customers and meets key requirements.</li>
+            </ul>
+          </li>
+          <li>Automated Code Generation for Schematic Reviews
+            <ul class="sub-list">
+              <li>Developed AI-powered solutions to automate schematic review processes, significantly reducing manual scripting efforts. Established a reliable code generation framework, optimizing both accuracy and response time through extensive architecture testing.</li>
+              <li>Designed a workflow where user prompts specify only the core logic of the code, which is then expanded by an LLM-based code writer using pseudo-APIs. A secondary LLM replaces pseudo-APIs with real, validated APIs.</li>
+              <li>Implemented a recursive process to iteratively search the database for missing APIs and integrate them into the final code.</li>
+              <li>Validated the generated code on real-world schematic files, achieving results consistent with manually written scripts.</li>
+            </ul>
+          </li>
+          <li>Deep-semi-sight LLM Project
+            <ul class="sub-list">
+              <li>Developed an end-to-end framework for fine-tuning, deploying, and evaluating LLMs, leveraging vllm, vllm-ascend, and LLamaFactory.</li>
+              <li>Supported advanced fine-tuning techniques (Full, LoRA, QLoRA, DPO) and concurrent deployment on non-NVIDIA platforms (e.g., Huawei Ascend hardware).</li>
+              <li>Built an evaluation pipeline for both open-source general datasets and custom domain-specific data.</li>
+              <li>Successfully fine-tuned Qwen3-32B and Qwen2.5-32B-Instruct, achieving a 15% performance boost in semiconductor applications while maintaining general model capability.</li>
+              <li>Delivered robust, customer-facing LLM solutions and comprehensive evaluation results for enterprise deployment.</li>
+            </ul>
+          </li>
+          <li>Yield Loss Data Analysis
+            <ul class="sub-list">
+              <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, outperforming existing machine learning and calculation methods in speed and accuracy.</li>
+              <li>Validated the algorithms against expert results in a two-week production test, leading to the algorithms’ integration into the latest product release.</li>
+              <li>Developed a multi-step yield loss identification algorithm to discover the most influential combinations of process steps, filling a gap in the previous analysis system.</li>
+              <li>Demonstrated expert-level accuracy and efficiency in a three-month real-world validation, substantially reducing manual investigation time. Built and delivered an easy-to-use executable application with a user-friendly interface; deployed to customers for grey testing and now adopted in production environments.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-job">
+        <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit &mdash; Hong Kong</div>
+        <div class="cv-job-meta">Intern | Data and AI Engineer | 2024.1 - 2024.6</div>
+        <ul class="main-list">
+          <li>Contributed to BASF's AI and digitalization initiatives through two key projects: NewsBot Marketing Intelligence and Abnormal Result Inference.</li>
+          <li>NewsBot Marketing Intelligence Project
+            <ul class="sub-list">
+              <li>Built an AI assistant to gather and analyze daily competitor and customer news from online sources, tailored to BASF’s industry-specific terminology and internal knowledge base.</li>
+              <li>Designed an end-to-end news collection pipeline using Azure Databricks, enabling automatic labeling of topics, industries, companies, and locations during preprocessing.</li>
+              <li>Integrated Azure Cognitive Search to enable efficient retrieval of relevant news using filters, and applied the LangChain framework for prompt engineering to answer user queries in the marketing intelligence domain.</li>
+              <li>Developed prompts to teach the model to summarize internal knowledge and provide accurate, context-aware responses.</li>
+            </ul>
+          </li>
+          <li>Abnormal Result Inference Project
+            <ul class="sub-list">
+              <li>Developed a solution to identify and diagnose root causes for product batches failing to meet quality standards, leveraging BASF’s extensive sensor network.</li>
+              <li>Designed a data integration pipeline in Azure Databricks to consolidate sensor data from multiple sources.</li>
+              <li>Conducted statistical analyses and correlation comparisons between normal and abnormal production days to identify critical sensor anomalies.</li>
+              <li>Built a linear regression model to pinpoint sensors most associated with production issues and deployed insights via an interactive Power BI dashboard, enabling actionable decision-making.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-job">
+        <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama &mdash; Beijing</div>
+        <div class="cv-job-meta">Intern | Algorithm Engineer | 2023.5 - 2023.9</div>
+        <ul class="main-list">
+          <li>Contributed to the development of Alibaba's LLM technologies through two key projects: Natural Language to Crowd Package Generation and participation in the Alibaba AI Hackathon Competition.</li>
+          <li>Natural Language to Crowd Package Generation Project
+            <ul class="sub-list">
+              <li>Automated the creation of crowd packages—user groups defined by operations (e.g., intersection, union, difference) on multiple user labels—using ChatGPT and LangChain frameworks.</li>
+              <li>Designed and implemented prompt engineering for tasks such as user intent recognition, crowd package naming, and generating recommendation rationales, fully utilizing LLM capabilities.</li>
+              <li>For complex tasks like label selection and operational logic determination, developed a hybrid approach that combined LLMs with traditional machine learning algorithms.</li>
+              <li>The project successfully passed internal evaluations at Alibaba and entered the grey testing phase, demonstrating its value in automating previously manual processes.</li>
+            </ul>
+          </li>
+          <li>AI Hackathon Competition
+            <ul class="sub-list">
+              <li>Leveraged large language models to simulate user feedback on brand advertising, addressing the challenge of evaluating brand advertising effectiveness.</li>
+              <li>Designed a memory-and-decision-making framework that analyses user shopping histories, summarizes multidimensional features, and retrieves contextually relevant information based on timeliness, relevance, and importance; integrated chain-of-thought reasoning and consumer behaviour simulations to mimic real-world decision-making.</li>
+              <li>Secured 4th place out of 28 teams in the competition, showcasing innovative use of LLMs for business and advertising optimization.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="cv-section">
+      <div class="section-title">Ability</div>
+      <ul class="cv-ability-list">
+        <li>C, C++, Python, R, SQL.</li>
+        <li>Artificial Intelligence, Machine Learning, LLM.</li>
+        <li>English (Business Professional, TOEFL 109, College English Test-6 677), Mandarin (Native), Cantonese (Intermediate).</li>
+        <li>Debate: Third Place of Chinese Debate World Cup 2023, Champion of Chinese College Debate Tournament 2020.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
