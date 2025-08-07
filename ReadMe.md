@@ -19,7 +19,7 @@ This project contains the source code and deployment for my professional Curricu
 
 - 📄 **Education:** Beijing University of Posts and Telecommunications (BUPT), The University of Hong Kong (HKU)
 - 💼 **Work Experience:**  
-  - AS Watson Group, DataLab (LLM Developer)  
+  - AS Watson Group, DataLab - AI Lab (LLM Developer)  
   - Huawei HK Research Center (R&D Engineer)  
   - BASF East Asia (Data & AI Engineer)  
   - Alibaba Group (Algorithm Engineer Intern)
