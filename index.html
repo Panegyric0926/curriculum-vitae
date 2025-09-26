@@ -261,6 +261,55 @@
           </div>
           <div class="cv-job-time">2025.8 - Present</div>
         </div>
+        <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Designed and implemented an <b>agentic AI framework</b> and suite of <b>production-grade applications</b> for commercial analysis and daily business workflows, leveraging Watson enterprise data and LangGraph / Langfuse toolchains.
+            </li>
+            <li>
+              <b>Agentic AI framework</b>
+              <ul class="sub-list">
+                <li>Built a reusable, production-ready code template supporting multi-agent orchestration, dynamic planning, and runtime tracing. The template includes:</li>
+                  <ul class="sub-list">
+                    <li>Multi-agent lifecycle and coordination layer with a central supervisor agent that interprets user intent, decomposes complex requests into executable subtasks, updates plans iteratively based on agent outputs, and synthesizes final conclusions and recommendations.</li>
+                    <li>Prompt management system for controlled prompt variants, templating, and A/B experimentation across agents.</li>
+                    <li>MCP (Model Context Protocol) tools server exposing common connectors and utilities.</li>
+                    <li>Natural language → SQL translator with schema-aware generation and execution safeguards against destructive queries.</li>
+                    <li>Native connectors to Azure Databricks for scalable analytics and feature engineering.</li>
+                    <li>Execution tracing, observability, and Langfuse-compatible telemetry for per-agent prompts, responses, latencies, and cost breakdowns.</li>
+                    <li>Front-end integration layer and a plug-and-play web page for interactive workflows, query refinement, and visualization.</li>
+                    <li>Engineered the template to be product-agnostic so teams can deploy it across multiple products with minimal changes (config-driven agent composition, connector registration, and permissions).</li>
+                  </ul>
+              </ul>
+            </li>
+            <li>
+              <b>Category management system (agent-driven analytics application)</b>
+              <ul class="sub-list">
+                <li>Architected and built a multi-agent application that ingests and reasons over real enterprise data to deliver KPI monitoring, root-cause analysis, and actionable recommendations.</li>
+                <li>Capabilities demonstrated:</li>
+                  <ul class="sub-list">
+                    <li>Robust data retrieval and understanding: agents fetch and normalize transactional, catalog, promotion, and inventory data; validate data quality; and surface anomalies.</li>
+                    <li>KPI dashboard and narrative analysis: automated generation of KPI summaries and prioritized insights (e.g., detect an extreme drop for a product/week and recommend immediate investigative steps such as verifying reporting pipelines or stockouts).</li>
+                    <li>Sales tree analysis and recommendations: hierarchical sales decomposition (L1--L3, member vs non-member) with automated attribution of drivers (member counts, spend-per-member, items-per-basket) and concrete, prioritized actions to reverse declines.</li>
+                    <li>Transaction-level diagnostics and remediation guidance: identify and triage "UNKNOWN" categorizations, recommend data remediation processes, and propose targeted marketing or assortment interventions based on segment behavior.</li>
+                    <li>External context enrichment: fetches weather, holiday, and event signals to contextualize anomalies and improve recommendation relevance.</li>
+                  </ul>
+                <li>Multi-agent workflow:
+                  <ul class="sub-list">
+                    <li>A supervisor agent that decomposes user questions into sub-tasks, assigns them to specialist agents, stitches intermediate outputs, and iteratively updates the plan until a coherent, evidence-backed conclusion is produced.</li>
+                    <li>Visualization tools that prepares charts (e.g., sales tree plots, trend dashboards) and integrates them into the front-end for interactive exploration.</li>
+                  </ul>
+                </li>
+                <li>Outcome and production readiness:
+                  <ul class="sub-list">
+                    <li>Delivered automated investigative narratives and dashboards that reduced manual analyst time on high-priority incidents and accelerated root-cause detection.</li>
+                    <li>Deployed with monitoring and retraining hooks (via Langfuse telemetry and LangGraph orchestration) to continuously improve prompt templates, agent policies, and model selection.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
       <div style="height:16px"></div>
 
