@@ -267,29 +267,37 @@
               Designed and implemented an <b>agentic AI framework</b> and suite of <b>production-grade applications</b> for commercial analysis and daily business workflows, leveraging Watson enterprise data and LangGraph / Langfuse toolchains.
             </li>
             <li>
+              <b>Agentic AI framework</b>
+              <ul class="sub-list">
+                <li>Built a reusable, production-ready code template supporting multi-agent orchestration, dynamic planning, and runtime tracing. The template includes:</li>
+                  <ul class="sub-list">
+                    <li>Multi-agent lifecycle and coordination layer with a central supervisor agent that interprets user intent, decomposes complex requests into executable subtasks, updates plans iteratively based on agent outputs, and synthesizes final conclusions and recommendations.</li>
+                    <li>Prompt management system for controlled prompt variants, templating, and A/B experimentation across agents.</li>
+                    <li>MCP (Model Context Protocol) tools server exposing common connectors and utilities.</li>
+                    <li>Natural language → SQL translator with schema-aware generation and execution safeguards against destructive queries.</li>
+                    <li>Native connectors to Azure Databricks for scalable analytics and feature engineering.</li>
+                    <li>Execution tracing, observability, and Langfuse-compatible telemetry for per-agent prompts, responses, latencies, and cost breakdowns.</li>
+                    <li>Front-end integration layer and a plug-and-play web page for interactive workflows, query refinement, and visualization.</li>
+                    <li>Engineered the template to be product-agnostic so teams can deploy it across multiple products with minimal changes (config-driven agent composition, connector registration, and permissions).</li>
+                  </ul>
+              </ul>
+            </li>
+            <li>
               <b>Category management system (agent-driven analytics application)</b>
               <ul class="sub-list">
                 <li>Architected and built a multi-agent application that ingests and reasons over real enterprise data to deliver KPI monitoring, root-cause analysis, and actionable recommendations.</li>
                 <li>Capabilities demonstrated:</li>
                   <ul class="sub-list">
-                    <li>Knowledge-augmented reasoning: a RAG layer that combines embedding-based retrieval with keyword/text search to surface accurate internal documentation, definitions, and playbooks for downstream agents and components.</li>
-                    <li>Robust data retrieval and understanding: agents fetch and normalize transactional, catalog, promotion, and inventory data; validate data quality; and surface anomalies. Uses a hybrid of parameterized SQL templates for common queries and on-the-fly SQL generation (SQL agent) for complex or novel questions, balancing latency, reliability, and flexibility.</li>
-                    <li>Domain agents for business analysis:
-                      <ul class="sub-list">
-                        <li>KPI agent: analyzes KPIs across time, product, and customer dimensions; generates prioritized alerts and narrative explanations for significant movements.</li>
-                        <li>Sales tree agent: decomposes sales into member vs non-member hierarchies (L1–L3); attributes changes to drivers such as member counts, spend-per-member, and items-per-basket; recommends concrete actions to reverse declines.</li>
-                        <li>Customer segmentation agent: orchestrates customer clustering via MCP-exposed ML models; segments customers into behavioral cohorts and conducts downstream KPI, retention, and monetization analysis for each segment.</li>
-                      </ul>
-                    </li>
-                    <li>Visualization agent and caching: generates tables and charts (e.g., sales trees, trends, segmentation profiles) based on user requirements; manages a data cache to improve data quality and reliability, support efficient chart regeneration, and enable chart-type transformations (e.g., converting a line chart to a bar chart or pivoted view).</li>
-                    <li>Driver analysis agent: decomposes complex, multi-part business questions into smaller analytical tasks; incorporates human-in-the-loop approval and feedback on the analysis plan; coordinates with the SQL agent to generate and refine queries; and synthesizes driver-level explanations of performance changes.</li>
+                    <li>Robust data retrieval and understanding: agents fetch and normalize transactional, catalog, promotion, and inventory data; validate data quality; and surface anomalies.</li>
+                    <li>KPI dashboard and narrative analysis: automated generation of KPI summaries and prioritized insights (e.g., detect an extreme drop for a product/week and recommend immediate investigative steps such as verifying reporting pipelines or stockouts).</li>
+                    <li>Sales tree analysis and recommendations: hierarchical sales decomposition (L1--L3, member vs non-member) with automated attribution of drivers (member counts, spend-per-member, items-per-basket) and concrete, prioritized actions to reverse declines.</li>
+                    <li>Transaction-level diagnostics and remediation guidance: identify and triage "UNKNOWN" categorizations, recommend data remediation processes, and propose targeted marketing or assortment interventions based on segment behavior.</li>
+                    <li>External context enrichment: fetches weather, holiday, and event signals to contextualize anomalies and improve recommendation relevance.</li>
                   </ul>
                 <li>Multi-agent workflow:
                   <ul class="sub-list">
-                    <li>Intent recognizer: leverages the RAG system over internal knowledge to infer user intent, resolve internal terminology (e.g., product lines, channel names, abbreviations), and determine which agents (KPI, sales tree, customer segmentation, SQL, visualization, driver analysis) are relevant to the request.</li>
-                    <li>Planner: constructs a coordinated execution plan across the selected agents based on the user query and intent recognizer output, including data dependencies and intermediate artifacts.</li>
-                    <li>Finalizer: aggregates outputs from all participating agents into a coherent, evidence-backed response; evaluates coverage and confidence; and, when results are insufficient to answer the question, invokes the replanner with targeted guidance.</li>
-                    <li>Replanner: iteratively refines the multi-agent plan (e.g., adding new sub-tasks, adjusting SQL queries, requesting additional context) and re-runs the workflow until the user's question is satisfactorily addressed or clear limitations are surfaced.</li>
+                    <li>A supervisor agent that decomposes user questions into sub-tasks, assigns them to specialist agents, stitches intermediate outputs, and iteratively updates the plan until a coherent, evidence-backed conclusion is produced.</li>
+                    <li>Visualization tools that prepares charts (e.g., sales tree plots, trend dashboards) and integrates them into the front-end for interactive exploration.</li>
                   </ul>
                 </li>
                 <li>Outcome and production readiness:
@@ -298,20 +306,6 @@
                     <li>Deployed with monitoring and retraining hooks (via Langfuse telemetry and LangGraph orchestration) to continuously improve prompt templates, agent policies, and model selection.</li>
                   </ul>
                 </li>
-              </ul>
-            </li>
-            <li>
-              <b>Agentic AI framework</b>
-              <ul class="sub-list">
-                <li>Built a reusable, production-ready code template supporting multi-agent orchestration, dynamic planning, and runtime tracing. The template includes:</li>
-                  <ul class="sub-list">
-                    <li>Multi-agent lifecycle and coordination layer with a central supervisor agent that interprets user intent, decomposes complex requests into executable subtasks, updates plans iteratively based on agent outputs, and synthesizes final conclusions and recommendations.</li>
-                    <li>Prompt management system with controlled prompt variants, templating, A/B experimentation. Langfuse-compatible telemetry for execution tracing, observability, per-agent prompts, responses, latencies, and cost breakdowns.</li>
-                    <li>MCP (Model Context Protocol) tools server exposing common connectors and utilities.</li>
-                    <li>Natural language → SQL translator with schema-aware generation, execution safeguards against destructive queries. Native connectors to Azure Databricks for scalable analytics and feature engineering.</li>
-                    <li>Front-end integration layer and a plug-and-play web page for interactive workflows, query refinement, and visualization.</li>
-                    <li>Engineered the template to be product-agnostic so teams can deploy it across multiple products with minimal changes (config-driven agent composition, connector registration, and permissions).</li>
-                  </ul>
               </ul>
             </li>
           </ul>
@@ -430,6 +424,23 @@
           <ul class="main-list">
             <li>
               Contributed to the development of Alibaba's <b>LLM</b> technologies through two key projects: <b>Natural Language to Crowd Package</b> Generation and participation in the <b>AI Hackathon</b> Competition.
+            </li>
+            <li>
+              <b>Natural Language to Crowd Package Generation Project</b>:
+              <ul class="sub-list">
+                <li>Automated the creation of crowd packages—user groups defined by operations (e.g., intersection, union, difference) on multiple user labels—using ChatGPT and LangChain frameworks.</li>
+                <li>Designed and implemented prompt engineering for tasks such as user intent recognition, crowd package naming, and generating recommendation rationales, fully utilizing LLM capabilities.</li>
+                <li>For complex tasks like label selection and operational logic determination, developed a hybrid approach that combined LLMs with traditional machine learning algorithms.</li>
+                <li>The project successfully passed internal evaluations at Alibaba and entered the grey testing phase, demonstrating its value in automating previously manual processes.</li>
+              </ul>
+            </li>
+            <li>
+              <b>AI Hackathon Competition</b>:
+              <ul class="sub-list">
+                <li>Leveraged large language models to simulate user feedback on brand advertising, addressing the challenge of evaluating brand advertising effectiveness.</li>
+                <li>Designed a memory-and-decision-making framework that analyses user shopping histories, summarizes multidimensional features, and retrieves contextually relevant information based on timeliness, relevance, and importance; integrated chain-of-thought reasoning and consumer behaviour simulations to mimic real-world decision-making.</li>
+                <li>Secured 4th place out of 28 teams in the competition, showcasing innovative use of LLMs for business and advertising optimization.</li>
+              </ul>
             </li>
           </ul>
         </div>
