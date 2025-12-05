@@ -185,6 +185,46 @@
     .cv-ability-list li {
       margin-bottom: 7px;
     }
+    /* Collapsible job styles */
+    .job-header {
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+      user-select: none;
+      margin-left: 18px;
+    }
+    .job-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin-left: -25px;
+      margin-right: 0;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: var(--secondary);
+      transition: transform 0.2s ease;
+    }
+    .job-toggle::before {
+      content: '▲';
+    }
+    .job-header.collapsed .job-toggle::before {
+      content: '▼';
+    }
+    .job-header-content {
+      flex: 1;
+    }
+    .cv-job-details {
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 2000px;
+      opacity: 1;
+    }
+    .cv-job-details.collapsed {
+      max-height: 0;
+      opacity: 0;
+    }
     @media (max-width: 600px) {
       .cv-header {
         flex-direction: column;
@@ -247,20 +287,34 @@
     <hr class="divider">
 
     <div class="cv-section">
+      <div class="section-title">Summary</div>
+      <p style="margin: 0 0 0 2px; font-size: 1rem; color: var(--text); line-height: 1.6;">
+        <b>AI</b> and <b>data science</b> enthusiast with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across tech and industry settings.
+      </p>
+    </div>
+    <hr class="divider">
+
+    <div class="cv-section">
       <div class="section-title">Work Experience</div>
 
       <!-- AS Watson -->
       <div class="cv-job">
-        <div class="job-row">
-          <div class="cv-job-title">AS Watson Group, DataLab - AI Lab</div>
-          <div class="cv-job-city">Hong Kong</div>
-        </div>
-        <div class="job-meta-row">
-          <div class="cv-job-meta">
-            Full-Time&nbsp;|&nbsp;<b>LLM Developer</b>
+        <div class="job-header" onclick="toggleJob(this)">
+          <span class="job-toggle"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">AS Watson Group, DataLab - AI Lab</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Full-Time&nbsp;|&nbsp;<b>LLM Developer</b>
+              </div>
+              <div class="cv-job-time">2025.8 - Present</div>
+            </div>
           </div>
-          <div class="cv-job-time">2025.8 - Present</div>
         </div>
+        <div class="cv-job-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -316,21 +370,27 @@
             </li>
           </ul>
         </div>
+        </div>
       </div>
-      <div style="height:16px"></div>
 
       <!-- Huawei -->
       <div class="cv-job">
-        <div class="job-row">
-          <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab</div>
-          <div class="cv-job-city">Hong Kong</div>
-        </div>
-        <div class="job-meta-row">
-          <div class="cv-job-meta">
-            Full-Time&nbsp;|&nbsp;<b>R&amp;D Engineer</b>
+        <div class="job-header" onclick="toggleJob(this)">
+          <span class="job-toggle"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Full-Time&nbsp;|&nbsp;<b>R&amp;D Engineer</b>
+              </div>
+              <div class="cv-job-time">2024.6 - 2025.8</div>
+            </div>
           </div>
-          <div class="cv-job-time">2024.6 - 2025.8</div>
         </div>
+        <div class="cv-job-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -373,20 +433,27 @@
             </li>
           </ul>
         </div>
+        </div>
       </div>
 
       <!-- BASF -->
       <div class="cv-job">
-        <div class="job-row">
-          <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit</div>
-          <div class="cv-job-city">Hong Kong</div>
-        </div>
-        <div class="job-meta-row">
-          <div class="cv-job-meta">
-            Intern&nbsp;|&nbsp;<b>Data and AI Engineer</b>
+        <div class="job-header" onclick="toggleJob(this)">
+          <span class="job-toggle"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Intern&nbsp;|&nbsp;<b>Data and AI Engineer</b>
+              </div>
+              <div class="cv-job-time">2024.1 - 2024.6</div>
+            </div>
           </div>
-          <div class="cv-job-time">2024.1 - 2024.6</div>
         </div>
+        <div class="cv-job-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -412,26 +479,34 @@
             </li>
           </ul>
         </div>
+        </div>
       </div>
 
       <!-- Alibaba -->
       <div class="cv-job">
-        <div class="job-row">
-          <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama</div>
-          <div class="cv-job-city">Beijing</div>
-        </div>
-        <div class="job-meta-row">
-          <div class="cv-job-meta">
-            Intern&nbsp;|&nbsp;<b>Algorithm Engineer</b>
+        <div class="job-header" onclick="toggleJob(this)">
+          <span class="job-toggle"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama</div>
+              <div class="cv-job-city">Beijing</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Intern&nbsp;|&nbsp;<b>Algorithm Engineer</b>
+              </div>
+              <div class="cv-job-time">2023.5 - 2023.9</div>
+            </div>
           </div>
-          <div class="cv-job-time">2023.5 - 2023.9</div>
         </div>
+        <div class="cv-job-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
               Contributed to the development of Alibaba's <b>LLM</b> technologies through two key projects: <b>Natural Language to Crowd Package</b> Generation and participation in the <b>AI Hackathon</b> Competition.
             </li>
           </ul>
+        </div>
         </div>
       </div>
     </div>
@@ -447,5 +522,13 @@
       </ul>
     </div>
   </div>
+
+  <script>
+    function toggleJob(header) {
+      header.classList.toggle('collapsed');
+      const details = header.nextElementSibling;
+      details.classList.toggle('collapsed');
+    }
+  </script>
 </body>
 </html>
