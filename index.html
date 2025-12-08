@@ -581,6 +581,10 @@
       details.classList.toggle('collapsed');
     }
 
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
     function downloadPDF() {
       // Expand all collapsed sections before printing
       const collapsedHeaders = document.querySelectorAll('.job-header.collapsed');
@@ -588,9 +592,51 @@
       
       collapsedHeaders.forEach(h => h.classList.remove('collapsed'));
       collapsedDetails.forEach(d => d.classList.remove('collapsed'));
+
+      if (isMobile()) {
+        // Mobile: show instructions modal
+        showMobileModal();
+      } else {
+        // Desktop: use print dialog
+        window.print();
+      }
+    }
+
+    function showMobileModal() {
+      // Create modal overlay
+      const overlay = document.createElement('div');
+      overlay.id = 'pdf-modal-overlay';
+      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;';
       
-      // Trigger print dialog (user can save as PDF)
-      window.print();
+      const modal = document.createElement('div');
+      modal.style.cssText = 'background:#fff;border-radius:12px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.2);';
+      
+      modal.innerHTML = `
+        <h3 style="margin:0 0 16px;color:#1a237e;font-size:1.2rem;">Download PDF</h3>
+        <p style="margin:0 0 20px;color:#697080;font-size:0.95rem;line-height:1.5;">
+          To save this CV as PDF on your mobile device:
+        </p>
+        <div style="text-align:left;margin-bottom:20px;color:#233;font-size:0.9rem;line-height:1.7;">
+          <b>iPhone/iPad (Safari):</b><br>
+          Tap <b>Share</b> → <b>Print</b> → Pinch out on preview<br><br>
+          <b>Android (Chrome):</b><br>
+          Tap <b>⋮ Menu</b> → <b>Share</b> → <b>Print</b> → Save as PDF
+        </div>
+        <button onclick="closeMobileModal()" style="background:#1a237e;color:#fff;border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">Got it</button>
+      `;
+      
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+      
+      // Close on overlay click
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeMobileModal();
+      });
+    }
+
+    function closeMobileModal() {
+      const overlay = document.getElementById('pdf-modal-overlay');
+      if (overlay) overlay.remove();
     }
   </script>
 </body>
