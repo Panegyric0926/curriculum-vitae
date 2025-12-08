@@ -73,7 +73,7 @@
       margin-bottom: 28px;
     }
     .section-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: var(--secondary);
       font-weight: 600;
       letter-spacing: 0.5px;
@@ -94,7 +94,7 @@
     }
     .cv-edu-title {
       font-weight: 600;
-      font-size: 1.07rem;
+      font-size: 1.2rem;
       color: var(--primary);
     }
     .cv-edu-meta {
@@ -105,8 +105,8 @@
       flex-shrink: 0;
     }
     .cv-edu-detail {
-      margin: 0 0 10px 0;
-      padding-left: 2px;
+      margin: 0 0 10px 18px;
+      padding: 0;
     }
     @media (max-width: 600px) {
       .edu-row {
@@ -130,7 +130,7 @@
     }
     .cv-job-title {
       font-weight: 600;
-      font-size: 1.07rem;
+      font-size: 1.2rem;
       color: var(--primary);
     }
     .cv-job-city, .cv-job-time {
@@ -149,17 +149,6 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-    }
-    .cv-job-position {
-      font-size: 0.98rem;
-      font-weight: 400;
-      color: var(--muted);
-    }
-    .cv-job-position b {
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.01rem;
-      margin: 0 0.2em 0 0.2em;
     }
     .cv-job-content {
       margin-top: 3px;
@@ -235,8 +224,6 @@
     .job-header {
       display: flex;
       align-items: flex-start;
-      cursor: pointer;
-      user-select: none;
       margin-left: 18px;
     }
     .job-toggle {
@@ -251,6 +238,8 @@
       font-size: 0.7rem;
       color: var(--secondary);
       transition: transform 0.2s ease;
+      cursor: pointer;
+      user-select: none;
     }
     .job-toggle::before {
       content: '▲';
@@ -299,6 +288,10 @@
     <div class="cv-header">
       <div>
         <div class="cv-name">LI Miqi (Mickey)</div>
+        <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download PDF
+        </button>
       </div>
       <div class="cv-contact-links">
         <div>Address: Shatin, New Territories, Hong Kong</div>
@@ -306,10 +299,6 @@
         <div>Email: <a href="mailto:limiqi@connect.hku.hk">limiqi@connect.hku.hk</a></div>
         <div>LinkedIn: <a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
         <div>Latest CV: <a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
-        <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Download PDF
-        </button>
       </div>
     </div>
 
@@ -320,27 +309,27 @@
           <div class="cv-edu-title">Beijing University of Posts and Telecommunications (BUPT)</div>
           <div class="cv-edu-meta">2018.9 - 2022.6</div>
         </div>
-        <div class="cv-edu-detail">
-          • School of Computer Science | Bachelor of Engineering | Major in <b>Data Science and Big Data Technology</b>
-        </div>
+        <ul class="main-list cv-edu-detail">
+          <li>School of Computer Science | Bachelor of Engineering | Major in <b>Data Science and Big Data Technology</b></li>
+        </ul>
       </div>
       <div class="cv-edu">
         <div class="edu-row">
           <div class="cv-edu-title">The University of Hong Kong (HKU)</div>
           <div class="cv-edu-meta">2022.9 - 2024.1</div>
         </div>
-        <div class="cv-edu-detail">
-          • Faculty of Science, Department of Statistics and Actuarial Science | Master of Science | Major in <b>Data Science</b>
-        </div>
+        <ul class="main-list cv-edu-detail">
+          <li>Faculty of Science, Department of Statistics and Actuarial Science | Master of Science | Major in <b>Data Science</b></li>
+        </ul>
       </div>
     </div>
     <hr class="divider">
 
     <div class="cv-section">
       <div class="section-title">Summary</div>
-      <p style="margin: 0 0 0 2px; font-size: 1rem; color: var(--text); line-height: 1.6;">
-        <b>AI</b> and <b>data science</b> enthusiast with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across tech and industry settings.
-      </p>
+      <ul class="main-list">
+        <li><b>AI</b> and <b>data science</b> enthusiast with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across tech and industry settings.</li>
+      </ul>
     </div>
     <hr class="divider">
 
@@ -349,8 +338,8 @@
 
       <!-- AS Watson -->
       <div class="cv-job">
-        <div class="job-header" onclick="toggleJob(this)">
-          <span class="job-toggle"></span>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
           <div class="job-header-content">
             <div class="job-row">
               <div class="cv-job-title">AS Watson Group, DataLab - AI Lab</div>
@@ -425,8 +414,8 @@
 
       <!-- Huawei -->
       <div class="cv-job">
-        <div class="job-header" onclick="toggleJob(this)">
-          <span class="job-toggle"></span>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
           <div class="job-header-content">
             <div class="job-row">
               <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab</div>
@@ -488,8 +477,8 @@
 
       <!-- BASF -->
       <div class="cv-job">
-        <div class="job-header" onclick="toggleJob(this)">
-          <span class="job-toggle"></span>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
           <div class="job-header-content">
             <div class="job-row">
               <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit</div>
@@ -534,8 +523,8 @@
 
       <!-- Alibaba -->
       <div class="cv-job">
-        <div class="job-header" onclick="toggleJob(this)">
-          <span class="job-toggle"></span>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
           <div class="job-header-content">
             <div class="job-row">
               <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama</div>
