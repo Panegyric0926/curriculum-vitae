@@ -185,6 +185,52 @@
     .cv-ability-list li {
       margin-bottom: 7px;
     }
+    /* PDF Download Button */
+    .pdf-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .pdf-btn:hover {
+      background: var(--secondary);
+      transform: translateY(-1px);
+    }
+    .pdf-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+    @media print {
+      .pdf-btn {
+        display: none !important;
+      }
+      .cv-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+      .job-header {
+        cursor: default;
+      }
+      .job-toggle {
+        display: none !important;
+      }
+      .cv-job-details.collapsed {
+        max-height: none !important;
+        opacity: 1 !important;
+      }
+    }
     /* Collapsible job styles */
     .job-header {
       display: flex;
@@ -260,6 +306,10 @@
         <div>Email: <a href="mailto:limiqi@connect.hku.hk">limiqi@connect.hku.hk</a></div>
         <div>LinkedIn: <a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
         <div>Latest CV: <a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
+        <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download PDF
+        </button>
       </div>
     </div>
 
@@ -529,6 +579,18 @@
       header.classList.toggle('collapsed');
       const details = header.nextElementSibling;
       details.classList.toggle('collapsed');
+    }
+
+    function downloadPDF() {
+      // Expand all collapsed sections before printing
+      const collapsedHeaders = document.querySelectorAll('.job-header.collapsed');
+      const collapsedDetails = document.querySelectorAll('.cv-job-details.collapsed');
+      
+      collapsedHeaders.forEach(h => h.classList.remove('collapsed'));
+      collapsedDetails.forEach(d => d.classList.remove('collapsed'));
+      
+      // Trigger print dialog (user can save as PDF)
+      window.print();
     }
   </script>
 </body>
