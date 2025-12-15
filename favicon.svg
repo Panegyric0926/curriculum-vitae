@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Paper background -->
+  <rect x="12" y="8" width="40" height="48" rx="2" ry="2" fill="#fff" stroke="#1a237e" stroke-width="4"/>
+  <!-- Profile pic placeholder -->
+  <rect x="18" y="14" width="12" height="12" fill="#e0e4ea"/>
+  <!-- Header lines -->
+  <line x1="34" y1="16" x2="46" y2="16" stroke="#1a237e" stroke-width="3" stroke-linecap="round"/>
+  <line x1="34" y1="22" x2="46" y2="22" stroke="#1a237e" stroke-width="3" stroke-linecap="round"/>
+  <!-- Body lines -->
+  <line x1="18" y1="32" x2="46" y2="32" stroke="#697080" stroke-width="2" stroke-linecap="round"/>
+  <line x1="18" y1="38" x2="46" y2="38" stroke="#697080" stroke-width="2" stroke-linecap="round"/>
+  <line x1="18" y1="44" x2="46" y2="44" stroke="#697080" stroke-width="2" stroke-linecap="round"/>
+</svg>
