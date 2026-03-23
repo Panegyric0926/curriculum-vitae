@@ -395,6 +395,38 @@
               </ul>
             </li>
             <li>
+              <b>Trend system (agent-driven product discovery and market analysis application)</b>
+              <ul class="sub-list">
+                <li>Architected and built a multi-agent trend analysis platform that discovers trending external products via web search, ranks them against user preferences, and validates market availability across competitor platforms to identify white-space opportunities.</li>
+                <li>Capabilities demonstrated:</li>
+                  <ul class="sub-list">
+                    <li>Domain agents for product trend analysis:
+                      <ul class="sub-list">
+                        <li>Trend manager agent: central orchestrator that manages session state, routes user intent to downstream agents with confidence-thresholded LLM classification, and supports multi-turn navigation including agent chaining (e.g., hero SKU results fed directly into white-space analysis).</li>
+                        <li>Hero SKU search agent: a 6-phase LangGraph pipeline that collects user preferences via human-in-the-loop forms, generates product understanding through LLM reasoning and web search, produces region-specific search queries across e-commerce, social media, forums, and e-magazine channels, executes parallel web searches, verifies result quality with confidence-gated re-search, and ranks the top 15 SKUs using a weighted scoring model (user preferences 60%, market context 20%, AI understanding 20%) with deduplication and brand-diversity penalties.</li>
+                        <li>White-space analysis agent: accepts SKUs from hero search or manual input; collects region and competitor lists (pre-populated with curated regional competitors across 8 markets); executes parallel web searches across all SKU–competitor pairs with concurrency-limited async execution; classifies matches via batch LLM analysis as exact, brand-only, or no match; and generates a coverage matrix report highlighting market gaps and brand penetration opportunities.</li>
+                      </ul>
+                    </li>
+                    <li>MCP integration and search infrastructure: a local MCP server exposing web search as a tool via SSE transport, with dual-engine support (Tavily for advanced depth/time-range queries and DuckDuckGo with HTML content extraction as a free fallback); a shared MCP client singleton with session locking, automatic transport detection, and failover URL logic.</li>
+                    <li>Human-in-the-loop workflows: multi-step interactive data collection using LangGraph interrupt-and-resume, including editable text fields (e.g., product understanding review, competitor list editing), multiple-choice questionnaires (follow-up preference questions with option selection), and SKU list selectors; each interrupt cleanly separates expensive LLM computation from user input to avoid redundant re-execution on resumption.</li>
+                  </ul>
+                <li>Reactive frontend with real-time progress tracking:
+                  <ul class="sub-list">
+                    <li>Progress bar component: renders animated, segmented step indicators driven by AG-UI protocol events (activity snapshots and step-completion events streamed via SSE); visually tracks multi-phase agent execution with step labels, colour-coded segments, and clickable navigation.</li>
+                    <li>Interactive form and selection cards: renders form inputs, multiple-choice cards, and SKU selectors as rich UI components within the chat stream; supports locked/read-only state after submission for clear conversation history.</li>
+                    <li>Workflow node topology: declarative workflow graph defining agent steps and transitions, enabling the frontend to map backend progress events to visual step indicators across the hero SKU and white-space pipelines.</li>
+                  </ul>
+                </li>
+                <li>Outcome and production readiness:
+                  <ul class="sub-list">
+                    <li>Delivered an end-to-end product discovery and competitive intelligence tool that automates trending product identification, preference-weighted ranking, and multi-market competitor availability analysis — replacing manual analyst research workflows.</li>
+                    <li>Built with LangGraph subgraph composition, AG-UI event streaming, and MCP-based tool abstraction for modularity and extensibility.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!--
+            <li>
               <b>Agentic AI framework</b>
               <ul class="sub-list">
                 <li>Built a reusable, production-ready code template supporting multi-agent orchestration, dynamic planning, and runtime tracing. The template includes:</li>
@@ -408,6 +440,7 @@
                   </ul>
               </ul>
             </li>
+            -->
           </ul>
         </div>
         </div>
