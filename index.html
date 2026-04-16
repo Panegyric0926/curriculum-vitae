@@ -364,65 +364,40 @@
               <b>Category management system (agent-driven analytics application)</b>
               <ul class="sub-list">
                 <li>Architected and built a multi-agent application that ingests and reasons over real enterprise data to deliver KPI monitoring, root-cause analysis, and actionable recommendations.</li>
-                <li>Capabilities demonstrated:</li>
+                <li><b>RAG layer</b>: combines embedding-based retrieval with keyword/text search to surface internal documentation, definitions, and playbooks for downstream agents.</li>
+                <li><b>Data layer</b>: agents fetch and normalize transactional, catalogue, promotion, and inventory data; validate quality; surface anomalies; hybrid of parameterized SQL templates and on-the-fly SQL agent for complex queries.</li>
+                <li><b>Domain agents</b>:
                   <ul class="sub-list">
-                    <li>Knowledge-augmented reasoning: a RAG layer that combines embedding-based retrieval with keyword/text search to surface accurate internal documentation, definitions, and playbooks for downstream agents and components.</li>
-                    <li>Robust data retrieval and understanding: agents fetch and normalize transactional, catalogue, promotion, and inventory data; validate data quality; and surface anomalies. Uses a hybrid of parameterized SQL templates for common queries and on-the-fly SQL generation (SQL agent) for complex or novel questions, balancing latency, reliability, and flexibility.</li>
-                    <li>Domain agents for business analysis:
-                      <ul class="sub-list">
-                        <li>KPI agent: analyzes KPIs across time, product, and customer dimensions; generates prioritized alerts and narrative explanations for significant movements.</li>
-                        <li>Sales tree agent: decomposes sales into member vs non-member hierarchies (L1–L3); attributes changes to drivers such as member counts, spend-per-member, and items-per-basket; recommends concrete actions to reverse declines.</li>
-                        <li>Customer segmentation agent: orchestrates customer clustering via MCP-exposed ML models; segments customers into behavioral cohorts and conducts downstream KPI, retention, and monetization analysis for each segment.</li>
-                      </ul>
-                    </li>
-                    <li>Visualization agent and caching: generates tables and charts (e.g., sales trees, trends, segmentation profiles) based on user requirements; manages a data cache to improve data quality and reliability, support efficient chart regeneration, and enable chart-type transformations (e.g., converting a line chart to a bar chart or pivoted view).</li>
-                    <li>Driver analysis agent: decomposes complex, multi-part business questions into smaller analytical tasks; incorporates human-in-the-loop approval and feedback on the analysis plan; coordinates with the SQL agent to generate and refine queries; and synthesizes driver-level explanations of performance changes.</li>
-                  </ul>
-                <li>Multi-agent workflow:
-                  <ul class="sub-list">
-                    <li>Intent recognizer: leverages the RAG system over internal knowledge to infer user intent, resolve internal terminology (e.g., product lines, channel names, abbreviations), and determine which agents (KPI, sales tree, customer segmentation, SQL, visualization, driver analysis) are relevant to the request.</li>
-                    <li>Planner: constructs a coordinated execution plan across the selected agents based on the user query and intent recognizer output, including data dependencies and intermediate artifacts.</li>
-                    <li>Finalizer: aggregates outputs from all participating agents into a coherent, evidence-backed response; evaluates coverage and confidence; and, when results are insufficient to answer the question, invokes the replanner with targeted guidance.</li>
-                    <li>Replanner: iteratively refines the multi-agent plan (e.g., adding new sub-tasks, adjusting SQL queries, requesting additional context) and re-runs the workflow until the user's question is satisfactorily addressed or clear limitations are surfaced.</li>
+                    <li>KPI agent: monitors KPIs across time, product, and customer dimensions; generates prioritized alerts and narrative explanations.</li>
+                    <li>Sales tree agent: decomposes sales into member vs. non-member hierarchies (L1–L3); attributes changes to drivers (member count, spend-per-member, items-per-basket); recommends corrective actions.</li>
+                    <li>Customer segmentation agent: orchestrates clustering via MCP-exposed ML models; segments into behavioral cohorts for downstream KPI, retention, and monetization analysis.</li>
+                    <li>Visualization agent: generates tables and charts; manages data cache for reliability and chart-type transformations (e.g., line → bar, pivoted view).</li>
+                    <li>Driver analysis agent: decomposes multi-part questions into sub-tasks; human-in-the-loop plan approval; coordinates SQL agent; synthesizes driver-level performance explanations.</li>
                   </ul>
                 </li>
-                <li>Outcome and production readiness:
-                  <ul class="sub-list">
-                    <li>Delivered automated investigative narratives and dashboards that reduced manual analyst time on high-priority incidents and accelerated root-cause detection.</li>
-                    <li>Deployed with monitoring and retraining hooks (via Langfuse telemetry and LangGraph orchestration) to continuously improve prompt templates, agent policies, and model selection.</li>
-                  </ul>
-                </li>
+                <li><b>Multi-agent orchestration</b>: Intent recognizer (RAG-augmented intent resolution and agent routing) → Planner (coordinated execution plan with data dependencies) → Finalizer (aggregates outputs, evaluates coverage) → Replanner (iteratively refines plan until resolved).</li>
+                <li>Delivered automated investigative narratives and dashboards accelerating root-cause detection; deployed with Langfuse telemetry and LangGraph orchestration for continuous improvement.</li>
               </ul>
             </li>
             <li>
               <b>Trend system (agent-driven product discovery and market analysis application)</b>
               <ul class="sub-list">
-                <li>Architected and built a multi-agent trend analysis platform that discovers trending external products via web search, ranks them against user preferences, and validates market availability across competitor platforms to identify white-space opportunities.</li>
-                <li>Capabilities demonstrated:</li>
+                <li>Architected and built a multi-agent platform that discovers trending external products via web search, ranks them against user preferences, and validates market availability across competitors to identify white-space opportunities.</li>
+                <li><b>Trend manager agent</b>: central orchestrator managing session state, routing user intent via confidence-thresholded LLM classification, and supporting multi-turn conversational chaining (e.g., hero SKU results fed directly into white-space analysis).</li>
+                <li><b>Hero SKU search agent</b>: 11-node LangGraph pipeline supporting up to 3 parallel keyword–region search tabs:
                   <ul class="sub-list">
-                    <li>Domain agents for product trend analysis:
-                      <ul class="sub-list">
-                        <li>Trend manager agent: central orchestrator that manages session state, routes user intent to downstream agents with confidence-thresholded LLM classification, and supports multi-turn navigation including agent chaining (e.g., hero SKU results fed directly into white-space analysis).</li>
-                        <li>Hero SKU search agent: a 6-phase LangGraph pipeline that collects user preferences via human-in-the-loop forms, generates product understanding through LLM reasoning and web search, produces region-specific search queries across e-commerce, social media, forums, and e-magazine channels, executes parallel web searches, verifies result quality with confidence-gated re-search, and ranks the top 15 SKUs using a weighted scoring model (user preferences 60%, market context 20%, AI understanding 20%) with deduplication and brand-diversity penalties.</li>
-                        <li>White-space analysis agent: accepts SKUs from hero search or manual input; collects region and competitor lists (pre-populated with curated regional competitors across 8 markets); executes parallel web searches across all SKU–competitor pairs with concurrency-limited async execution; classifies matches via batch LLM analysis as exact, brand-only, or no match; and generates a coverage matrix report highlighting market gaps and brand penetration opportunities.</li>
-                      </ul>
-                    </li>
-                    <li>MCP integration and search infrastructure: a local MCP server exposing web search as a tool via SSE transport, with dual-engine support (Tavily for advanced depth/time-range queries and DuckDuckGo with HTML content extraction as a free fallback); a shared MCP client singleton with session locking, automatic transport detection, and failover URL logic.</li>
-                    <li>Human-in-the-loop workflows: multi-step interactive data collection using LangGraph interrupt-and-resume, including editable text fields (e.g., product understanding review, competitor list editing), multiple-choice questionnaires (follow-up preference questions with option selection), and SKU list selectors; each interrupt cleanly separates expensive LLM computation from user input to avoid redundant re-execution on resumption.</li>
-                  </ul>
-                <li>Reactive frontend with real-time progress tracking:
-                  <ul class="sub-list">
-                    <li>Progress bar component: renders animated, segmented step indicators driven by AG-UI protocol events (activity snapshots and step-completion events streamed via SSE); visually tracks multi-phase agent execution with step labels, colour-coded segments, and clickable navigation.</li>
-                    <li>Interactive form and selection cards: renders form inputs, multiple-choice cards, and SKU selectors as rich UI components within the chat stream; supports locked/read-only state after submission for clear conversation history.</li>
-                    <li>Workflow node topology: declarative workflow graph defining agent steps and transitions, enabling the frontend to map backend progress events to visual step indicators across the hero SKU and white-space pipelines.</li>
+                    <li>Product understanding: 4 parallel MCP web searches + LLM extraction with keyword citation matching against an NPD dataset; conditional brand profile generation (origin, channels, price tier, positioning) for brand-type keywords.</li>
+                    <li>LLM-generated follow-up questions (multiple-choice + freeform) to capture user preferences before search.</li>
+                    <li>Region-aware query generation across e-commerce, social media, forums, and magazines; parallel search with depth/time-range/country-filter configurations and confidence-gated re-search.</li>
+                    <li>Final ranking via batch LLM scoring (preferences 60%, regional relevance 20%, attribute match 20%) with brand-diversity penalties and deduplication.</li>
+                    <li>Post-pipeline enrichment: crawled product attributes (halal status, target audience, 3-level product class hierarchy), images, and Lazada sales data.</li>
                   </ul>
                 </li>
-                <li>Outcome and production readiness:
-                  <ul class="sub-list">
-                    <li>Delivered an end-to-end product discovery and competitive intelligence tool that automates trending product identification, preference-weighted ranking, and multi-market competitor availability analysis — replacing manual analyst research workflows.</li>
-                    <li>Built with LangGraph subgraph composition, AG-UI event streaming, and MCP-based tool abstraction for modularity and extensibility.</li>
-                  </ul>
-                </li>
+                <li><b>White-space analysis agent</b>: 6-node pipeline (3 human-in-the-loop + 3 automated); parallel web searches across all SKU–competitor pairs (concurrency-capped at 20) across 9 APAC and Turkey markets; batch LLM classification (exact match vs. white space) with per-competitor reasoning; generates a coverage matrix report; supports fully automated mode for programmatic chaining from the hero SKU agent.</li>
+                <li><b>MCP + search infrastructure</b>: local MCP server with dual-engine support (Tavily and DuckDuckGo fallback); pooled client architecture (4 concurrent sessions) with automatic transport detection and failover.</li>
+                <li><b>Human-in-the-loop</b>: LangGraph interrupt-and-resume for multi-tab keyword forms, editable product understanding and brand profile cards, multiple-choice questionnaires, and SKU list selectors.</li>
+                <li><b>Reactive frontend</b>: AG-UI event streaming for real-time step indicators and log output; rich interactive form cards rendered in the chat stream; result cards with expandable product details, white-space coverage matrices, and a consolidated rankings table with live status updates.</li>
+                <li>Delivered an end-to-end product discovery and competitive intelligence tool replacing manual analyst research workflows; built with LangGraph subgraph composition, AG-UI event streaming, and MCP-based tool abstraction.</li>
               </ul>
             </li>
             <!--
