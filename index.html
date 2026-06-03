@@ -356,6 +356,26 @@
         </div>
         <div class="cv-job-details">
         <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Built <b>large-scale data curation and evaluation pipelines</b> for <b>Interactive World Models</b> on Meta's <b>Sparkle distributed framework</b>, leveraging Qwen3-VL, Perception Encoder embeddings, Mango Video Model, and RIFT Serving over Hive.
+            </li>
+            <li>
+              <b>World-model data curation and evaluation pipeline</b>
+              <ul class="sub-list">
+                <li><b>VLM-as-Judge annotations</b>: built Sparkle tasks running Qwen3-VL to score a Perception Encoder-clustered video pool on ego-motion, visual quality, and structured attributes including perspective, movement, and environment; implemented JSON parsing and per-cluster balancing for scalable annotation quality control.</li>
+                <li><b>Hierarchical captioning for VLWM</b>: designed end-to-end tasks that build a temporal segment tree from per-frame Perception Encoder embeddings using Ward clustering and 1-hop connectivity, then caption each node with Qwen3-VL to produce a caption-augmented tree for vision-language world model training.</li>
+                <!-- Step1: Per-frame embeddings (input). Each Video is represented by per-frame Perception Encoder embeddings. -->
+                <!-- Step2: Temporally-constrained clustering. Run Ward agglomerative clustering on those frame vectors, but with a 1-hop temporal connectivity constraint constraint - a frame can only merge with its immediate time-neighbors. This forces every cluster to be a contiguous time span. It produces a full merge dendrogram. -->
+                <!-- Step3: Dendrogram -> Span tree. Convert the merge order into a nested {start, end, children} tree: each leaf = one frame's time interval. Siblings are ordered by start time. -->
+                <!-- Step4: Prune by span. Drop nodes shorter than min_span (promote their children) and collapse single-child nodes, so the tree only keeps meaningfully-sized segments. -->
+                <!-- Step5: Caption each node (VLM). Walk the tree; for every node call Qwen3-VL: long node -> decode the clip span -> video caption; short node -> single midpoint frame caption (run concurrently) -->
+                <!-- Step6: Prune uncaptioned and emit. Drop nodes that got no caption and have no capitioned descendants, then output the caption-augmented tree. -->
+                <!-- Segment-level (caption -> video) Action-transition Supervision (caption + previous caption as context -> generate next segment) Action-stream condisting (serve as a action sequence for autoregressive generation)-->
+                <li><b>I2AV generation evaluation</b>: designed a pipeline to produce ground-truth clips with visual diversity through environment interleaving and action-rich sampling; auto-captioned reference videos with Qwen-VL; built an evaluation harness that conditions Mango on the first frame to generate video and scores outputs with frame-level PSNR(Peak Signal-to-Noise Ratio) / SSIM(Structural Similarity Index) / LPIPS(Learned Perceptual Image Patch Similarity), and a VLM-as-Judge rubric covering realism, prompt adherence, and first-person consistency.</li>
+              </ul>
+            </li>
+          </ul>
         </div>
         </div>
       </div>
