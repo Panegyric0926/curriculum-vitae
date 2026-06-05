@@ -20,7 +20,7 @@
       background: var(--bg);
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', 'Arial', sans-serif;
+      font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Arial', sans-serif;
       color: var(--text);
     }
     .cv-container {
@@ -41,23 +41,31 @@
     .cv-header {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px 24px;
       border-bottom: 3px solid var(--accent);
       padding-bottom: 12px;
       margin-bottom: 24px;
+    }
+    .cv-header > :first-child {
+      flex: 1 1 280px;
+      min-width: 0;
     }
     .cv-name {
       font-size: 2rem;
       font-weight: 700;
       color: var(--primary);
       letter-spacing: 1px;
+      line-height: 1.1;
     }
     .cv-contact-links {
+      flex: 0 1 420px;
+      max-width: 420px;
       font-size: 0.98rem;
       color: var(--muted);
       text-align: right;
       line-height: 1.6;
+      margin-left: auto;
     }
     .cv-contact-links a {
       color: var(--accent);
@@ -175,6 +183,41 @@
     .cv-ability-list li {
       margin-bottom: 7px;
     }
+    .lang-switcher {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .lang-switcher-group {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      background: #eef2f7;
+      border: 1px solid var(--divider);
+      border-radius: 999px;
+    }
+    .lang-option {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-option.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px 0 #0001;
+    }
+    .cv-language {
+      display: none;
+    }
+    .cv-language.active {
+      display: block;
+    }
     /* PDF Download Button */
     .pdf-btn {
       background: var(--primary);
@@ -201,8 +244,17 @@
       fill: currentColor;
     }
     @media print {
+      .lang-switcher {
+        display: none !important;
+      }
       .pdf-btn {
         display: none !important;
+      }
+      .cv-language {
+        display: none !important;
+      }
+      .cv-language.active {
+        display: block !important;
       }
       .cv-container {
         box-shadow: none;
@@ -268,6 +320,8 @@
         gap: 10px 0;
       }
       .cv-contact-links {
+        max-width: none;
+        margin-left: 0;
         text-align: left;
       }
       .cv-name {
@@ -286,22 +340,30 @@
 </head>
 <body>
   <div class="cv-container">
-    <div class="cv-header">
-      <div>
-        <div class="cv-name">LI Miqi (Mickey)</div>
-        <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Download PDF
-        </button>
-      </div>
-      <div class="cv-contact-links">
-        <div>Address: Hung Hom, Kowloon, Hong Kong SAR</div>
-        <div>Mobile: (+86) 18801330288 (WeChat), (+852) 53928750 (WhatsApp)</div>
-        <div>Email: <a href="mailto:lmq.limiqi@outlook.com">lmq.limiqi@outlook.com</a></div>
-        <div>LinkedIn: <a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
-        <div>Latest CV: <a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
+    <div class="lang-switcher" role="tablist" aria-label="CV language selector">
+      <div class="lang-switcher-group">
+        <button type="button" class="lang-option active" data-lang="en" role="tab" aria-selected="true" onclick="setLanguage('en')">English</button>
+        <button type="button" class="lang-option" data-lang="zh" role="tab" aria-selected="false" onclick="setLanguage('zh')">中文</button>
       </div>
     </div>
+
+    <section class="cv-language active" data-lang="en" lang="en">
+      <div class="cv-header">
+        <div>
+          <div class="cv-name">LI Miqi (Mickey)</div>
+          <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download PDF
+          </button>
+        </div>
+        <div class="cv-contact-links">
+          <div>Address: Hung Hom, Kowloon, Hong Kong SAR</div>
+          <div>Mobile: (+86) 18801330288 (WeChat), <br>(+852) 53928750 (WhatsApp)</div>
+          <div>Email: <a href="mailto:lmq.limiqi@outlook.com">lmq.limiqi@outlook.com</a></div>
+          <div>LinkedIn: <a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
+          <div>Latest CV: <a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
+        </div>
+      </div>
 
     <div class="cv-section">
       <div class="section-title">Education</div>
@@ -634,9 +696,307 @@
         <li>Debate: Third Place of the Chinese Debate World Cup 2023, Champion of the Chinese College Debate Tournament 2020.</li>
       </ul>
     </div>
+    </section>
+
+    <section class="cv-language" data-lang="zh" lang="zh-Hans-HK">
+      <div class="cv-header">
+        <div>
+          <div class="cv-name">李洣祺 LI Miqi (Mickey)</div>
+          <button class="pdf-btn" onclick="downloadPDF()" title="下载 PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            下载 PDF
+          </button>
+        </div>
+        <div class="cv-contact-links">
+          <div>地址：红磡，九龙，香港</div>
+          <div>手机：(+86)18801330288 （微信），<br>(+852)53928750 （WhatsApp）</div>
+          <div>邮箱：<a href="mailto:lmq.limiqi@outlook.com">lmq.limiqi@outlook.com</a></div>
+          <div>领英：<a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
+          <div>最新简历：<a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <div class="section-title">教育背景</div>
+        <div class="cv-edu">
+          <div class="edu-row">
+            <div class="cv-edu-title">北京邮电大学</div>
+            <div class="cv-edu-meta">2018.9-2022.6</div>
+          </div>
+          <ul class="main-list cv-edu-detail">
+            <li>计算机学院，工学学士，<b>数据科学与大数据技术专业</b></li>
+          </ul>
+        </div>
+        <div class="cv-edu">
+          <div class="edu-row">
+            <div class="cv-edu-title">香港大学</div>
+            <div class="cv-edu-meta">2022.9-2024.1</div>
+          </div>
+          <ul class="main-list cv-edu-detail">
+            <li>理学院统计与精算系，理学硕士，<b></b>数据科学专业</b></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="divider">
+
+      <div class="cv-section">
+        <div class="section-title">个人简介</div>
+        <ul class="main-list">
+          <li>热衷于<b>人工智能与数据科学</b>领域，具备在科研与产业场景中开展<b>机器学习、大语言模型及数据分析</b>项目的实践经验。</li>
+        </ul>
+      </div>
+      <hr class="divider">
+
+      <div class="cv-section">
+        <div class="section-title">工作经验</div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">Meta, FAIR Foundations</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  全职｜<b>研究科学家 III</b>
+                </div>
+                <div class="cv-job-time">2026.5-至今</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>基于Meta Sparkle分布式框架，结合Qwen3-VL模型、Perception Encoder Embedding模型、Mango Video Model模型，为Interactive World模型构建<b>大规模数据筛选与评估流水线</b>。</li>
+                <li>
+                  <b>数据筛选与评估流水线</b>
+                  <ul class="sub-list">
+                    <li><b>VLM-as-Judge标注：</b>构建运行Qwen3-VL模型的Sparkle任务，对经由Perception Encoder模型聚类得到的候选视频，依据运动、视觉质量以及视角、运动状态、环境等结构化属性进行评分。</li>
+                    <li><b>视频层次化描述生成：</b>设计端到端任务流，基于逐帧Perception Encoder Embedding，结合Ward层次聚类与1-hop连通约束构建时间分段树；随后使用Qwen3-VL模型为各节点生成描述，得到用于后续模型训练的结构化视频描述。</li>
+                    <li><b>I2AV生成评测：</b>设计参考视频片段筛选流程；利用Qwen3-VL模型自动为参考视频生成描述；将上述描述与参考视频关键帧作为参数输入Mango模型生成视频；构建评测框架，并结合逐帧PSNR、SSIM算法，涵盖提示词遵循度和第一人称一致性的VLM-as-Judge对结果进行评分。</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">屈臣氏集团，DataLab - AI Lab</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  全职｜<b>LLM 开发工程师</b>
+                </div>
+                <div class="cv-job-time">2025.8 - 2026.5</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>面向商业分析与日常业务流程，依托屈臣氏企业数据及LangGraph / Langfuse工具，设计并实现<b>生产级Agent应用</b>。</li>
+                <li>
+                  <b>品类管理系统（Agent驱动的分析应用）</b>
+                  <ul class="sub-list">
+                    <li>负责整体架构设计与落地，构建可接入并分析真实企业数据的多Agent应用，实现KPI监控、根因分析与可执行建议输出。</li>
+                    <li><b>RAG层：</b>结合基于Embedding的检索与关键词及全文检索，为下游Agent提供内部文档、定义与SOP等信息支撑。</li>
+                    <li><b>数据层：</b>Agent负责拉取并标准化交易、商品目录、促销及库存数据，校验数据质量并识别异常；复杂查询场景下采用SQL模板与即时SQL生成相结合的方式。</li>
+                    <li><b>领域Agent：</b>
+                      <ul class="sub-list">
+                        <li>KPI Agent：从时间、商品及客户等维度监控KPI，依据KPI优先级生成告警与变化趋势分析。</li>
+                        <li>销售树Agent：将销售拆解为会员与非会员等不同层级，并将数据变化归因至会员数、人均消费额及单次购买件数等驱动因素，输出后续建议。</li>
+                        <li>客户分群Agent：通过MCP协议调用机器学习模型实行聚类，将客户划分为不同行为群体，用于后续KPI、留存及变现分析。</li>
+                        <li>可视化Agent：生成表格与图表；管理数据缓存以提升生成稳定性，并支持图表类型转换（如折线图转柱状图）。</li>
+                        <li>驱动因素分析Agent：将多部分问题拆解为子任务，支持基于用户反馈更改并执行计划，调用SQL Agent，并生成驱动因素层面的业绩解释。</li>
+                      </ul>
+                    </li>
+                    <li><b>多Agent调控：</b>意图识别（基于RAG的意图解析与Agent路由）→ 规划（制定执行计划）→ 汇总（综合各Agent输出并评估回答质量）→ 重规划（迭代修正计划直至问题解决）。</li>
+                    <li>交付包含根因定位与数据仪表的对话式AI应用；结合Langfuse与LangGraph实现持续优化。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>趋势系统（Agent驱动的产品发现与市场分析应用）</b>
+                  <ul class="sub-list">
+                    <li>负责整体架构设计与落地，构建多Agent平台，通过网络搜索发现外部热门产品，结合用户偏好进行排序，并校验竞品市场覆盖情况，以识别市场机会。</li>
+                    <li><b>趋势管理Agent：</b>作为中心Agent管理会话状态，通过基于置信度阈值的LLM分类进行用户意图分析，并支持多轮对话与链式衔接（例如将Hero SKU结果直接传递至市场分析）。</li>
+                    <li><b>Hero SKU搜索Agent：</b>构建包含11节点的LangGraph流水线，支持最多3个并行的“关键词-区域”搜索。
+                      <ul class="sub-list">
+                        <li>产品理解：通过4路并行MCP网络搜索结合LLM信息抽取，将关键词引用与内部数据集进行匹配；针对品牌类关键词按需生成品牌画像（来源地、渠道、价格、定位）。</li>
+                        <li>用户偏好采集：利用LLM生成追问问题用于补充用户偏好。</li>
+                        <li>查询生成：面向电商、社交媒体、论坛及杂志等渠道生成强区域相关查询，并基于时间、国家等条件进行并行搜索；在低置信度场景下触发补充搜索。</li>
+                        <li>排序：通过批量LLM评分完成排序，权重为用户偏好60%、区域相关性20%、属性匹配20%，并加入品牌多样性惩罚与去重机制。</li>
+                        <li>结果增强：补充抓取产品属性（如清真、目标人群、三级产品分类）、图片及销售数据。</li>
+                      </ul>
+                    </li>
+                    <li><b>市场分析Agent：</b>构建6节点流水线；在亚太9个市场范围内，对全部SKU – 竞争对手组合进行并行搜索；采用批量LLM分类判断“精确匹配”或“市场空白”，并输出逐竞品推理结果及覆盖报告；同时支持从Hero SKU Agent进行串联的全自动模式。</li>
+                    <li><b>MCP与搜索：</b>搭建本地MCP Server，支持Tavily引擎与DuckDuckGo引擎；实现多并发会话，具备故障切换能力。</li>
+                    <li><b>Human-in-the-loop设计：</b>通过LangGraph的interrupt-and-resume机制，支持应用在关键词表单、产品理解与品牌画像、追问问题等位置实现用户交互。</li>
+                    <li><b>响应式前端：</b>使用AG-UI事件流实现实时进度更新与日志输出；结果包含产品详情、市场覆盖矩阵及综合排名。</li>
+                    <li>交付端到端Agent产品：替代人工分析研究流程。</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">华为香港研究所，设计与自动化实验室</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  全职｜<b>研发工程师</b>
+                </div>
+                <div class="cv-job-time">2024.6 - 2025.8</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>面向芯片设计与制造场景，开发并落地<b>AI驱动的自动化和数据科学解决方案</b>，重点覆盖原理图审查、良率提升与工艺优化等方向。</li>
+                <li>
+                  <b>面向原理图审查的RAG系统</b>
+                  <ul class="sub-list">
+                    <li>设计并实现多模态RAG数据处理流水线，支持PDF、DOCX、PPTX、PNG、JPG等多种文档格式。</li>
+                    <li>集成视觉大语言模型处理图像类信息，并与文本抽取协同工作。</li>
+                    <li>构建同时包含Dense Embedding与Sparse Embedding的向量数据库，支持语义检索与关键词检索；进一步结合RRF算法与rerank模型优化排序结果。</li>
+                    <li>开发基于Gradio的前端界面，支持用户高准确率地查询PCB / 芯片相关问题；系统已服务企业客户并满足关键需求。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>面向原理图审查的自动化代码生成</b>
+                  <ul class="sub-list">
+                    <li>开发AI驱动的方案，实现自动化原理图审查流程，大幅减少人工编写脚本工作量；建立稳定的审查代码生成框架，并同步优化准确率与响应时延。</li>
+                    <li>设计工作流，使用户仅需输入待生成代码的核心逻辑，再由基于LLM的代码编写器通过伪API扩展为完整实现；随后使用第二个LLM将伪API替换为真实且经过验证的API。</li>
+                    <li>实现递归式代码生成流程，持续检索数据库，将缺失的API整合进代码中。</li>
+                    <li>在真实原理图文件上验证生成代码，结果与人工编写脚本保持一致。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>Deep-semi-sight LLM 项目</b>
+                  <ul class="sub-list">
+                    <li>基于vLLM、vLLM-Ascend与LLaMA-Factory，构建涵盖微调、部署与评测的端到端大语言模型框架；支持Full、LoRA、QLoRA、DPO等微调方式，并可在非NVIDIA平台（如华为Ascend）上进行并发部署。</li>
+                    <li>搭建同时面向开源通用数据集与定制领域数据的评测流水线；成功微调Qwen3-32B与Qwen2.5-32B-Instruct，在保持整体模型性能的前提下，使半导体领域通用能力平均提升 9.64%，最高提升12.69%。</li>
+                    <li>交付稳定的大语言模型解决方案，支撑企业级部署。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>良率损失数据分析</b>
+                  <ul class="sub-list">
+                    <li>设计两种高效率的单工序良率损失识别方法，在真实案例中将用户分析时间由半天缩短至5分钟；相较既有方法显著降低误判概率。</li>
+                    <li>在为期两周的生产测试中，以专家验证结果为基准完成方法评估，并顺利集成至交付产品。</li>
+                    <li>开发多工序良率损失识别算法及图形界面，完成两轮功能迭代；以自动化方式替代依赖人工经验的分析流程，使根因定位时间由数周缩短至数小时。</li>
+                    <li>在为期三个月的真实环境验证中，结果与人工处理保持一致，显著降低人工排查成本；同时交付具备良好可用性的可执行应用，已完成客户灰度测试并全面投入生产环境。</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">巴斯夫（BASF）东亚区总部，Global Digitalization Unit</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  实习｜<b>数据与AI工程师</b>
+                </div>
+                <div class="cv-job-time">2024.1 - 2024.6</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>负责NewsBot与异常结果推断两个项目，参与巴斯夫AI与数字化相关工作的推进。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">阿里巴巴集团，淘宝天猫集团，阿里妈妈</div>
+                <div class="cv-job-city">北京</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  实习｜<b>算法工程师</b>
+                </div>
+                <div class="cv-job-time">2023.5 - 2023.9</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>负责“自然语言人群包生成”及AI Hackathon两个项目，参与阿里巴巴大语言模型相关技术研发。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="divider">
+
+      <div class="cv-section">
+        <div class="section-title">专业能力</div>
+        <ul class="cv-ability-list">
+          <li>编程语言：C、C++、Python、R、SQL</li>
+          <li>数据科学、机器学习、人工智能、大语言模型</li>
+          <li>LangChain、LangGraph、Langfuse、vLLM、Ollama、LLaMA-Factory</li>
+          <li>语言能力：英语（商务水平，TOEFL 109，大学英语六级 677），普通话（母语），粤语（商务水平）</li>
+          <li>辩论：2023年华语辩论世界杯季军</li>
+        </ul>
+      </div>
+    </section>
   </div>
 
   <script>
+    function getActivePane() {
+      return document.querySelector('.cv-language.active');
+    }
+
+    function getCurrentLanguage() {
+      const activePane = getActivePane();
+      return activePane ? activePane.dataset.lang : 'en';
+    }
+
+    function setLanguage(language) {
+      document.querySelectorAll('.cv-language').forEach(pane => {
+        pane.classList.toggle('active', pane.dataset.lang === language);
+      });
+
+      document.querySelectorAll('.lang-option').forEach(button => {
+        const isActive = button.dataset.lang === language;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      document.documentElement.lang = language === 'zh' ? 'zh-Hans-HK' : 'en';
+    }
+
     function toggleJob(header) {
       header.classList.toggle('collapsed');
       const details = header.nextElementSibling;
@@ -648,9 +1008,15 @@
     }
 
     function downloadPDF() {
+      const activePane = getActivePane();
+
+      if (!activePane) {
+        return;
+      }
+
       // Expand all collapsed sections before printing
-      const collapsedHeaders = document.querySelectorAll('.job-header.collapsed');
-      const collapsedDetails = document.querySelectorAll('.cv-job-details.collapsed');
+      const collapsedHeaders = activePane.querySelectorAll('.job-header.collapsed');
+      const collapsedDetails = activePane.querySelectorAll('.cv-job-details.collapsed');
       
       collapsedHeaders.forEach(h => h.classList.remove('collapsed'));
       collapsedDetails.forEach(d => d.classList.remove('collapsed'));
@@ -665,6 +1031,27 @@
     }
 
     function showMobileModal() {
+      const language = getCurrentLanguage();
+      const copy = language === 'zh'
+        ? {
+            title: '下载 PDF',
+            intro: '如需在手机上保存此简历为 PDF，请按以下步骤操作：',
+            iosLabel: 'iPhone/iPad (Safari)：',
+            iosSteps: '点击 <b>分享</b> → <b>打印</b> → 在预览上双指放大',
+            androidLabel: 'Android (Chrome)：',
+            androidSteps: '点击 <b>⋮ 菜单</b> → <b>分享</b> → <b>打印</b> → 另存为 PDF',
+            close: '知道了'
+          }
+        : {
+            title: 'Download PDF',
+            intro: 'To save this CV as PDF on your mobile device:',
+            iosLabel: 'iPhone/iPad (Safari):',
+            iosSteps: 'Tap <b>Share</b> → <b>Print</b> → Pinch out on preview',
+            androidLabel: 'Android (Chrome):',
+            androidSteps: 'Tap <b>⋮ Menu</b> → <b>Share</b> → <b>Print</b> → Save as PDF',
+            close: 'Got it'
+          };
+
       // Create modal overlay
       const overlay = document.createElement('div');
       overlay.id = 'pdf-modal-overlay';
@@ -674,17 +1061,17 @@
       modal.style.cssText = 'background:#fff;border-radius:12px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.2);';
       
       modal.innerHTML = `
-        <h3 style="margin:0 0 16px;color:#1a237e;font-size:1.2rem;">Download PDF</h3>
+        <h3 style="margin:0 0 16px;color:#1a237e;font-size:1.2rem;">${copy.title}</h3>
         <p style="margin:0 0 20px;color:#697080;font-size:0.95rem;line-height:1.5;">
-          To save this CV as PDF on your mobile device:
+          ${copy.intro}
         </p>
         <div style="text-align:left;margin-bottom:20px;color:#233;font-size:0.9rem;line-height:1.7;">
-          <b>iPhone/iPad (Safari):</b><br>
-          Tap <b>Share</b> → <b>Print</b> → Pinch out on preview<br><br>
-          <b>Android (Chrome):</b><br>
-          Tap <b>⋮ Menu</b> → <b>Share</b> → <b>Print</b> → Save as PDF
+          <b>${copy.iosLabel}</b><br>
+          ${copy.iosSteps}<br><br>
+          <b>${copy.androidLabel}</b><br>
+          ${copy.androidSteps}
         </div>
-        <button onclick="closeMobileModal()" style="background:#1a237e;color:#fff;border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">Got it</button>
+        <button onclick="closeMobileModal()" style="background:#1a237e;color:#fff;border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">${copy.close}</button>
       `;
       
       overlay.appendChild(modal);
