@@ -329,7 +329,7 @@
     <div class="cv-section">
       <div class="section-title">Summary</div>
       <ul class="main-list">
-        <li><b>AI</b> and <b>data science</b> enthusiast with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across tech and industry settings.</li>
+        <li><b>AI</b> and <b>data science</b> practitioner with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across research, technology, and enterprise settings.</li>
       </ul>
     </div>
     <hr class="divider">
@@ -343,12 +343,12 @@
           <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
           <div class="job-header-content">
             <div class="job-row">
-              <div class="cv-job-title">Meta, FAIR Foundation</div>
+              <div class="cv-job-title">Meta, FAIR Foundations</div>
               <div class="cv-job-city">Hong Kong</div>
             </div>
             <div class="job-meta-row">
               <div class="cv-job-meta">
-                Full Time&nbsp;|&nbsp;<b>Research Scientist III</b>
+                Full-Time&nbsp;|&nbsp;<b>Research Scientist III</b>
               </div>
               <div class="cv-job-time">2026.5 - Present</div>
             </div>
@@ -366,13 +366,13 @@
                 <li><b>VLM-as-Judge annotations</b>: built Sparkle tasks running Qwen3-VL to score a Perception Encoder-clustered video pool on ego-motion, visual quality, and structured attributes including perspective, movement, and environment; implemented JSON parsing and per-cluster balancing for scalable annotation quality control.</li>
                 <li><b>Hierarchical captioning for VLWM</b>: designed end-to-end tasks that build a temporal segment tree from per-frame Perception Encoder embeddings using Ward clustering and 1-hop connectivity, then caption each node with Qwen3-VL to produce a caption-augmented tree for vision-language world model training.</li>
                 <!-- Step1: Per-frame embeddings (input). Each Video is represented by per-frame Perception Encoder embeddings. -->
-                <!-- Step2: Temporally-constrained clustering. Run Ward agglomerative clustering on those frame vectors, but with a 1-hop temporal connectivity constraint constraint - a frame can only merge with its immediate time-neighbors. This forces every cluster to be a contiguous time span. It produces a full merge dendrogram. -->
+                <!-- Step2: Temporally-constrained clustering. Run Ward agglomerative clustering on those frame vectors, but with a 1-hop temporal connectivity constraint - a frame can only merge with its immediate time-neighbors. This forces every cluster to be a contiguous time span. It produces a full merge dendrogram. -->
                 <!-- Step3: Dendrogram -> Span tree. Convert the merge order into a nested {start, end, children} tree: each leaf = one frame's time interval. Siblings are ordered by start time. -->
                 <!-- Step4: Prune by span. Drop nodes shorter than min_span (promote their children) and collapse single-child nodes, so the tree only keeps meaningfully-sized segments. -->
                 <!-- Step5: Caption each node (VLM). Walk the tree; for every node call Qwen3-VL: long node -> decode the clip span -> video caption; short node -> single midpoint frame caption (run concurrently) -->
-                <!-- Step6: Prune uncaptioned and emit. Drop nodes that got no caption and have no capitioned descendants, then output the caption-augmented tree. -->
-                <!-- Segment-level (caption -> video) Action-transition Supervision (caption + previous caption as context -> generate next segment) Action-stream condisting (serve as a action sequence for autoregressive generation)-->
-                <li><b>I2AV generation evaluation</b>: designed a pipeline to produce ground-truth clips with visual diversity through environment interleaving and action-rich sampling; auto-captioned reference videos with Qwen-VL; built an evaluation harness that conditions Mango on the first frame to generate video and scores outputs with frame-level PSNR(Peak Signal-to-Noise Ratio) / SSIM(Structural Similarity Index) / LPIPS(Learned Perceptual Image Patch Similarity), and a VLM-as-Judge rubric covering realism, prompt adherence, and first-person consistency.</li>
+                <!-- Step6: Prune uncaptioned and emit. Drop nodes that got no caption and have no captioned descendants, then output the caption-augmented tree. -->
+                <!-- Segment-level (caption -> video) Action-transition Supervision (caption + previous caption as context -> generate next segment) Action-stream consisting (serve as an action sequence for autoregressive generation)-->
+                <li><b>I2AV generation evaluation</b>: designed a pipeline to produce ground-truth clips with visual diversity through environment interleaving and action-rich sampling; auto-captioned reference videos with Qwen3-VL; built an evaluation harness that conditions Mango on the first frame to generate video and scores outputs with frame-level PSNR (Peak Signal-to-Noise Ratio) / SSIM (Structural Similarity Index) / LPIPS (Learned Perceptual Image Patch Similarity), and a VLM-as-Judge rubric covering realism, prompt adherence, and first-person consistency.</li>
               </ul>
             </li>
           </ul>
@@ -493,7 +493,7 @@
                 <li>Designed and implemented a multi-modal data processing pipeline for RAG, supporting various document formats (PDF, DOCX, PPTX, PNG, JPG).</li>
                 <li>Integrated visual LLM models for image-based information extraction alongside text extraction systems.</li>
                 <li>Built a vector database storing both dense and sparse embeddings, enabling advanced semantic and keyword-based search; applied the reciprocal rank fusion (RRF) algorithm and a rerank model to further refine and present the most relevant results.</li>
-                <li>Developed a Gradio-based frontend, allowing users to query PCB chip-related issues with high accuracy. The system now serves enterprise customers and meets key requirements.</li>
+                <li>Developed a Gradio-based frontend, allowing users to query PCB chip-related issues with high accuracy. The system is now deployed in production and serves enterprise customers.</li>
               </ul>
             </li>
             <li>
@@ -516,7 +516,7 @@
             <li>
               <b>Yield Loss Data Analysis</b>
               <ul class="sub-list">
-                <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, reducing users’ analysis time from 0.5 days to 5 minutes in real-world cases, and significantly lowering the probability of misjudgement caused by excessive highlighting compared to previous methods.</li>
+                <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, reducing users’ analysis time from half a day to 5 minutes in real-world cases, and significantly lowering the rate of misjudgement caused by excessive highlighting compared to previous methods.</li>
                 <li>Validated the algorithms against expert results in a two-week production test, leading to seamless integration into the latest product release.</li>
                 <li>Developed a multi-step yield loss identification algorithm and graphical interface, completing two rounds of feature iteration. This automation replaced manual experience-based analysis, enabling root cause identification time to drop from weeks to hours.</li>
                 <li>Demonstrated expert-level accuracy and efficiency in a three-month real-world validation, substantially reducing manual investigation time. Delivered a user-friendly executable application, deployed for customer grey testing and now fully adopted in production environments.</li>
@@ -631,7 +631,7 @@
         <li>Data Science, Machine Learning, Artificial Intelligence, LLM.</li>
         <li>LangChain, LangGraph, Langfuse, vLLM, Ollama, LLaMA-Factory.</li>
         <li>English (Business Professional, TOEFL 109, College English Test-6 677), Mandarin (Native), Cantonese (Business Professional).</li>
-        <li>Debate: Third Place of Chinese Debate World Cup 2023, Champion of Chinese College Debate Tournament 2020.</li>
+        <li>Debate: Third Place of the Chinese Debate World Cup 2023, Champion of the Chinese College Debate Tournament 2020.</li>
       </ul>
     </div>
   </div>
