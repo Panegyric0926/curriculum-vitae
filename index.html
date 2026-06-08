@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Li Miqi - CV</title>
+  <title>LI Miqi (Mickey) - CV</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -19,7 +20,7 @@
       background: var(--bg);
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', 'Arial', sans-serif;
+      font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Arial', sans-serif;
       color: var(--text);
     }
     .cv-container {
@@ -40,29 +41,48 @@
     .cv-header {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px 24px;
       border-bottom: 3px solid var(--accent);
       padding-bottom: 12px;
       margin-bottom: 24px;
+    }
+    .cv-header > :first-child {
+      flex: 1 1 280px;
+      min-width: 0;
     }
     .cv-name {
       font-size: 2rem;
       font-weight: 700;
       color: var(--primary);
       letter-spacing: 1px;
+      line-height: 1.1;
     }
-    .cv-contact {
+    .cv-contact-links {
+      flex: 0 1 420px;
+      max-width: 420px;
       font-size: 0.98rem;
       color: var(--muted);
       text-align: right;
       line-height: 1.6;
+      margin-left: auto;
     }
+    .cv-contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+      word-break: break-all;
+    }
+    .cv-contact-links a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
     .cv-section {
       margin-bottom: 28px;
     }
     .section-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: var(--secondary);
       font-weight: 600;
       letter-spacing: 0.5px;
@@ -73,6 +93,76 @@
       border-top: 1.5px solid var(--divider);
       margin: 22px 0 18px 0;
     }
+    /* Education line: name left, date right */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2px;
+      flex-wrap: wrap;
+    }
+    .cv-edu-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .cv-edu-meta {
+      font-size: 0.98rem;
+      color: var(--muted);
+      min-width: 138px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .cv-edu-detail {
+      margin: 0 0 10px 18px;
+      padding: 0;
+    }
+    @media (max-width: 600px) {
+      .edu-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cv-edu-meta {
+        text-align: left;
+        margin-top: 2px;
+        margin-bottom: 4px;
+      }
+    }
+
+    /* Work: Company/Dept left, city right; job meta left, time right */
+    .job-row, .job-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+    .cv-job-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .cv-job-city, .cv-job-time {
+      font-size: 0.98rem;
+      color: var(--muted);
+      min-width: 100px;
+      text-align: right;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+    .cv-job-meta {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-right: 8px;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .cv-job-content {
+      margin-top: 3px;
+      margin-bottom: 10px;
+    }
     ul.main-list {
       margin: 0 0 0 18px;
       padding: 0;
@@ -82,41 +172,146 @@
       margin: 10px 0 14px 30px;
       padding: 0;
       list-style-type: circle;
-      color: var(--muted);
-    }
-    .cv-edu,
-    .cv-job {
-      margin-bottom: 14px;
-    }
-    .cv-edu-title, .cv-job-title {
-      font-weight: 600;
-      font-size: 1.07rem;
-      color: var(--primary);
-      margin-bottom: 2px;
-    }
-    .cv-edu-meta, .cv-job-meta {
-      font-size: 0.98rem;
-      color: var(--muted);
-      margin-bottom: 2px;
-    }
-    .cv-job-role {
-      font-size: 1.01rem;
-      font-weight: 500;
-      color: var(--secondary);
-      margin-bottom: 3px;
+      color: var(--text);
     }
     .cv-ability-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px 38px;
-      margin: 12px 0 0 0;
+      margin: 12px 0 0 18px;
       padding: 0;
       color: var(--text);
       font-size: 1rem;
     }
     .cv-ability-list li {
-      list-style-type: square;
+      margin-bottom: 7px;
+    }
+    .lang-switcher {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .lang-switcher-group {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      background: #eef2f7;
+      border: 1px solid var(--divider);
+      border-radius: 999px;
+    }
+    .lang-option {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-option.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px 0 #0001;
+    }
+    .cv-language {
+      display: none;
+    }
+    .cv-language.active {
+      display: block;
+    }
+    /* PDF Download Button */
+    .pdf-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .pdf-btn:hover {
+      background: var(--secondary);
+      transform: translateY(-1px);
+    }
+    .pdf-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+    @media print {
+      .lang-switcher {
+        display: none !important;
+      }
+      .pdf-btn {
+        display: none !important;
+      }
+      .cv-language {
+        display: none !important;
+      }
+      .cv-language.active {
+        display: block !important;
+      }
+      .cv-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+      .job-header {
+        cursor: default;
+      }
+      .job-toggle {
+        display: none !important;
+      }
+      .cv-job-details.collapsed {
+        max-height: none !important;
+        opacity: 1 !important;
+      }
+    }
+    /* Collapsible job styles */
+    .job-header {
+      display: flex;
+      align-items: flex-start;
       margin-left: 18px;
+    }
+    .job-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin-left: -25px;
+      margin-right: 0;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: var(--secondary);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .job-toggle::before {
+      content: '▲';
+    }
+    .job-header.collapsed .job-toggle::before {
+      content: '▼';
+    }
+    .job-header-content {
+      flex: 1;
+    }
+    .cv-job-details {
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 10000px;
+      opacity: 1;
+    }
+    .cv-job-details.collapsed {
+      max-height: 0;
+      opacity: 0;
     }
     @media (max-width: 600px) {
       .cv-header {
@@ -124,133 +319,374 @@
         align-items: flex-start;
         gap: 10px 0;
       }
-      .cv-contact {
+      .cv-header > :first-child,
+      .cv-contact-links {
+        flex: none;
+        width: 100%;
+      }
+      .cv-contact-links {
+        max-width: none;
+        margin-left: 0;
         text-align: left;
       }
       .cv-name {
         font-size: 1.4rem;
+      }
+      .cv-job-city, .cv-job-time {
+        text-align: left;
+        margin-left: 0;
+      }
+      .job-row, .job-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
   <div class="cv-container">
-    <div class="cv-header">
-      <div class="cv-name">Li Miqi</div>
-      <div class="cv-contact">
-        Address: Shatin, New Territories, Hong Kong<br>
-        Mobile: (+86) 18801330288 (WeChat), (+852) 53928750 (WhatsApp)<br>
-        Email: <a href="mailto:limiqi@connect.hku.hk">limiqi@connect.hku.hk</a>
+    <div class="lang-switcher" role="tablist" aria-label="CV language selector">
+      <div class="lang-switcher-group">
+        <button type="button" class="lang-option active" data-lang="en" role="tab" aria-selected="true" onclick="setLanguage('en')">English</button>
+        <button type="button" class="lang-option" data-lang="zh" role="tab" aria-selected="false" onclick="setLanguage('zh')">中文</button>
       </div>
     </div>
+
+    <section class="cv-language active" data-lang="en" lang="en">
+      <div class="cv-header">
+        <div>
+          <div class="cv-name">LI Miqi (Mickey)</div>
+          <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download PDF
+          </button>
+        </div>
+        <div class="cv-contact-links">
+          <div>Address: Hung Hom, Kowloon, Hong Kong SAR</div>
+          <div>Mobile: (+86) 18801330288 (WeChat), <br>(+852) 53928750 (WhatsApp)</div>
+          <div>Email: <a href="mailto:lmq.limiqi@outlook.com">lmq.limiqi@outlook.com</a></div>
+          <div>LinkedIn: <a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
+          <div>Latest CV: <a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
+        </div>
+      </div>
 
     <div class="cv-section">
       <div class="section-title">Education</div>
       <div class="cv-edu">
-        <div class="cv-edu-title">Beijing University of Posts and Telecommunications (BUPT)</div>
-        <div class="cv-edu-meta">2018.9 - 2022.6</div>
-        <ul class="main-list">
-          <li>School of Computer Science | Bachelor of Engineering | Major in Data Science and Big Data Technology</li>
+        <div class="edu-row">
+          <div class="cv-edu-title">Beijing University of Posts and Telecommunications (BUPT)</div>
+          <div class="cv-edu-meta">2018.9 - 2022.6</div>
+        </div>
+        <ul class="main-list cv-edu-detail">
+          <li>School of Computer Science | Bachelor of Engineering | Major in <b>Data Science and Big Data Technology</b></li>
         </ul>
       </div>
       <div class="cv-edu">
-        <div class="cv-edu-title">The University of Hong Kong (HKU)</div>
-        <div class="cv-edu-meta">2022.9 - 2024.6</div>
-        <ul class="main-list">
-          <li>Faculty of Science, Department of Statistics and Actuarial Science | Master of Science | Major in Data Science</li>
+        <div class="edu-row">
+          <div class="cv-edu-title">The University of Hong Kong (HKU)</div>
+          <div class="cv-edu-meta">2022.9 - 2024.1</div>
+        </div>
+        <ul class="main-list cv-edu-detail">
+          <li>Faculty of Science, Department of Statistics and Actuarial Science | Master of Science | Major in <b>Data Science</b></li>
         </ul>
       </div>
     </div>
     <hr class="divider">
 
     <div class="cv-section">
+      <div class="section-title">Summary</div>
+      <ul class="main-list">
+        <li><b>AI</b> and <b>data science</b> practitioner with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across research, technology, and enterprise settings.</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <div class="cv-section">
       <div class="section-title">Work Experience</div>
+
+      <!-- Meta -->
       <div class="cv-job">
-        <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab &mdash; Hong Kong</div>
-        <div class="cv-job-meta">Full-Time | R&D Engineer | 2024.6 – Present</div>
-        <ul class="main-list">
-          <li>Contributed to the development of AI and LLM technologies for automating and enhancing multiple aspects of chip design and manufacturing processes, with a focus on scalable solutions that address both schematic review and other critical tasks.</li>
-          <li>Retrieval-Augmented Generation (RAG) System for Schematic Review
-            <ul class="sub-list">
-              <li>Designed and implemented a multi-modal data processing pipeline for RAG, supporting various document formats (PDF, DOCX, PPTX, PNG, JPG).</li>
-              <li>Integrated visual LLM models for image-based information extraction alongside text extraction systems.</li>
-              <li>Built a vector database storing both dense and sparse embeddings, enabling advanced semantic and keyword-based search; applied the reciprocal rank fusion (RRF) algorithm and a rerank model to further refine and present the most relevant results.</li>
-              <li>Developed a Gradio-based frontend, allowing users to query PCB chip-related issues with high accuracy. The system now serves enterprise customers and meets key requirements.</li>
-            </ul>
-          </li>
-          <li>Automated Code Generation for Schematic Reviews
-            <ul class="sub-list">
-              <li>Developed AI-powered solutions to automate schematic review processes, significantly reducing manual scripting efforts. Established a reliable code generation framework, optimizing both accuracy and response time through extensive architecture testing.</li>
-              <li>Designed a workflow where user prompts specify only the core logic of the code, which is then expanded by an LLM-based code writer using pseudo-APIs. A secondary LLM replaces pseudo-APIs with real, validated APIs.</li>
-              <li>Implemented a recursive process to iteratively search the database for missing APIs and integrate them into the final code.</li>
-              <li>Validated the generated code on real-world schematic files, achieving results consistent with manually written scripts.</li>
-            </ul>
-          </li>
-          <li>Deep-semi-sight LLM Project
-            <ul class="sub-list">
-              <li>Developed an end-to-end framework for fine-tuning, deploying, and evaluating LLMs, leveraging vllm, vllm-ascend, and LLamaFactory.</li>
-              <li>Supported advanced fine-tuning techniques (Full, LoRA, QLoRA, DPO) and concurrent deployment on non-NVIDIA platforms (e.g., Huawei Ascend hardware).</li>
-              <li>Built an evaluation pipeline for both open-source general datasets and custom domain-specific data.</li>
-              <li>Successfully fine-tuned Qwen3-32B and Qwen2.5-32B-Instruct, achieving a 15% performance boost in semiconductor applications while maintaining general model capability.</li>
-              <li>Delivered robust, customer-facing LLM solutions and comprehensive evaluation results for enterprise deployment.</li>
-            </ul>
-          </li>
-          <li>Yield Loss Data Analysis
-            <ul class="sub-list">
-              <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, outperforming existing machine learning and calculation methods in speed and accuracy.</li>
-              <li>Validated the algorithms against expert results in a two-week production test, leading to the algorithms’ integration into the latest product release.</li>
-              <li>Developed a multi-step yield loss identification algorithm to discover the most influential combinations of process steps, filling a gap in the previous analysis system.</li>
-              <li>Demonstrated expert-level accuracy and efficiency in a three-month real-world validation, substantially reducing manual investigation time. Built and delivered an easy-to-use executable application with a user-friendly interface; deployed to customers for grey testing and now adopted in production environments.</li>
-            </ul>
-          </li>
-        </ul>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">Meta, FAIR Foundations</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Full-Time&nbsp;|&nbsp;<b>Research Scientist III</b>
+              </div>
+              <div class="cv-job-time">2026.5 - Present</div>
+            </div>
+          </div>
+        </div>
+        <div class="cv-job-details">
+        <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Built <b>large-scale data curation and evaluation pipelines</b> for <b>Interactive World Models</b> on Meta's <b>Sparkle distributed framework</b>, leveraging Qwen3-VL, Perception Encoder embeddings, Mango Video Model, and RIFT Serving over Hive.
+            </li>
+            <li>
+              <b>World-model data curation and evaluation pipeline</b>
+              <ul class="sub-list">
+                <li><b>VLM-as-Judge annotations</b>: built Sparkle tasks running Qwen3-VL to score a Perception Encoder-clustered video pool on ego-motion, visual quality, and structured attributes including perspective, movement, and environment; implemented JSON parsing and per-cluster balancing for scalable annotation quality control.</li>
+                <li><b>Hierarchical captioning for VLWM</b>: designed end-to-end tasks that build a temporal segment tree from per-frame Perception Encoder embeddings using Ward clustering and 1-hop connectivity, then caption each node with Qwen3-VL to produce a caption-augmented tree for vision-language world model training.</li>
+                <!-- Step1: Per-frame embeddings (input). Each Video is represented by per-frame Perception Encoder embeddings. -->
+                <!-- Step2: Temporally-constrained clustering. Run Ward agglomerative clustering on those frame vectors, but with a 1-hop temporal connectivity constraint - a frame can only merge with its immediate time-neighbors. This forces every cluster to be a contiguous time span. It produces a full merge dendrogram. -->
+                <!-- Step3: Dendrogram -> Span tree. Convert the merge order into a nested {start, end, children} tree: each leaf = one frame's time interval. Siblings are ordered by start time. -->
+                <!-- Step4: Prune by span. Drop nodes shorter than min_span (promote their children) and collapse single-child nodes, so the tree only keeps meaningfully-sized segments. -->
+                <!-- Step5: Caption each node (VLM). Walk the tree; for every node call Qwen3-VL: long node -> decode the clip span -> video caption; short node -> single midpoint frame caption (run concurrently) -->
+                <!-- Step6: Prune uncaptioned and emit. Drop nodes that got no caption and have no captioned descendants, then output the caption-augmented tree. -->
+                <!-- Segment-level (caption -> video) Action-transition Supervision (caption + previous caption as context -> generate next segment) Action-stream consisting (serve as an action sequence for autoregressive generation)-->
+                <li><b>I2AV generation evaluation</b>: designed a pipeline to produce ground-truth clips with visual diversity through environment interleaving and action-rich sampling; auto-captioned reference videos with Qwen3-VL; built an evaluation harness that conditions Mango on the first frame to generate video and scores outputs with frame-level PSNR (Peak Signal-to-Noise Ratio) / SSIM (Structural Similarity Index) / LPIPS (Learned Perceptual Image Patch Similarity), and a VLM-as-Judge rubric covering realism, prompt adherence, and first-person consistency.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        </div>
       </div>
 
+      <!-- AS Watson -->
       <div class="cv-job">
-        <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit &mdash; Hong Kong</div>
-        <div class="cv-job-meta">Intern | Data and AI Engineer | 2024.1 - 2024.6</div>
-        <ul class="main-list">
-          <li>Contributed to BASF's AI and digitalization initiatives through two key projects: NewsBot Marketing Intelligence and Abnormal Result Inference.</li>
-          <li>NewsBot Marketing Intelligence Project
-            <ul class="sub-list">
-              <li>Built an AI assistant to gather and analyze daily competitor and customer news from online sources, tailored to BASF’s industry-specific terminology and internal knowledge base.</li>
-              <li>Designed an end-to-end news collection pipeline using Azure Databricks, enabling automatic labeling of topics, industries, companies, and locations during preprocessing.</li>
-              <li>Integrated Azure Cognitive Search to enable efficient retrieval of relevant news using filters, and applied the LangChain framework for prompt engineering to answer user queries in the marketing intelligence domain.</li>
-              <li>Developed prompts to teach the model to summarize internal knowledge and provide accurate, context-aware responses.</li>
-            </ul>
-          </li>
-          <li>Abnormal Result Inference Project
-            <ul class="sub-list">
-              <li>Developed a solution to identify and diagnose root causes for product batches failing to meet quality standards, leveraging BASF’s extensive sensor network.</li>
-              <li>Designed a data integration pipeline in Azure Databricks to consolidate sensor data from multiple sources.</li>
-              <li>Conducted statistical analyses and correlation comparisons between normal and abnormal production days to identify critical sensor anomalies.</li>
-              <li>Built a linear regression model to pinpoint sensors most associated with production issues and deployed insights via an interactive Power BI dashboard, enabling actionable decision-making.</li>
-            </ul>
-          </li>
-        </ul>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">AS Watson Group, DataLab - AI Lab</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Full-Time&nbsp;|&nbsp;<b>LLM Developer</b>
+              </div>
+              <div class="cv-job-time">2025.8 - 2026.5</div>
+            </div>
+          </div>
+        </div>
+        <div class="cv-job-details">
+        <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Designed and implemented <b>production-grade agentic applications</b> for commercial analysis and daily business workflows, leveraging Watson enterprise data and LangGraph / Langfuse toolchains.
+            </li>
+            <li>
+              <b>Category management system (agent-driven analytics application)</b>
+              <ul class="sub-list">
+                <li>Architected and built a multi-agent application that ingests and reasons over real enterprise data to deliver KPI monitoring, root-cause analysis, and actionable recommendations.</li>
+                <li><b>RAG layer</b>: combines embedding-based retrieval with keyword/text search to surface internal documentation, definitions, and playbooks for downstream agents.</li>
+                <li><b>Data layer</b>: agents fetch and normalize transactional, catalogue, promotion, and inventory data; validate quality; surface anomalies; hybrid of parameterized SQL templates and on-the-fly SQL agent for complex queries.</li>
+                <li><b>Domain agents</b>:
+                  <ul class="sub-list">
+                    <li>KPI agent: monitors KPIs across time, product, and customer dimensions; generates prioritized alerts and narrative explanations.</li>
+                    <li>Sales tree agent: decomposes sales into member vs. non-member hierarchies (L1–L3); attributes changes to drivers (member count, spend-per-member, items-per-basket); recommends corrective actions.</li>
+                    <li>Customer segmentation agent: orchestrates clustering via MCP-exposed ML models; segments into behavioral cohorts for downstream KPI, retention, and monetization analysis.</li>
+                    <li>Visualization agent: generates tables and charts; manages data cache for reliability and chart-type transformations (e.g., line → bar, pivoted view).</li>
+                    <li>Driver analysis agent: decomposes multi-part questions into sub-tasks; human-in-the-loop plan approval; coordinates SQL agent; synthesizes driver-level performance explanations.</li>
+                  </ul>
+                </li>
+                <li><b>Multi-agent orchestration</b>: Intent recognizer (RAG-augmented intent resolution and agent routing) → Planner (coordinated execution plan with data dependencies) → Finalizer (aggregates outputs, evaluates coverage) → Replanner (iteratively refines plan until resolved).</li>
+                <li>Delivered automated investigative narratives and dashboards accelerating root-cause detection; deployed with Langfuse telemetry and LangGraph orchestration for continuous improvement.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Trend system (agent-driven product discovery and market analysis application)</b>
+              <ul class="sub-list">
+                <li>Architected and built a multi-agent platform that discovers trending external products via web search, ranks them against user preferences, and validates market availability across competitors to identify white-space opportunities.</li>
+                <li><b>Trend manager agent</b>: central orchestrator managing session state, routing user intent via confidence-thresholded LLM classification, and supporting multi-turn conversational chaining (e.g., hero SKU results fed directly into white-space analysis).</li>
+                <li><b>Hero SKU search agent</b>: 11-node LangGraph pipeline supporting up to 3 parallel keyword–region search tabs:
+                  <ul class="sub-list">
+                    <li>Product understanding: 4 parallel MCP web searches + LLM extraction with keyword citation matching against an NPD dataset; conditional brand profile generation (origin, channels, price tier, positioning) for brand-type keywords.</li>
+                    <li>LLM-generated follow-up questions (multiple-choice + freeform) to capture user preferences before search.</li>
+                    <li>Region-aware query generation across e-commerce, social media, forums, and magazines; parallel search with depth/time-range/country-filter configurations and confidence-gated re-search.</li>
+                    <li>Final ranking via batch LLM scoring (preferences 60%, regional relevance 20%, attribute match 20%) with brand-diversity penalties and deduplication.</li>
+                    <li>Post-pipeline enrichment: crawled product attributes (halal status, target audience, 3-level product class hierarchy), images, and Lazada sales data.</li>
+                  </ul>
+                </li>
+                <li><b>White-space analysis agent</b>: 6-node pipeline (3 human-in-the-loop + 3 automated); parallel web searches across all SKU–competitor pairs (concurrency-capped at 20) across 9 APAC and Turkey markets; batch LLM classification (exact match vs. white space) with per-competitor reasoning; generates a coverage matrix report; supports fully automated mode for programmatic chaining from the hero SKU agent.</li>
+                <li><b>MCP + search infrastructure</b>: local MCP server with dual-engine support (Tavily and DuckDuckGo fallback); pooled client architecture (4 concurrent sessions) with automatic transport detection and failover.</li>
+                <li><b>Human-in-the-loop</b>: LangGraph interrupt-and-resume for multi-tab keyword forms, editable product understanding and brand profile cards, multiple-choice questionnaires, and SKU list selectors.</li>
+                <li><b>Reactive frontend</b>: AG-UI event streaming for real-time step indicators and log output; rich interactive form cards rendered in the chat stream; result cards with expandable product details, white-space coverage matrices, and a consolidated rankings table with live status updates.</li>
+                <li>Delivered an end-to-end product discovery and competitive intelligence tool replacing manual analyst research workflows; built with LangGraph subgraph composition, AG-UI event streaming, and MCP-based tool abstraction.</li>
+              </ul>
+            </li>
+            <!--
+            <li>
+              <b>Agentic AI framework</b>
+              <ul class="sub-list">
+                <li>Built a reusable, production-ready code template supporting multi-agent orchestration, dynamic planning, and runtime tracing. The template includes:</li>
+                  <ul class="sub-list">
+                    <li>Multi-agent lifecycle and coordination layer with a central supervisor agent that interprets user intent, decomposes complex requests into executable subtasks, updates plans iteratively based on agent outputs, and synthesizes final conclusions and recommendations.</li>
+                    <li>Prompt management system with controlled prompt variants, templating, A/B experimentation. Langfuse-compatible telemetry for execution tracing, observability, per-agent prompts, responses, latencies, and cost breakdowns.</li>
+                    <li>MCP (Model Context Protocol) tools server exposing common connectors and utilities.</li>
+                    <li>Natural language → SQL translator with schema-aware generation, execution safeguards against destructive queries. Native connectors to Azure Databricks for scalable analytics and feature engineering.</li>
+                    <li>Front-end integration layer and a plug-and-play web page for interactive workflows, query refinement, and visualization.</li>
+                    <li>Engineered the template to be product-agnostic so teams can deploy it across multiple products with minimal changes (config-driven agent composition, connector registration, and permissions).</li>
+                  </ul>
+              </ul>
+            </li>
+            -->
+          </ul>
+        </div>
+        </div>
       </div>
 
+      <!-- Huawei -->
       <div class="cv-job">
-        <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama &mdash; Beijing</div>
-        <div class="cv-job-meta">Intern | Algorithm Engineer | 2023.5 - 2023.9</div>
-        <ul class="main-list">
-          <li>Contributed to the development of Alibaba's LLM technologies through two key projects: Natural Language to Crowd Package Generation and participation in the Alibaba AI Hackathon Competition.</li>
-          <li>Natural Language to Crowd Package Generation Project
-            <ul class="sub-list">
-              <li>Automated the creation of crowd packages—user groups defined by operations (e.g., intersection, union, difference) on multiple user labels—using ChatGPT and LangChain frameworks.</li>
-              <li>Designed and implemented prompt engineering for tasks such as user intent recognition, crowd package naming, and generating recommendation rationales, fully utilizing LLM capabilities.</li>
-              <li>For complex tasks like label selection and operational logic determination, developed a hybrid approach that combined LLMs with traditional machine learning algorithms.</li>
-              <li>The project successfully passed internal evaluations at Alibaba and entered the grey testing phase, demonstrating its value in automating previously manual processes.</li>
-            </ul>
-          </li>
-          <li>AI Hackathon Competition
-            <ul class="sub-list">
-              <li>Leveraged large language models to simulate user feedback on brand advertising, addressing the challenge of evaluating brand advertising effectiveness.</li>
-              <li>Designed a memory-and-decision-making framework that analyses user shopping histories, summarizes multidimensional features, and retrieves contextually relevant information based on timeliness, relevance, and importance; integrated chain-of-thought reasoning and consumer behaviour simulations to mimic real-world decision-making.</li>
-              <li>Secured 4th place out of 28 teams in the competition, showcasing innovative use of LLMs for business and advertising optimization.</li>
-            </ul>
-          </li>
-        </ul>
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Full-Time&nbsp;|&nbsp;<b>R&amp;D Engineer</b>
+              </div>
+              <div class="cv-job-time">2024.6 - 2025.8</div>
+            </div>
+          </div>
+        </div>
+        <div class="cv-job-details">
+        <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Developed and deployed <b>AI-driven automation and data science solutions</b> for chip design and manufacturing, focusing on scalable technologies for schematic review, yield improvement and process optimization.
+            </li>
+            <li>
+              <b>Retrieval-Augmented Generation (RAG) System for Schematic Review</b>
+              <ul class="sub-list">
+                <li>Designed and implemented a multi-modal data processing pipeline for RAG, supporting various document formats (PDF, DOCX, PPTX, PNG, JPG).</li>
+                <li>Integrated visual LLM models for image-based information extraction alongside text extraction systems.</li>
+                <li>Built a vector database storing both dense and sparse embeddings, enabling advanced semantic and keyword-based search; applied the reciprocal rank fusion (RRF) algorithm and a rerank model to further refine and present the most relevant results.</li>
+                <li>Developed a Gradio-based frontend, allowing users to query PCB chip-related issues with high accuracy. The system is now deployed in production and serves enterprise customers.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Automated Code Generation for Schematic Reviews</b>
+              <ul class="sub-list">
+                <li>Developed AI-powered solutions to automate schematic review processes, significantly reducing manual scripting efforts. Established a reliable code generation framework, optimizing both accuracy and response time through extensive architecture testing.</li>
+                <li>Designed a workflow where user prompts specify only the core logic of the code, which is then expanded by an LLM-based code writer using pseudo-APIs. A secondary LLM replaces pseudo-APIs with real, validated APIs.</li>
+                <li>Implemented a recursive process to iteratively search the database for missing APIs and integrate them into the final code.</li>
+                <li>Validated the generated code on real-world schematic files, achieving results consistent with manually written scripts.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Deep-semi-sight LLM Project</b>
+              <ul class="sub-list">
+                <li>Developed an end-to-end framework for fine-tuning, deploying, and evaluating LLMs, leveraging vllm, vllm-ascend, and LLamaFactory. Supported advanced fine-tuning techniques (Full, LoRA, QLoRA, DPO) and concurrent deployment on non-NVIDIA platforms (e.g., Huawei Ascend hardware).</li>
+                <li>Built an evaluation pipeline for both open-source general datasets and custom domain-specific data. Successfully fine-tuned Qwen3-32B and Qwen2.5-32B-Instruct, achieving an average 9.64% and up to 12.69% improvement in general semiconductor capability while maintaining overall model performance.</li>
+                <li>Delivered robust, customer-facing LLM solutions and comprehensive evaluation results for enterprise deployment.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Yield Loss Data Analysis</b>
+              <ul class="sub-list">
+                <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, reducing users' analysis time from half a day to 5 minutes in real-world cases, and significantly lowering the rate of misjudgement caused by excessive highlighting compared to previous methods.</li>
+                <li>Validated the algorithms against expert results in a two-week production test, leading to seamless integration into the latest product release.</li>
+                <li>Developed a multi-step yield loss identification algorithm and graphical interface, completing two rounds of feature iteration. This automation replaced manual experience-based analysis, enabling root cause identification time to drop from weeks to hours.</li>
+                <li>Demonstrated expert-level accuracy and efficiency in a three-month real-world validation, substantially reducing manual investigation time. Delivered a user-friendly executable application, deployed for customer grey testing and now fully adopted in production environments.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+
+      <!-- BASF -->
+      <div class="cv-job">
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit</div>
+              <div class="cv-job-city">Hong Kong</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Intern&nbsp;|&nbsp;<b>Data and AI Engineer</b>
+              </div>
+              <div class="cv-job-time">2024.1 - 2024.6</div>
+            </div>
+          </div>
+        </div>
+        <div class="cv-job-details">
+        <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Contributed to BASF's <b>AI and digitalization initiatives</b> through two key projects: <b>NewsBot</b> Marketing Intelligence and <b>Abnormal Result Inference</b>.
+            </li>
+            <!--
+            <li>
+              <b>NewsBot Marketing Intelligence Project</b>:
+              <ul class="sub-list">
+                <li>Built an AI assistant to gather and analyze daily competitor and customer news from online sources, tailored to BASF’s industry-specific terminology and internal knowledge base.</li>
+                <li>Designed an end-to-end news collection pipeline using Azure Databricks, enabling automatic labelling of topics, industries, companies, and locations during preprocessing.</li>
+                <li>Integrated Azure Cognitive Search to enable efficient retrieval of relevant news using filters, and applied the LangChain framework for prompt engineering to answer user queries in the marketing intelligence domain.</li>
+                <li>Developed prompts to teach the model to summarize internal knowledge and provide accurate, context-aware responses.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Abnormal Result Inference Project</b>:
+              <ul class="sub-list">
+                <li>Developed a solution to identify and diagnose root causes for product batches failing to meet quality standards, leveraging BASF’s extensive sensor network.</li>
+                <li>Designed a data integration pipeline in Azure Databricks to consolidate sensor data from multiple sources.</li>
+                <li>Conducted statistical analyses and correlation comparisons between normal and abnormal production days to identify critical sensor anomalies.</li>
+                <li>Built a linear regression model to pinpoint sensors most associated with production issues and deployed insights via an interactive Power BI dashboard, enabling actionable decision-making.</li>
+              </ul>
+            </li>
+            -->
+          </ul>
+        </div>
+        </div>
+      </div>
+
+      <!-- Alibaba -->
+      <div class="cv-job">
+        <div class="job-header">
+          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+          <div class="job-header-content">
+            <div class="job-row">
+              <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama</div>
+              <div class="cv-job-city">Beijing</div>
+            </div>
+            <div class="job-meta-row">
+              <div class="cv-job-meta">
+                Intern&nbsp;|&nbsp;<b>Algorithm Engineer</b>
+              </div>
+              <div class="cv-job-time">2023.5 - 2023.9</div>
+            </div>
+          </div>
+        </div>
+        <div class="cv-job-details">
+        <div class="cv-job-content">
+          <ul class="main-list">
+            <li>
+              Contributed to the development of Alibaba's <b>LLM</b> technologies through two key projects: <b>Natural Language to Crowd Package</b> Generation and participation in the <b>AI Hackathon</b> Competition.
+            </li>
+            <!--
+            <li>
+              <b>Natural Language to Crowd Package Generation Project</b>:
+              <ul class="sub-list">
+                <li>Automated the creation of crowd packages—user groups defined by operations (e.g., intersection, union, difference) on multiple user labels—using ChatGPT and LangChain frameworks.</li>
+                <li>Designed and implemented prompt engineering for tasks such as user intent recognition, crowd package naming, and generating recommendation rationales, fully utilizing LLM capabilities.</li>
+                <li>For complex tasks like label selection and operational logic determination, developed a hybrid approach that combined LLMs with traditional machine learning algorithms.</li>
+                <li>The project successfully passed internal evaluations at Alibaba and entered the grey testing phase, demonstrating its value in automating previously manual processes.</li>
+              </ul>
+            </li>
+            <li>
+              <b>AI Hackathon Competition</b>:
+              <ul class="sub-list">
+                <li>Leveraged large language models to simulate user feedback on brand advertising, addressing the challenge of evaluating brand advertising effectiveness.</li>
+                <li>Designed a memory-and-decision-making framework that analyses user shopping histories, summarizes multidimensional features, and retrieves contextually relevant information based on timeliness, relevance, and importance; integrated chain-of-thought reasoning and consumer behaviour simulations to mimic real-world decision-making.</li>
+                <li>Secured 4th place out of 28 teams in the competition, showcasing innovative use of LLMs for business and advertising optimization.</li>
+              </ul>
+            </li>
+            -->
+          </ul>
+        </div>
+        </div>
       </div>
     </div>
     <hr class="divider">
@@ -259,11 +695,403 @@
       <div class="section-title">Ability</div>
       <ul class="cv-ability-list">
         <li>C, C++, Python, R, SQL.</li>
-        <li>Artificial Intelligence, Machine Learning, LLM.</li>
-        <li>English (Business Professional, TOEFL 109, College English Test-6 677), Mandarin (Native), Cantonese (Intermediate).</li>
-        <li>Debate: Third Place of Chinese Debate World Cup 2023, Champion of Chinese College Debate Tournament 2020.</li>
+        <li>Data Science, Machine Learning, Artificial Intelligence, LLM.</li>
+        <li>LangChain, LangGraph, Langfuse, vLLM, Ollama, LLaMA-Factory.</li>
+        <li>English (Business Professional, TOEFL 109, College English Test-6 677), Mandarin (Native), Cantonese (Business Professional).</li>
+        <li>Debate: Third Place of the Chinese Debate World Cup 2023, Champion of the Chinese College Debate Tournament 2020.</li>
       </ul>
     </div>
+    </section>
+
+    <section class="cv-language" data-lang="zh" lang="zh-Hans-HK">
+      <div class="cv-header">
+        <div>
+          <div class="cv-name">李洣祺 LI Miqi (Mickey)</div>
+          <button class="pdf-btn" onclick="downloadPDF()" title="下载 PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            下载 PDF
+          </button>
+        </div>
+        <div class="cv-contact-links">
+          <div>地址：红磡，九龙，香港</div>
+          <div>手机：(+86)18801330288 （微信），<br>(+852)53928750 （WhatsApp）</div>
+          <div>邮箱：<a href="mailto:lmq.limiqi@outlook.com">lmq.limiqi@outlook.com</a></div>
+          <div>领英：<a href="https://www.linkedin.com/in/miqi-li-mickey/" target="_blank">www.linkedin.com/in/miqi-li-mickey/</a></div>
+          <div>最新简历：<a href="https://panegyric0926.github.io/curriculum-vitae/" target="_blank">panegyric0926.github.io/curriculum-vitae/</a></div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <div class="section-title">教育背景</div>
+        <div class="cv-edu">
+          <div class="edu-row">
+            <div class="cv-edu-title">北京邮电大学</div>
+            <div class="cv-edu-meta">2018.9-2022.6</div>
+          </div>
+          <ul class="main-list cv-edu-detail">
+            <li>计算机学院，工学学士，<b>数据科学与大数据技术专业</b></li>
+          </ul>
+        </div>
+        <div class="cv-edu">
+          <div class="edu-row">
+            <div class="cv-edu-title">香港大学</div>
+            <div class="cv-edu-meta">2022.9-2024.1</div>
+          </div>
+          <ul class="main-list cv-edu-detail">
+            <li>理学院统计与精算系，理学硕士，<b>数据科学专业</b></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="divider">
+
+      <div class="cv-section">
+        <div class="section-title">个人简介</div>
+        <ul class="main-list">
+          <li>热衷于<b>人工智能与数据科学</b>领域，具备在科研与产业场景中开展<b>机器学习、大语言模型及数据分析</b>项目的实践经验。</li>
+        </ul>
+      </div>
+      <hr class="divider">
+
+      <div class="cv-section">
+        <div class="section-title">工作经验</div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">Meta, FAIR Foundations</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  全职｜<b>研究科学家 III</b>
+                </div>
+                <div class="cv-job-time">2026.5-至今</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>基于Meta Sparkle分布式框架，结合Qwen3-VL模型、Perception Encoder Embedding模型、Mango Video Model模型，为Interactive World模型构建<b>大规模数据筛选与评估流水线</b>。</li>
+                <li>
+                  <b>数据筛选与评估流水线</b>
+                  <ul class="sub-list">
+                    <li><b>VLM-as-Judge标注：</b>构建运行Qwen3-VL模型的Sparkle任务，对经由Perception Encoder模型聚类得到的候选视频，依据运动、视觉质量以及视角、运动状态、环境等结构化属性进行评分。</li>
+                    <li><b>视频层次化描述生成：</b>设计端到端任务流，基于逐帧Perception Encoder Embedding，结合Ward层次聚类与1-hop连通约束构建时间分段树；随后使用Qwen3-VL模型为各节点生成描述，得到用于后续模型训练的结构化视频描述。</li>
+                    <li><b>I2AV生成评测：</b>设计参考视频片段筛选流程；利用Qwen3-VL模型自动为参考视频生成描述；将上述描述与参考视频关键帧作为参数输入Mango模型生成视频；构建评测框架，并结合逐帧PSNR、SSIM算法，涵盖提示词遵循度和第一人称一致性的VLM-as-Judge对结果进行评分。</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">屈臣氏集团，DataLab - AI Lab</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  全职｜<b>LLM 开发工程师</b>
+                </div>
+                <div class="cv-job-time">2025.8 - 2026.5</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>面向商业分析与日常业务流程，依托屈臣氏企业数据及LangGraph / Langfuse工具，设计并实现<b>生产级Agent应用</b>。</li>
+                <li>
+                  <b>品类管理系统（Agent驱动的分析应用）</b>
+                  <ul class="sub-list">
+                    <li>负责整体架构设计与落地，构建可接入并分析真实企业数据的多Agent应用，实现KPI监控、根因分析与可执行建议输出。</li>
+                    <li><b>RAG层：</b>结合基于Embedding的检索与关键词及全文检索，为下游Agent提供内部文档、定义与SOP等信息支撑。</li>
+                    <li><b>数据层：</b>Agent负责拉取并标准化交易、商品目录、促销及库存数据，校验数据质量并识别异常；复杂查询场景下采用SQL模板与即时SQL生成相结合的方式。</li>
+                    <li><b>领域Agent：</b>
+                      <ul class="sub-list">
+                        <li>KPI Agent：从时间、商品及客户等维度监控KPI，依据KPI优先级生成告警与变化趋势分析。</li>
+                        <li>销售树Agent：将销售拆解为会员与非会员等不同层级，并将数据变化归因至会员数、人均消费额及单次购买件数等驱动因素，输出后续建议。</li>
+                        <li>客户分群Agent：通过MCP协议调用机器学习模型实行聚类，将客户划分为不同行为群体，用于后续KPI、留存及变现分析。</li>
+                        <li>可视化Agent：生成表格与图表；管理数据缓存以提升生成稳定性，并支持图表类型转换（如折线图转柱状图）。</li>
+                        <li>驱动因素分析Agent：将多部分问题拆解为子任务，支持基于用户反馈更改并执行计划，调用SQL Agent，并生成驱动因素层面的业绩解释。</li>
+                      </ul>
+                    </li>
+                    <li><b>多Agent调控：</b>意图识别（基于RAG的意图解析与Agent路由）→ 规划（制定执行计划）→ 汇总（综合各Agent输出并评估回答质量）→ 重规划（迭代修正计划直至问题解决）。</li>
+                    <li>交付包含根因定位与数据仪表的对话式AI应用；结合Langfuse与LangGraph实现持续优化。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>趋势系统（Agent驱动的产品发现与市场分析应用）</b>
+                  <ul class="sub-list">
+                    <li>负责整体架构设计与落地，构建多Agent平台，通过网络搜索发现外部热门产品，结合用户偏好进行排序，并校验竞品市场覆盖情况，以识别市场机会。</li>
+                    <li><b>趋势管理Agent：</b>作为中心Agent管理会话状态，通过基于置信度阈值的LLM分类进行用户意图分析，并支持多轮对话与链式衔接（例如将Hero SKU结果直接传递至市场分析）。</li>
+                    <li><b>Hero SKU搜索Agent：</b>构建包含11节点的LangGraph流水线，支持最多3个并行的“关键词-区域”搜索。
+                      <ul class="sub-list">
+                        <li>产品理解：通过4路并行MCP网络搜索结合LLM信息抽取，将关键词引用与内部数据集进行匹配；针对品牌类关键词按需生成品牌画像（来源地、渠道、价格、定位）。</li>
+                        <li>用户偏好采集：利用LLM生成追问问题用于补充用户偏好。</li>
+                        <li>查询生成：面向电商、社交媒体、论坛及杂志等渠道生成强区域相关查询，并基于时间、国家等条件进行并行搜索；在低置信度场景下触发补充搜索。</li>
+                        <li>排序：通过批量LLM评分完成排序，权重为用户偏好60%、区域相关性20%、属性匹配20%，并加入品牌多样性惩罚与去重机制。</li>
+                        <li>结果增强：补充抓取产品属性（如清真、目标人群、三级产品分类）、图片及销售数据。</li>
+                      </ul>
+                    </li>
+                    <li><b>市场分析Agent：</b>构建6节点流水线；在亚太9个市场范围内，对全部SKU – 竞争对手组合进行并行搜索；采用批量LLM分类判断“精确匹配”或“市场空白”，并输出逐竞品推理结果及覆盖报告；同时支持从Hero SKU Agent进行串联的全自动模式。</li>
+                    <li><b>MCP与搜索：</b>搭建本地MCP Server，支持Tavily引擎与DuckDuckGo引擎；实现多并发会话，具备故障切换能力。</li>
+                    <li><b>Human-in-the-loop设计：</b>通过LangGraph的interrupt-and-resume机制，支持应用在关键词表单、产品理解与品牌画像、追问问题等位置实现用户交互。</li>
+                    <li><b>响应式前端：</b>使用AG-UI事件流实现实时进度更新与日志输出；结果包含产品详情、市场覆盖矩阵及综合排名。</li>
+                    <li>交付端到端Agent产品：替代人工分析研究流程。</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">华为香港研究所，设计与自动化实验室</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  全职｜<b>研发工程师</b>
+                </div>
+                <div class="cv-job-time">2024.6 - 2025.8</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>面向芯片设计与制造场景，开发并落地<b>AI驱动的自动化和数据科学解决方案</b>，重点覆盖原理图审查、良率提升与工艺优化等方向。</li>
+                <li>
+                  <b>面向原理图审查的RAG系统</b>
+                  <ul class="sub-list">
+                    <li>设计并实现多模态RAG数据处理流水线，支持PDF、DOCX、PPTX、PNG、JPG等多种文档格式。</li>
+                    <li>集成视觉大语言模型处理图像类信息，并与文本抽取协同工作。</li>
+                    <li>构建同时包含Dense Embedding与Sparse Embedding的向量数据库，支持语义检索与关键词检索；进一步结合RRF算法与rerank模型优化排序结果。</li>
+                    <li>开发基于Gradio的前端界面，支持用户高准确率地查询PCB / 芯片相关问题；系统已服务企业客户并满足关键需求。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>面向原理图审查的自动化代码生成</b>
+                  <ul class="sub-list">
+                    <li>开发AI驱动的方案，实现自动化原理图审查流程，大幅减少人工编写脚本工作量；建立稳定的审查代码生成框架，并同步优化准确率与响应时延。</li>
+                    <li>设计工作流，使用户仅需输入待生成代码的核心逻辑，再由基于LLM的代码编写器通过伪API扩展为完整实现；随后使用第二个LLM将伪API替换为真实且经过验证的API。</li>
+                    <li>实现递归式代码生成流程，持续检索数据库，将缺失的API整合进代码中。</li>
+                    <li>在真实原理图文件上验证生成代码，结果与人工编写脚本保持一致。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>Deep-semi-sight LLM 项目</b>
+                  <ul class="sub-list">
+                    <li>基于vLLM、vLLM-Ascend与LLaMA-Factory，构建涵盖微调、部署与评测的端到端大语言模型框架；支持Full、LoRA、QLoRA、DPO等微调方式，并可在非NVIDIA平台（如华为Ascend）上进行并发部署。</li>
+                    <li>搭建同时面向开源通用数据集与定制领域数据的评测流水线；成功微调Qwen3-32B与Qwen2.5-32B-Instruct，在保持整体模型性能的前提下，使半导体领域通用能力平均提升 9.64%，最高提升12.69%。</li>
+                    <li>交付稳定的大语言模型解决方案，支撑企业级部署。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>良率损失数据分析</b>
+                  <ul class="sub-list">
+                    <li>设计两种高效率的单工序良率损失识别方法，在真实案例中将用户分析时间由半天缩短至5分钟；相较既有方法显著降低误判概率。</li>
+                    <li>在为期两周的生产测试中，以专家验证结果为基准完成方法评估，并顺利集成至交付产品。</li>
+                    <li>开发多工序良率损失识别算法及图形界面，完成两轮功能迭代；以自动化方式替代依赖人工经验的分析流程，使根因定位时间由数周缩短至数小时。</li>
+                    <li>在为期三个月的真实环境验证中，结果与人工处理保持一致，显著降低人工排查成本；同时交付具备良好可用性的可执行应用，已完成客户灰度测试并全面投入生产环境。</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">巴斯夫（BASF）东亚区总部，Global Digitalization Unit</div>
+                <div class="cv-job-city">中国香港</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  实习｜<b>数据与AI工程师</b>
+                </div>
+                <div class="cv-job-time">2024.1 - 2024.6</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>负责NewsBot与异常结果推断两个项目，参与巴斯夫AI与数字化相关工作的推进。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-job">
+          <div class="job-header">
+            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
+            <div class="job-header-content">
+              <div class="job-row">
+                <div class="cv-job-title">阿里巴巴集团，淘宝天猫集团，阿里妈妈</div>
+                <div class="cv-job-city">北京</div>
+              </div>
+              <div class="job-meta-row">
+                <div class="cv-job-meta">
+                  实习｜<b>算法工程师</b>
+                </div>
+                <div class="cv-job-time">2023.5 - 2023.9</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-job-details">
+            <div class="cv-job-content">
+              <ul class="main-list">
+                <li>负责“自然语言人群包生成”及AI Hackathon两个项目，参与阿里巴巴大语言模型相关技术研发。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="divider">
+
+      <div class="cv-section">
+        <div class="section-title">专业能力</div>
+        <ul class="cv-ability-list">
+          <li>编程语言：C、C++、Python、R、SQL</li>
+          <li>数据科学、机器学习、人工智能、大语言模型</li>
+          <li>LangChain、LangGraph、Langfuse、vLLM、Ollama、LLaMA-Factory</li>
+          <li>语言能力：英语（商务水平，TOEFL 109，大学英语六级 677），普通话（母语），粤语（商务水平）</li>
+          <li>辩论：2023年华语辩论世界杯季军</li>
+        </ul>
+      </div>
+    </section>
   </div>
+
+  <script>
+    function getActivePane() {
+      return document.querySelector('.cv-language.active');
+    }
+
+    function getCurrentLanguage() {
+      const activePane = getActivePane();
+      return activePane ? activePane.dataset.lang : 'en';
+    }
+
+    function setLanguage(language) {
+      document.querySelectorAll('.cv-language').forEach(pane => {
+        pane.classList.toggle('active', pane.dataset.lang === language);
+      });
+
+      document.querySelectorAll('.lang-option').forEach(button => {
+        const isActive = button.dataset.lang === language;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      document.documentElement.lang = language === 'zh' ? 'zh-Hans-HK' : 'en';
+    }
+
+    function toggleJob(header) {
+      header.classList.toggle('collapsed');
+      const details = header.nextElementSibling;
+      details.classList.toggle('collapsed');
+    }
+
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    function downloadPDF() {
+      const activePane = getActivePane();
+
+      if (!activePane) {
+        return;
+      }
+
+      // Expand all collapsed sections before printing
+      const collapsedHeaders = activePane.querySelectorAll('.job-header.collapsed');
+      const collapsedDetails = activePane.querySelectorAll('.cv-job-details.collapsed');
+      
+      collapsedHeaders.forEach(h => h.classList.remove('collapsed'));
+      collapsedDetails.forEach(d => d.classList.remove('collapsed'));
+
+      if (isMobile()) {
+        // Mobile: show instructions modal
+        showMobileModal();
+      } else {
+        // Desktop: use print dialog
+        window.print();
+      }
+    }
+
+    function showMobileModal() {
+      const language = getCurrentLanguage();
+      const copy = language === 'zh'
+        ? {
+            title: '下载 PDF',
+            intro: '如需在手机上保存此简历为 PDF，请按以下步骤操作：',
+            iosLabel: 'iPhone/iPad (Safari)：',
+            iosSteps: '点击 <b>分享</b> → <b>打印</b> → 在预览上双指放大',
+            androidLabel: 'Android (Chrome)：',
+            androidSteps: '点击 <b>⋮ 菜单</b> → <b>分享</b> → <b>打印</b> → 另存为 PDF',
+            close: '知道了'
+          }
+        : {
+            title: 'Download PDF',
+            intro: 'To save this CV as PDF on your mobile device:',
+            iosLabel: 'iPhone/iPad (Safari):',
+            iosSteps: 'Tap <b>Share</b> → <b>Print</b> → Pinch out on preview',
+            androidLabel: 'Android (Chrome):',
+            androidSteps: 'Tap <b>⋮ Menu</b> → <b>Share</b> → <b>Print</b> → Save as PDF',
+            close: 'Got it'
+          };
+
+      // Create modal overlay
+      const overlay = document.createElement('div');
+      overlay.id = 'pdf-modal-overlay';
+      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;';
+      
+      const modal = document.createElement('div');
+      modal.style.cssText = 'background:#fff;border-radius:12px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.2);';
+      
+      modal.innerHTML = `
+        <h3 style="margin:0 0 16px;color:#1a237e;font-size:1.2rem;">${copy.title}</h3>
+        <p style="margin:0 0 20px;color:#697080;font-size:0.95rem;line-height:1.5;">
+          ${copy.intro}
+        </p>
+        <div style="text-align:left;margin-bottom:20px;color:#233;font-size:0.9rem;line-height:1.7;">
+          <b>${copy.iosLabel}</b><br>
+          ${copy.iosSteps}<br><br>
+          <b>${copy.androidLabel}</b><br>
+          ${copy.androidSteps}
+        </div>
+        <button onclick="closeMobileModal()" style="background:#1a237e;color:#fff;border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">${copy.close}</button>
+      `;
+      
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+      
+      // Close on overlay click
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeMobileModal();
+      });
+    }
+
+    function closeMobileModal() {
+      const overlay = document.getElementById('pdf-modal-overlay');
+      if (overlay) overlay.remove();
+    }
+  </script>
 </body>
 </html>
