@@ -32,5 +32,5 @@ This project contains the source code and deployment for my professional Curricu
 
 ## Contact
 
-- **Email:** [limiqi@connect.hku.hk](mailto:limiqi@connect.hku.hk)
+- **Email:** [lmq.limiqi@outlook.com](mailto:lmq.limiqi@outlook.com)
 - **LinkedIn:** [miqi-li-mickey](https://www.linkedin.com/in/miqi-li-mickey/)
