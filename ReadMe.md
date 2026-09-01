@@ -19,6 +19,7 @@ This project contains the source code and deployment for my professional Curricu
 
 - 📄 **Education:** Beijing University of Posts and Telecommunications (BUPT), The University of Hong Kong (HKU)
 - 💼 **Work Experience:**
+  - OKX, AI-Native Product & Engineering Center, Oli Plaform (Senior Engineer)
   - Meta, FAIR Foundations (Research Scientist III)
   - AS Watson Group, DataLab - AI Lab (LLM Developer)  
   - Huawei HK Research Center (R&D Engineer)  
