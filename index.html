@@ -12,6 +12,7 @@
       --primary: #1a237e;
       --secondary: #3949ab;
       --accent: #00bcd4;
+      --link: #007b8f;
       --bg: #f7f9fa;
       --paper: #fff;
       --text: #233;
@@ -28,6 +29,7 @@
         --primary: #a5b4fc;
         --secondary: #c7d2fe;
         --accent: #67e8f9;
+        --link: #67e8f9;
         --bg: #0f172a;
         --paper: #1e293b;
         --text: #e2e8f0;
@@ -75,6 +77,7 @@
       min-width: 0;
     }
     .cv-name {
+      margin: 0;
       font-size: 2rem;
       font-weight: 700;
       color: var(--primary);
@@ -91,7 +94,7 @@
       margin-left: auto;
     }
     .cv-contact-links a {
-      color: var(--accent);
+      color: var(--link);
       text-decoration: none;
       transition: color 0.15s;
       word-break: break-all;
@@ -109,7 +112,7 @@
       color: var(--secondary);
       font-weight: 600;
       letter-spacing: 0.5px;
-      margin-bottom: 7px;
+      margin: 0 0 7px;
     }
     .divider {
       border: none;
@@ -125,6 +128,7 @@
       flex-wrap: wrap;
     }
     .cv-edu-title {
+      margin: 0;
       font-weight: 600;
       font-size: 1.2rem;
       color: var(--primary);
@@ -161,6 +165,7 @@
       margin-bottom: 0;
     }
     .cv-job-title {
+      display: block;
       font-weight: 600;
       font-size: 1.2rem;
       color: var(--primary);
@@ -220,6 +225,7 @@
       border-radius: 999px;
     }
     .lang-option {
+      min-height: 44px;
       border: none;
       background: transparent;
       color: var(--muted);
@@ -266,13 +272,81 @@
       height: 16px;
       fill: currentColor;
     }
+    .lang-option:focus-visible, .job-toggle:focus-visible,
+    .pdf-btn:focus-visible, .modal-close:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+    html.modal-open, html.modal-open body {
+      overflow: hidden;
+      overscroll-behavior: contain;
+    }
+    .pdf-modal {
+      box-sizing: border-box;
+      width: min(388px, calc(100% - 32px));
+      max-height: calc(100vh - 32px);
+      max-height: calc(100dvh - 32px);
+      margin: auto;
+      padding: 24px;
+      overflow: auto;
+      overscroll-behavior: contain;
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      background: var(--paper);
+      color: var(--text);
+      text-align: center;
+      box-shadow: 0 4px 24px var(--modal-shadow-color);
+    }
+    .pdf-modal::backdrop {
+      background: rgba(0,0,0,0.6);
+    }
+    .pdf-modal h2 {
+      margin: 0 0 16px;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    .pdf-modal p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .pdf-modal-steps {
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .modal-close {
+      min-height: 44px;
+      padding: 10px 28px;
+      border: none;
+      border-radius: 6px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    @page {
+      size: auto;
+      margin: 12mm;
+    }
     @media print {
       :root {
         color-scheme: light;
         --bg: #fff;
         --paper: #fff;
+        font-size: 10.5pt;
       }
-      #pdf-modal-overlay {
+      :root:lang(zh) {
+        font-size: 10pt;
+      }
+      html, body {
+        overflow: visible !important;
+        line-height: 1.35;
+      }
+      #pdf-modal-overlay, #pdf-modal-overlay::backdrop {
         display: none !important;
       }
       .lang-switcher {
@@ -293,56 +367,112 @@
         padding: 0;
         max-width: 100%;
       }
+      .cv-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 12px;
+        break-inside: avoid-page;
+        margin-bottom: 16px;
+      }
+      .cv-name {
+        font-size: 20pt;
+      }
+      .cv-section {
+        margin-bottom: 18px;
+      }
+      .divider {
+        margin: 14px 0 12px;
+      }
+      .cv-ability-list {
+        margin-top: 8px;
+        break-inside: avoid-page;
+      }
+      .cv-ability-list li {
+        margin-bottom: 5px;
+      }
+      .cv-job-content {
+        margin-bottom: 6px;
+      }
+      ul.sub-list {
+        margin-top: 6px;
+        margin-bottom: 10px;
+      }
+      .section-title, .edu-row, .job-header {
+        break-inside: avoid-page;
+        break-after: avoid-page;
+      }
       .job-header {
         cursor: default;
       }
-      .job-toggle {
-        display: none !important;
+      .job-header .job-toggle {
+        min-height: 0;
+        padding: 0;
+        outline: none;
+        cursor: default;
       }
-      .cv-job-details.collapsed {
-        max-height: none !important;
-        opacity: 1 !important;
+      .job-toggle::before {
+        display: none;
+      }
+      .cv-job-details, .cv-job-details[hidden] {
+        display: block !important;
+        overflow: visible;
+      }
+      .cv-job {
+        margin-bottom: 12px;
+      }
+      .sub-list > li {
+        break-inside: avoid-page;
+      }
+      .main-list > li > .sub-list {
+        break-before: avoid-page;
+      }
+      li {
+        orphans: 3;
+        widows: 3;
       }
     }
     /* Collapsible job styles */
     .job-header {
-      display: flex;
-      align-items: flex-start;
-      margin-left: 18px;
+      margin: 0 0 0 18px;
+      font-size: inherit;
+      font-weight: normal;
     }
     .job-toggle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      margin-left: -25px;
-      margin-right: 0;
-      flex-shrink: 0;
-      font-size: 0.7rem;
-      color: var(--secondary);
-      transition: transform 0.2s ease;
+      position: relative;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 44px;
+      padding: 6px 0;
+      border: none;
+      border-radius: 4px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: left;
       cursor: pointer;
-      user-select: none;
     }
     .job-toggle::before {
+      position: absolute;
+      top: 10px;
+      left: -20px;
+      font-size: 0.7rem;
+      color: var(--secondary);
       content: '▲';
     }
     .job-header.collapsed .job-toggle::before {
       content: '▼';
     }
     .job-header-content {
-      flex: 1;
+      display: block;
     }
     .cv-job-details {
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-      max-height: 10000px;
-      opacity: 1;
+      display: block;
     }
-    .cv-job-details.collapsed {
-      max-height: 0;
-      opacity: 0;
+    @media screen {
+      .cv-job-details[hidden] {
+        display: none;
+      }
     }
     @media (max-width: 600px) {
       .cv-header {
@@ -375,18 +505,18 @@
   </style>
 </head>
 <body>
-  <div class="cv-container">
-    <div class="lang-switcher" role="tablist" aria-label="CV language selector">
+  <main class="cv-container">
+    <div class="lang-switcher" role="group" aria-label="CV language selector">
       <div class="lang-switcher-group">
-        <button type="button" class="lang-option active" data-lang="en" role="tab" aria-selected="true" onclick="setLanguage('en')">English</button>
-        <button type="button" class="lang-option" data-lang="zh" role="tab" aria-selected="false" onclick="setLanguage('zh')">中文</button>
+        <button type="button" class="lang-option active" data-lang="en" aria-pressed="true" onclick="setLanguage('en')">English</button>
+        <button type="button" class="lang-option" data-lang="zh" aria-pressed="false" onclick="setLanguage('zh')">中文</button>
       </div>
     </div>
 
     <section class="cv-language active" data-lang="en" lang="en">
       <div class="cv-header">
         <div>
-          <div class="cv-name">LI Miqi (Mickey)</div>
+          <h1 class="cv-name">LI Miqi (Mickey)</h1>
           <button class="pdf-btn" onclick="downloadPDF()" title="Download as PDF">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
             Download PDF
@@ -402,10 +532,10 @@
       </div>
 
     <div class="cv-section">
-      <div class="section-title">Education</div>
+      <h2 class="section-title">Education</h2>
       <div class="cv-edu">
         <div class="edu-row">
-          <div class="cv-edu-title">Beijing University of Posts and Telecommunications (BUPT)</div>
+          <h3 class="cv-edu-title">Beijing University of Posts and Telecommunications (BUPT)</h3>
           <div class="cv-edu-meta">2018.9 - 2022.6</div>
         </div>
         <ul class="main-list cv-edu-detail">
@@ -414,7 +544,7 @@
       </div>
       <div class="cv-edu">
         <div class="edu-row">
-          <div class="cv-edu-title">The University of Hong Kong (HKU)</div>
+          <h3 class="cv-edu-title">The University of Hong Kong (HKU)</h3>
           <div class="cv-edu-meta">2022.9 - 2024.1</div>
         </div>
         <ul class="main-list cv-edu-detail">
@@ -425,7 +555,7 @@
     <hr class="divider">
 
     <div class="cv-section">
-      <div class="section-title">Summary</div>
+      <h2 class="section-title">Summary</h2>
       <ul class="main-list">
         <li><b>AI/LLM engineer</b> focused on <b>agent platforms and enterprise applications</b>, with experience in memory systems, task orchestration, reliable delivery, RAG, and LLM fine-tuning and evaluation.</li>
       </ul>
@@ -433,28 +563,30 @@
     <hr class="divider">
 
     <div class="cv-section">
-      <div class="section-title">Work Experience</div>
+      <h2 class="section-title">Work Experience</h2>
 
       <!-- OKX -->
       <div class="cv-job">
-        <div class="job-header">
-          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-          <div class="job-header-content">
-            <div class="job-row">
-              <div class="cv-job-title">OKX, AI-Native Product &amp; Engineering Center, Oli Platform</div>
-              <div class="cv-job-city">Hong Kong</div>
-            </div>
-            <div class="job-meta-row">
-              <div class="cv-job-meta">
-                Full-Time&nbsp;|&nbsp;<b>Senior Engineer</b>
-              </div>
-              <div class="cv-job-time">2026.8 – Present</div>
-            </div>
-          </div>
-        </div>
-        <div class="cv-job-details">
+        <h3 class="job-header">
+          <button type="button" class="job-toggle" aria-expanded="true" aria-controls="en-okx-details" aria-labelledby="en-okx-title" onclick="toggleJob(this)">
+            <span class="job-header-content">
+              <span class="job-row">
+                <span class="cv-job-title" id="en-okx-title">OKX, AI-Native Product &amp; Engineering Center, Oli Platform</span>
+                <span class="cv-job-city">Hong Kong</span>
+              </span>
+              <span class="job-meta-row">
+                <span class="cv-job-meta">
+                  Full-Time&nbsp;|&nbsp;<b>Senior Engineer</b>
+                </span>
+                <span class="cv-job-time">2026.8 – Present</span>
+              </span>
+            </span>
+          </button>
+        </h3>
+        <div class="cv-job-details" id="en-okx-details">
         <div class="cv-job-content">
           <ul class="main-list">
+            <li>Built <b>production-grade agent platform capabilities</b> for Oli, spanning memory systems, task automation, reliable result delivery, and platform extensibility.</li>
             <li>
               <b>Agent memory system (OpenViking)</b>
               <ul class="sub-list">
@@ -494,22 +626,23 @@
 
       <!-- Meta -->
       <div class="cv-job">
-        <div class="job-header">
-          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-          <div class="job-header-content">
-            <div class="job-row">
-              <div class="cv-job-title">Meta, FAIR Foundations</div>
-              <div class="cv-job-city">Hong Kong</div>
-            </div>
-            <div class="job-meta-row">
-              <div class="cv-job-meta">
-                Full-Time&nbsp;|&nbsp;<b>Research Scientist III</b>
-              </div>
-              <div class="cv-job-time">2026.5 - 2026.7</div>
-            </div>
-          </div>
-        </div>
-        <div class="cv-job-details">
+        <h3 class="job-header">
+          <button type="button" class="job-toggle" aria-expanded="true" aria-controls="en-meta-details" aria-labelledby="en-meta-title" onclick="toggleJob(this)">
+            <span class="job-header-content">
+              <span class="job-row">
+                <span class="cv-job-title" id="en-meta-title">Meta, FAIR Foundations</span>
+                <span class="cv-job-city">Hong Kong</span>
+              </span>
+              <span class="job-meta-row">
+                <span class="cv-job-meta">
+                  Full-Time&nbsp;|&nbsp;<b>Research Scientist III</b>
+                </span>
+                <span class="cv-job-time">2026.5 - 2026.7</span>
+              </span>
+            </span>
+          </button>
+        </h3>
+        <div class="cv-job-details" id="en-meta-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -537,22 +670,23 @@
 
       <!-- AS Watson -->
       <div class="cv-job">
-        <div class="job-header">
-          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-          <div class="job-header-content">
-            <div class="job-row">
-              <div class="cv-job-title">AS Watson Group, DataLab - AI Lab</div>
-              <div class="cv-job-city">Hong Kong</div>
-            </div>
-            <div class="job-meta-row">
-              <div class="cv-job-meta">
-                Full-Time&nbsp;|&nbsp;<b>LLM Developer</b>
-              </div>
-              <div class="cv-job-time">2025.8 - 2026.5</div>
-            </div>
-          </div>
-        </div>
-        <div class="cv-job-details">
+        <h3 class="job-header">
+          <button type="button" class="job-toggle" aria-expanded="true" aria-controls="en-aswatson-details" aria-labelledby="en-aswatson-title" onclick="toggleJob(this)">
+            <span class="job-header-content">
+              <span class="job-row">
+                <span class="cv-job-title" id="en-aswatson-title">AS Watson Group, DataLab - AI Lab</span>
+                <span class="cv-job-city">Hong Kong</span>
+              </span>
+              <span class="job-meta-row">
+                <span class="cv-job-meta">
+                  Full-Time&nbsp;|&nbsp;<b>LLM Developer</b>
+                </span>
+                <span class="cv-job-time">2025.8 - 2026.5</span>
+              </span>
+            </span>
+          </button>
+        </h3>
+        <div class="cv-job-details" id="en-aswatson-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -600,22 +734,23 @@
 
       <!-- Huawei -->
       <div class="cv-job">
-        <div class="job-header">
-          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-          <div class="job-header-content">
-            <div class="job-row">
-              <div class="cv-job-title">Huawei Hong Kong Research Center, Design Automation Lab</div>
-              <div class="cv-job-city">Hong Kong</div>
-            </div>
-            <div class="job-meta-row">
-              <div class="cv-job-meta">
-                Full-Time&nbsp;|&nbsp;<b>R&amp;D Engineer</b>
-              </div>
-              <div class="cv-job-time">2024.6 - 2025.8</div>
-            </div>
-          </div>
-        </div>
-        <div class="cv-job-details">
+        <h3 class="job-header">
+          <button type="button" class="job-toggle" aria-expanded="true" aria-controls="en-huawei-details" aria-labelledby="en-huawei-title" onclick="toggleJob(this)">
+            <span class="job-header-content">
+              <span class="job-row">
+                <span class="cv-job-title" id="en-huawei-title">Huawei Hong Kong Research Center, Design Automation Lab</span>
+                <span class="cv-job-city">Hong Kong</span>
+              </span>
+              <span class="job-meta-row">
+                <span class="cv-job-meta">
+                  Full-Time&nbsp;|&nbsp;<b>R&amp;D Engineer</b>
+                </span>
+                <span class="cv-job-time">2024.6 - 2025.8</span>
+              </span>
+            </span>
+          </button>
+        </h3>
+        <div class="cv-job-details" id="en-huawei-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -663,22 +798,23 @@
 
       <!-- BASF -->
       <div class="cv-job">
-        <div class="job-header">
-          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-          <div class="job-header-content">
-            <div class="job-row">
-              <div class="cv-job-title">BASF East Asia Regional Headquarters, Global Digitalization Unit</div>
-              <div class="cv-job-city">Hong Kong</div>
-            </div>
-            <div class="job-meta-row">
-              <div class="cv-job-meta">
-                Intern&nbsp;|&nbsp;<b>Data and AI Engineer</b>
-              </div>
-              <div class="cv-job-time">2024.1 - 2024.6</div>
-            </div>
-          </div>
-        </div>
-        <div class="cv-job-details">
+        <h3 class="job-header">
+          <button type="button" class="job-toggle" aria-expanded="true" aria-controls="en-basf-details" aria-labelledby="en-basf-title" onclick="toggleJob(this)">
+            <span class="job-header-content">
+              <span class="job-row">
+                <span class="cv-job-title" id="en-basf-title">BASF East Asia Regional Headquarters, Global Digitalization Unit</span>
+                <span class="cv-job-city">Hong Kong</span>
+              </span>
+              <span class="job-meta-row">
+                <span class="cv-job-meta">
+                  Intern&nbsp;|&nbsp;<b>Data and AI Engineer</b>
+                </span>
+                <span class="cv-job-time">2024.1 - 2024.6</span>
+              </span>
+            </span>
+          </button>
+        </h3>
+        <div class="cv-job-details" id="en-basf-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -711,22 +847,23 @@
 
       <!-- Alibaba -->
       <div class="cv-job">
-        <div class="job-header">
-          <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-          <div class="job-header-content">
-            <div class="job-row">
-              <div class="cv-job-title">Alibaba Group, TaoBao and TMall Group, Alimama</div>
-              <div class="cv-job-city">Beijing</div>
-            </div>
-            <div class="job-meta-row">
-              <div class="cv-job-meta">
-                Intern&nbsp;|&nbsp;<b>Algorithm Engineer</b>
-              </div>
-              <div class="cv-job-time">2023.5 - 2023.9</div>
-            </div>
-          </div>
-        </div>
-        <div class="cv-job-details">
+        <h3 class="job-header">
+          <button type="button" class="job-toggle" aria-expanded="true" aria-controls="en-alibaba-details" aria-labelledby="en-alibaba-title" onclick="toggleJob(this)">
+            <span class="job-header-content">
+              <span class="job-row">
+                <span class="cv-job-title" id="en-alibaba-title">Alibaba Group, TaoBao and TMall Group, Alimama</span>
+                <span class="cv-job-city">Beijing</span>
+              </span>
+              <span class="job-meta-row">
+                <span class="cv-job-meta">
+                  Intern&nbsp;|&nbsp;<b>Algorithm Engineer</b>
+                </span>
+                <span class="cv-job-time">2023.5 - 2023.9</span>
+              </span>
+            </span>
+          </button>
+        </h3>
+        <div class="cv-job-details" id="en-alibaba-details">
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
@@ -759,7 +896,7 @@
     <hr class="divider">
 
     <div class="cv-section">
-      <div class="section-title">Skills</div>
+      <h2 class="section-title">Skills</h2>
       <ul class="cv-ability-list">
         <li>C, C++, Python, R, SQL.</li>
         <li>Data Science, Machine Learning, Artificial Intelligence, LLM.</li>
@@ -773,7 +910,7 @@
     <section class="cv-language" data-lang="zh" lang="zh-Hans-HK">
       <div class="cv-header">
         <div>
-          <div class="cv-name">李洣祺 LI Miqi (Mickey)</div>
+          <h1 class="cv-name">李洣祺 LI Miqi (Mickey)</h1>
           <button class="pdf-btn" onclick="downloadPDF()" title="下载 PDF">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
             下载 PDF
@@ -789,10 +926,10 @@
       </div>
 
       <div class="cv-section">
-        <div class="section-title">教育背景</div>
+        <h2 class="section-title">教育背景</h2>
         <div class="cv-edu">
           <div class="edu-row">
-            <div class="cv-edu-title">北京邮电大学</div>
+            <h3 class="cv-edu-title">北京邮电大学</h3>
             <div class="cv-edu-meta">2018.9-2022.6</div>
           </div>
           <ul class="main-list cv-edu-detail">
@@ -801,7 +938,7 @@
         </div>
         <div class="cv-edu">
           <div class="edu-row">
-            <div class="cv-edu-title">香港大学</div>
+            <h3 class="cv-edu-title">香港大学</h3>
             <div class="cv-edu-meta">2022.9-2024.1</div>
           </div>
           <ul class="main-list cv-edu-detail">
@@ -812,7 +949,7 @@
       <hr class="divider">
 
       <div class="cv-section">
-        <div class="section-title">个人简介</div>
+        <h2 class="section-title">个人简介</h2>
         <ul class="main-list">
           <li><b>AI/LLM 工程师</b>，专注<b>Agent 平台与企业级智能应用</b>，具备记忆系统、任务编排、可靠交付、RAG，以及大语言模型微调与评测经验。</li>
         </ul>
@@ -820,27 +957,29 @@
       <hr class="divider">
 
       <div class="cv-section">
-        <div class="section-title">工作经验</div>
+        <h2 class="section-title">工作经验</h2>
 
         <div class="cv-job">
-          <div class="job-header">
-            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-            <div class="job-header-content">
-              <div class="job-row">
-                <div class="cv-job-title">OKX，AI 原生产品与工程中心，Oli 平台</div>
-                <div class="cv-job-city">中国香港</div>
-              </div>
-              <div class="job-meta-row">
-                <div class="cv-job-meta">
-                  全职｜<b>高级工程师</b>
-                </div>
-                <div class="cv-job-time">2026.8–至今</div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-job-details">
+          <h3 class="job-header">
+            <button type="button" class="job-toggle" aria-expanded="true" aria-controls="zh-okx-details" aria-labelledby="zh-okx-title" onclick="toggleJob(this)">
+              <span class="job-header-content">
+                <span class="job-row">
+                  <span class="cv-job-title" id="zh-okx-title">OKX，AI 原生产品与工程中心，Oli 平台</span>
+                  <span class="cv-job-city">中国香港</span>
+                </span>
+                <span class="job-meta-row">
+                  <span class="cv-job-meta">
+                    全职｜<b>高级工程师</b>
+                  </span>
+                  <span class="cv-job-time">2026.8–至今</span>
+                </span>
+              </span>
+            </button>
+          </h3>
+          <div class="cv-job-details" id="zh-okx-details">
             <div class="cv-job-content">
               <ul class="main-list">
+                <li>面向 Oli 平台，建设<b>生产级 Agent 平台能力</b>，覆盖记忆体系、任务自动化、可靠结果交付与平台扩展。</li>
                 <li>
                   <b>Agent 记忆体系（OpenViking）</b>
                   <ul class="sub-list">
@@ -879,22 +1018,23 @@
         </div>
 
         <div class="cv-job">
-          <div class="job-header">
-            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-            <div class="job-header-content">
-              <div class="job-row">
-                <div class="cv-job-title">Meta, FAIR Foundations</div>
-                <div class="cv-job-city">中国香港</div>
-              </div>
-              <div class="job-meta-row">
-                <div class="cv-job-meta">
-                  全职｜<b>研究科学家 III</b>
-                </div>
-                <div class="cv-job-time">2026.5-2026.7</div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-job-details">
+          <h3 class="job-header">
+            <button type="button" class="job-toggle" aria-expanded="true" aria-controls="zh-meta-details" aria-labelledby="zh-meta-title" onclick="toggleJob(this)">
+              <span class="job-header-content">
+                <span class="job-row">
+                  <span class="cv-job-title" id="zh-meta-title">Meta, FAIR Foundations</span>
+                  <span class="cv-job-city">中国香港</span>
+                </span>
+                <span class="job-meta-row">
+                  <span class="cv-job-meta">
+                    全职｜<b>研究科学家 III</b>
+                  </span>
+                  <span class="cv-job-time">2026.5-2026.7</span>
+                </span>
+              </span>
+            </button>
+          </h3>
+          <div class="cv-job-details" id="zh-meta-details">
             <div class="cv-job-content">
               <ul class="main-list">
                 <li>基于Meta Sparkle分布式框架，结合Qwen3-VL、Perception Encoder Embedding、Mango Video Model及运行于Hive之上的RIFT Serving，为交互式世界模型（Interactive World Models）构建<b>大规模数据筛选与评估流水线</b>。</li>
@@ -912,22 +1052,23 @@
         </div>
 
         <div class="cv-job">
-          <div class="job-header">
-            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-            <div class="job-header-content">
-              <div class="job-row">
-                <div class="cv-job-title">屈臣氏集团，DataLab - AI Lab</div>
-                <div class="cv-job-city">中国香港</div>
-              </div>
-              <div class="job-meta-row">
-                <div class="cv-job-meta">
-                  全职｜<b>LLM 开发工程师</b>
-                </div>
-                <div class="cv-job-time">2025.8 - 2026.5</div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-job-details">
+          <h3 class="job-header">
+            <button type="button" class="job-toggle" aria-expanded="true" aria-controls="zh-aswatson-details" aria-labelledby="zh-aswatson-title" onclick="toggleJob(this)">
+              <span class="job-header-content">
+                <span class="job-row">
+                  <span class="cv-job-title" id="zh-aswatson-title">屈臣氏集团，DataLab - AI Lab</span>
+                  <span class="cv-job-city">中国香港</span>
+                </span>
+                <span class="job-meta-row">
+                  <span class="cv-job-meta">
+                    全职｜<b>LLM 开发工程师</b>
+                  </span>
+                  <span class="cv-job-time">2025.8 - 2026.5</span>
+                </span>
+              </span>
+            </button>
+          </h3>
+          <div class="cv-job-details" id="zh-aswatson-details">
             <div class="cv-job-content">
               <ul class="main-list">
                 <li>面向商业分析与日常业务流程，依托屈臣氏企业数据及LangGraph / Langfuse工具，设计并实现<b>生产级Agent应用</b>。</li>
@@ -956,22 +1097,23 @@
         </div>
 
         <div class="cv-job">
-          <div class="job-header">
-            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-            <div class="job-header-content">
-              <div class="job-row">
-                <div class="cv-job-title">华为香港研究所，设计与自动化实验室</div>
-                <div class="cv-job-city">中国香港</div>
-              </div>
-              <div class="job-meta-row">
-                <div class="cv-job-meta">
-                  全职｜<b>研发工程师</b>
-                </div>
-                <div class="cv-job-time">2024.6 - 2025.8</div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-job-details">
+          <h3 class="job-header">
+            <button type="button" class="job-toggle" aria-expanded="true" aria-controls="zh-huawei-details" aria-labelledby="zh-huawei-title" onclick="toggleJob(this)">
+              <span class="job-header-content">
+                <span class="job-row">
+                  <span class="cv-job-title" id="zh-huawei-title">华为香港研究所，设计与自动化实验室</span>
+                  <span class="cv-job-city">中国香港</span>
+                </span>
+                <span class="job-meta-row">
+                  <span class="cv-job-meta">
+                    全职｜<b>研发工程师</b>
+                  </span>
+                  <span class="cv-job-time">2024.6 - 2025.8</span>
+                </span>
+              </span>
+            </button>
+          </h3>
+          <div class="cv-job-details" id="zh-huawei-details">
             <div class="cv-job-content">
               <ul class="main-list">
                 <li>面向芯片设计与制造场景，开发并落地<b>AI驱动的自动化和数据科学解决方案</b>，重点覆盖原理图审查、良率提升与工艺优化等方向。</li>
@@ -1016,22 +1158,23 @@
         </div>
 
         <div class="cv-job">
-          <div class="job-header">
-            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-            <div class="job-header-content">
-              <div class="job-row">
-                <div class="cv-job-title">巴斯夫（BASF）东亚区总部，Global Digitalization Unit</div>
-                <div class="cv-job-city">中国香港</div>
-              </div>
-              <div class="job-meta-row">
-                <div class="cv-job-meta">
-                  实习｜<b>数据与AI工程师</b>
-                </div>
-                <div class="cv-job-time">2024.1 - 2024.6</div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-job-details">
+          <h3 class="job-header">
+            <button type="button" class="job-toggle" aria-expanded="true" aria-controls="zh-basf-details" aria-labelledby="zh-basf-title" onclick="toggleJob(this)">
+              <span class="job-header-content">
+                <span class="job-row">
+                  <span class="cv-job-title" id="zh-basf-title">巴斯夫（BASF）东亚区总部，Global Digitalization Unit</span>
+                  <span class="cv-job-city">中国香港</span>
+                </span>
+                <span class="job-meta-row">
+                  <span class="cv-job-meta">
+                    实习｜<b>数据与AI工程师</b>
+                  </span>
+                  <span class="cv-job-time">2024.1 - 2024.6</span>
+                </span>
+              </span>
+            </button>
+          </h3>
+          <div class="cv-job-details" id="zh-basf-details">
             <div class="cv-job-content">
               <ul class="main-list">
                 <li>负责NewsBot与异常结果推断两个项目，参与巴斯夫AI与数字化相关工作的推进。</li>
@@ -1041,22 +1184,23 @@
         </div>
 
         <div class="cv-job">
-          <div class="job-header">
-            <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
-            <div class="job-header-content">
-              <div class="job-row">
-                <div class="cv-job-title">阿里巴巴集团，淘宝天猫集团，阿里妈妈</div>
-                <div class="cv-job-city">北京</div>
-              </div>
-              <div class="job-meta-row">
-                <div class="cv-job-meta">
-                  实习｜<b>算法工程师</b>
-                </div>
-                <div class="cv-job-time">2023.5 - 2023.9</div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-job-details">
+          <h3 class="job-header">
+            <button type="button" class="job-toggle" aria-expanded="true" aria-controls="zh-alibaba-details" aria-labelledby="zh-alibaba-title" onclick="toggleJob(this)">
+              <span class="job-header-content">
+                <span class="job-row">
+                  <span class="cv-job-title" id="zh-alibaba-title">阿里巴巴集团，淘宝天猫集团，阿里妈妈</span>
+                  <span class="cv-job-city">北京</span>
+                </span>
+                <span class="job-meta-row">
+                  <span class="cv-job-meta">
+                    实习｜<b>算法工程师</b>
+                  </span>
+                  <span class="cv-job-time">2023.5 - 2023.9</span>
+                </span>
+              </span>
+            </button>
+          </h3>
+          <div class="cv-job-details" id="zh-alibaba-details">
             <div class="cv-job-content">
               <ul class="main-list">
                 <li>负责“自然语言人群包生成”及AI Hackathon两个项目，参与阿里巴巴大语言模型相关技术研发。</li>
@@ -1068,7 +1212,7 @@
       <hr class="divider">
 
       <div class="cv-section">
-        <div class="section-title">专业能力</div>
+        <h2 class="section-title">专业能力</h2>
         <ul class="cv-ability-list">
           <li>编程语言：C、C++、Python、R、SQL</li>
           <li>数据科学、机器学习、人工智能、大语言模型</li>
@@ -1078,7 +1222,7 @@
         </ul>
       </div>
     </section>
-  </div>
+  </main>
 
   <script>
     function getActivePane() {
@@ -1090,7 +1234,35 @@
       return activePane ? activePane.dataset.lang : 'en';
     }
 
-    function setLanguage(language) {
+    function normalizeLanguage(value) {
+      const language = String(value || '').toLowerCase().split(/[-_]/)[0];
+      return ['en', 'zh'].includes(language) ? language : null;
+    }
+
+    function getPreferredLanguage() {
+      const url = new URL(window.location.href);
+      const requested = normalizeLanguage(url.searchParams.get('lang'))
+        || normalizeLanguage(url.hash.slice(1));
+      if (requested) return requested;
+
+      try {
+        const saved = normalizeLanguage(localStorage.getItem('cv-language'));
+        if (saved) return saved;
+      } catch {
+        // Language switching also works when browser storage is unavailable.
+      }
+
+      for (const value of navigator.languages || [navigator.language]) {
+        const language = normalizeLanguage(value);
+        if (language) return language;
+      }
+      return 'en';
+    }
+
+    function setLanguage(language, updateUrl = true) {
+      language = normalizeLanguage(language);
+      if (!language) return;
+
       document.querySelectorAll('.cv-language').forEach(pane => {
         pane.classList.toggle('active', pane.dataset.lang === language);
       });
@@ -1098,16 +1270,36 @@
       document.querySelectorAll('.lang-option').forEach(button => {
         const isActive = button.dataset.lang === language;
         button.classList.toggle('active', isActive);
-        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
 
       document.documentElement.lang = language === 'zh' ? 'zh-Hans-HK' : 'en';
+      document.querySelector('.lang-switcher').setAttribute(
+        'aria-label', language === 'zh' ? '简历语言' : 'CV language selector'
+      );
+
+      try {
+        localStorage.setItem('cv-language', language);
+      } catch {
+        // Keep the current language usable without persistent storage.
+      }
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', language);
+        try {
+          history.replaceState(null, '', url);
+        } catch {
+          // Some local-file or embedded contexts restrict history changes.
+        }
+      }
     }
 
-    function toggleJob(header) {
-      header.classList.toggle('collapsed');
-      const details = header.nextElementSibling;
-      details.classList.toggle('collapsed');
+    function toggleJob(button) {
+      const expanded = button.getAttribute('aria-expanded') !== 'true';
+      const details = document.getElementById(button.getAttribute('aria-controls'));
+      button.setAttribute('aria-expanded', String(expanded));
+      button.closest('.job-header').classList.toggle('collapsed', !expanded);
+      details.hidden = !expanded;
     }
 
     function isMobile() {
@@ -1121,13 +1313,7 @@
         return;
       }
 
-      // Expand all collapsed sections before printing
-      const collapsedHeaders = activePane.querySelectorAll('.job-header.collapsed');
-      const collapsedDetails = activePane.querySelectorAll('.cv-job-details.collapsed');
-      
-      collapsedHeaders.forEach(h => h.classList.remove('collapsed'));
-      collapsedDetails.forEach(d => d.classList.remove('collapsed'));
-
+      // Print CSS expands all details without changing the browsing state.
       if (isMobile()) {
         // Mobile: show instructions modal
         showMobileModal();
@@ -1138,6 +1324,12 @@
     }
 
     function showMobileModal() {
+      const existing = document.getElementById('pdf-modal-overlay');
+      if (existing) {
+        existing.querySelector('button').focus();
+        return;
+      }
+      const opener = document.activeElement;
       const language = getCurrentLanguage();
       const copy = language === 'zh'
         ? {
@@ -1159,41 +1351,52 @@
             close: 'Got it'
           };
 
-      // Create modal overlay
-      const overlay = document.createElement('div');
-      overlay.id = 'pdf-modal-overlay';
-      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;';
-      
-      const modal = document.createElement('div');
-      modal.style.cssText = 'background:var(--paper);border-radius:12px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 4px 24px var(--modal-shadow-color);';
-      
+      const modal = document.createElement('dialog');
+      modal.id = 'pdf-modal-overlay';
+      modal.className = 'pdf-modal';
+      modal.setAttribute('aria-labelledby', 'pdf-modal-title');
+      modal.setAttribute('aria-describedby', 'pdf-modal-intro');
+
       modal.innerHTML = `
-        <h3 style="margin:0 0 16px;color:var(--primary);font-size:1.2rem;">${copy.title}</h3>
-        <p style="margin:0 0 20px;color:var(--muted);font-size:0.95rem;line-height:1.5;">
+        <h2 id="pdf-modal-title" tabindex="-1" autofocus>${copy.title}</h2>
+        <p id="pdf-modal-intro">
           ${copy.intro}
         </p>
-        <div style="text-align:left;margin-bottom:20px;color:var(--text);font-size:0.9rem;line-height:1.7;">
+        <div class="pdf-modal-steps">
           <b>${copy.iosLabel}</b><br>
           ${copy.iosSteps}<br><br>
           <b>${copy.androidLabel}</b><br>
           ${copy.androidSteps}
         </div>
-        <button onclick="closeMobileModal()" style="background:var(--primary);color:var(--on-primary);border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">${copy.close}</button>
+        <button type="button" class="modal-close" onclick="closeMobileModal()">${copy.close}</button>
       `;
-      
-      overlay.appendChild(modal);
-      document.body.appendChild(overlay);
-      
-      // Close on overlay click
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closeMobileModal();
+
+      modal.addEventListener('close', () => {
+        document.documentElement.classList.remove('modal-open');
+        modal.remove();
+        if (opener && opener.isConnected) opener.focus({ preventScroll: true });
+      }, { once: true });
+      modal.addEventListener('click', event => {
+        const bounds = modal.getBoundingClientRect();
+        if (event.target === modal && (
+          event.clientX < bounds.left || event.clientX > bounds.right
+          || event.clientY < bounds.top || event.clientY > bounds.bottom
+        )) modal.close();
       });
+
+      document.body.appendChild(modal);
+      modal.showModal();
+      document.documentElement.classList.add('modal-open');
     }
 
     function closeMobileModal() {
-      const overlay = document.getElementById('pdf-modal-overlay');
-      if (overlay) overlay.remove();
+      const modal = document.getElementById('pdf-modal-overlay');
+      if (modal) modal.close();
     }
+
+    setLanguage(getPreferredLanguage(), false);
+    window.addEventListener('popstate', () => setLanguage(getPreferredLanguage(), false));
+    window.addEventListener('hashchange', () => setLanguage(getPreferredLanguage(), false));
   </script>
 </body>
 </html>

@@ -17,10 +17,11 @@ This repository contains the source code for my bilingual online Curriculum Vita
 
 ## Features
 
-- 🌐 **Bilingual CV:** switch between English and Chinese
+- 🌐 **Bilingual CV:** switch between English and Chinese, remember your choice, and share a language-specific link with `?lang=en` or `?lang=zh`
 - 🌙 **Automatic theme:** follow the system or browser light/dark preference; printing and PDF export retain a white background
-- 📂 **Collapsible work experience:** expand or collapse individual roles
-- 📄 **PDF export:** save the selected language as a PDF through browser printing; mobile instructions are included
+- 📂 **Collapsible work experience:** expand or collapse individual roles using the full heading button, keyboard, or touch
+- 📄 **PDF export:** save the selected language through browser printing with A4/Letter-friendly margins and pagination; all details print without changing the browsing state
+- ♿ **Accessible navigation:** semantic headings, visible keyboard focus, and a scrollable mobile PDF dialog with focus management and Escape support
 - 📄 **Education:** Beijing University of Posts and Telecommunications (BUPT), The University of Hong Kong (HKU)
 - 💼 **Work Experience:**
   - OKX, AI-Native Product & Engineering Center, Oli Platform (Senior Engineer)
