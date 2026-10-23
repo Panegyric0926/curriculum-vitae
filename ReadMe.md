@@ -18,6 +18,7 @@ This repository contains the source code for my bilingual online Curriculum Vita
 ## Features
 
 - 🌐 **Bilingual CV:** switch between English and Chinese
+- 🌙 **Automatic theme:** follow the system or browser light/dark preference; printing and PDF export retain a white background
 - 📂 **Collapsible work experience:** expand or collapse individual roles
 - 📄 **PDF export:** save the selected language as a PDF through browser printing; mobile instructions are included
 - 📄 **Education:** Beijing University of Posts and Telecommunications (BUPT), The University of Hong Kong (HKU)

@@ -5,8 +5,10 @@
   <title>LI Miqi (Mickey) - CV</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
   <style>
     :root {
+      color-scheme: light;
       --primary: #1a237e;
       --secondary: #3949ab;
       --accent: #00bcd4;
@@ -15,6 +17,27 @@
       --text: #233;
       --muted: #697080;
       --divider: #e0e4ea;
+      --control-bg: #eef2f7;
+      --on-primary: #fff;
+      --shadow-color: #0001;
+      --modal-shadow-color: rgba(0,0,0,0.2);
+    }
+    @media screen and (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --primary: #a5b4fc;
+        --secondary: #c7d2fe;
+        --accent: #67e8f9;
+        --bg: #0f172a;
+        --paper: #1e293b;
+        --text: #e2e8f0;
+        --muted: #a7b3c7;
+        --divider: #3b4a63;
+        --control-bg: #29364b;
+        --on-primary: #0f172a;
+        --shadow-color: #0006;
+        --modal-shadow-color: #0008;
+      }
     }
     html, body {
       background: var(--bg);
@@ -27,7 +50,7 @@
       max-width: 850px;
       margin: 32px auto;
       background: var(--paper);
-      box-shadow: 0 2px 12px 0 #0001;
+      box-shadow: 0 2px 12px 0 var(--shadow-color);
       border-radius: 12px;
       padding: 32px 28px 36px 28px;
     }
@@ -192,7 +215,7 @@
       display: inline-flex;
       gap: 4px;
       padding: 4px;
-      background: #eef2f7;
+      background: var(--control-bg);
       border: 1px solid var(--divider);
       border-radius: 999px;
     }
@@ -209,8 +232,8 @@
     }
     .lang-option.active {
       background: var(--primary);
-      color: #fff;
-      box-shadow: 0 2px 8px 0 #0001;
+      color: var(--on-primary);
+      box-shadow: 0 2px 8px 0 var(--shadow-color);
     }
     .cv-language {
       display: none;
@@ -221,7 +244,7 @@
     /* PDF Download Button */
     .pdf-btn {
       background: var(--primary);
-      color: #fff;
+      color: var(--on-primary);
       border: none;
       padding: 6px 14px;
       font-size: 0.9rem;
@@ -244,6 +267,14 @@
       fill: currentColor;
     }
     @media print {
+      :root {
+        color-scheme: light;
+        --bg: #fff;
+        --paper: #fff;
+      }
+      #pdf-modal-overlay {
+        display: none !important;
+      }
       .lang-switcher {
         display: none !important;
       }
@@ -1134,20 +1165,20 @@
       overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;';
       
       const modal = document.createElement('div');
-      modal.style.cssText = 'background:#fff;border-radius:12px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.2);';
+      modal.style.cssText = 'background:var(--paper);border-radius:12px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 4px 24px var(--modal-shadow-color);';
       
       modal.innerHTML = `
-        <h3 style="margin:0 0 16px;color:#1a237e;font-size:1.2rem;">${copy.title}</h3>
-        <p style="margin:0 0 20px;color:#697080;font-size:0.95rem;line-height:1.5;">
+        <h3 style="margin:0 0 16px;color:var(--primary);font-size:1.2rem;">${copy.title}</h3>
+        <p style="margin:0 0 20px;color:var(--muted);font-size:0.95rem;line-height:1.5;">
           ${copy.intro}
         </p>
-        <div style="text-align:left;margin-bottom:20px;color:#233;font-size:0.9rem;line-height:1.7;">
+        <div style="text-align:left;margin-bottom:20px;color:var(--text);font-size:0.9rem;line-height:1.7;">
           <b>${copy.iosLabel}</b><br>
           ${copy.iosSteps}<br><br>
           <b>${copy.androidLabel}</b><br>
           ${copy.androidSteps}
         </div>
-        <button onclick="closeMobileModal()" style="background:#1a237e;color:#fff;border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">${copy.close}</button>
+        <button onclick="closeMobileModal()" style="background:var(--primary);color:var(--on-primary);border:none;padding:10px 28px;font-size:1rem;font-weight:600;border-radius:6px;cursor:pointer;">${copy.close}</button>
       `;
       
       overlay.appendChild(modal);
