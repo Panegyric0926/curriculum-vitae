@@ -40,7 +40,8 @@ Open [index.html](index.html) in a browser to preview the current CV. No install
 
 - Update both language sections in `index.html` when changing CV content.
 - Use the language buttons to review each version and the PDF button to check print output.
-- The dated HTML files are archived versions of the CV.
+- Archived HTML versions of the CV are stored in [archive/](archive/).
+- Technical notes and other Markdown documents are stored in [docs/](docs/).
 
 ---
 
