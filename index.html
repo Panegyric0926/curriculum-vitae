@@ -396,7 +396,7 @@
     <div class="cv-section">
       <div class="section-title">Summary</div>
       <ul class="main-list">
-        <li><b>AI</b> and <b>data science</b> practitioner with hands-on experience in <b>machine learning</b>, <b>large language models</b>, and <b>data analytics</b> across research, technology, and enterprise settings.</li>
+        <li><b>AI/LLM engineer</b> focused on <b>agent platforms and enterprise applications</b>, with experience in memory systems, task orchestration, reliable delivery, RAG, and LLM fine-tuning and evaluation.</li>
       </ul>
     </div>
     <hr class="divider">
@@ -417,7 +417,7 @@
               <div class="cv-job-meta">
                 Full-Time&nbsp;|&nbsp;<b>Senior Engineer</b>
               </div>
-              <div class="cv-job-time">2026.8 - Present</div>
+              <div class="cv-job-time">2026.8 – Present</div>
             </div>
           </div>
         </div>
@@ -425,14 +425,35 @@
         <div class="cv-job-content">
           <ul class="main-list">
             <li>
-              Engineered production <b>AI-agent platform capabilities</b> across OKClaw, AgentOne, and Oli, including natural-language workflow management, isolated sessions, secure artifact delivery, and asynchronous task continuation.
+              <b>Agent memory system (OpenViking)</b>
+              <ul class="sub-list">
+                <li>Adapted OpenViking for internal deployment with persistent storage, Nacos discovery, health checks and smoke tests; integrated <b>remote memory management and semantic retrieval</b> into Oli.</li>
+                <li>Built reliable conversation and context capture using a <b>transactional PostgreSQL outbox</b>, idempotent delivery, Session Commit integration, reconciliation and failure replay.</li>
+                <li>Implemented per-user encrypted credentials, private/group-origin boundaries and admission filtering; added gated recall with token budgets, version deduplication and post-compaction visibility checks.</li>
+              </ul>
             </li>
             <li>
-              <b>Agent memory, code intelligence, and quality automation</b>
+              <b>Scheduled tasks and event-driven automation</b>
               <ul class="sub-list">
-                <li>Deployed Openviking on OKOne with CI/CD, smoke tests, service discovery, secrets management, and usage monitoring; integrated user-scoped memory and AgentOne activity persistence into OKClaw.</li>
-                <li>Integrated repository code intelligence and natural-language tracing insights to support code-aware task execution and troubleshooting.</li>
-                <li>Build reusable flow-scoring and quality-check sub-agents and skills, and added optional code-intelligence preflight to technical-design authoring.</li>
+                <li>Designed unified <b>Task/Execution models and APIs</b> across Callback and AgentOne, supporting natural-language creation, cron/webhook/one-off combinations and engine selection by capability.</li>
+                <li>Integrated GitLab HTTP/Kafka triggers with shared event matching and deduplication, action/branch/tag filters and multiple repository–branch pairs.</li>
+                <li>Implemented idempotent creation, execution leases, staggered Callback queues and execution cancellation; separated <b>execution/delivery states</b> with recovery and persistent failure notifications.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Agent integration and reliable result delivery</b>
+              <ul class="sub-list">
+                <li>Integrated AgentOne/AgentTag commands, SSE and multi-turn sessions; restored paginated Web history while preserving failed turns, partial output and message order.</li>
+                <li>Coordinated HTTP callback, Kafka and polling recovery through <b>shared delivery records, leases and stable message IDs</b>; delivered complete Markdown reports and Sandbox artifacts to Lark.</li>
+                <li>Implemented HTTP/SSE and ACP sub-agent backends with Talos/Swimlane integration, trusted context forwarding, session mapping and resource cleanup.</li>
+              </ul>
+            </li>
+            <li>
+              <b>Platform extensibility and user experience</b>
+              <ul class="sub-list">
+                <li>Built personal/group Skills with Lark document installation, isolated previews, atomic confirmation and version snapshots; <b>enforced MCP policies</b> during tool discovery and execution.</li>
+                <li>Improved Lark model/reasoning-effort controls, attachment and conversation continuity, token budgeting and stream-error recovery; extended Flow, No-flow and Helix workflows.</li>
+                <li>Implemented in-thread <b>human-assistance notifications and CSAT</b> with persistent ratings, deduplication, rating visualizations and reports delivered via direct messages.</li>
               </ul>
             </li>
           </ul>
@@ -509,41 +530,20 @@
             <li>
               <b>Category management system (agent-driven analytics application)</b>
               <ul class="sub-list">
-                <li>Architected and built a multi-agent application that ingests and reasons over real enterprise data to deliver KPI monitoring, root-cause analysis, and actionable recommendations.</li>
-                <li><b>RAG layer</b>: combines embedding-based retrieval with keyword/text search to surface internal documentation, definitions, and playbooks for downstream agents.</li>
-                <li><b>Data layer</b>: agents fetch and normalize transactional, catalogue, promotion, and inventory data; validate quality; surface anomalies; hybrid of parameterized SQL templates and on-the-fly SQL agent for complex queries.</li>
-                <li><b>Domain agents</b>:
-                  <ul class="sub-list">
-                    <li>KPI agent: monitors KPIs across time, product, and customer dimensions; generates prioritized alerts and narrative explanations.</li>
-                    <li>Sales tree agent: decomposes sales into member vs. non-member hierarchies (L1–L3); attributes changes to drivers (member count, spend-per-member, items-per-basket); recommends corrective actions.</li>
-                    <li>Customer segmentation agent: orchestrates clustering via MCP-exposed ML models; segments into behavioral cohorts for downstream KPI, retention, and monetization analysis.</li>
-                    <li>Visualization agent: generates tables and charts; manages data cache for reliability and chart-type transformations (e.g., line → bar, pivoted view).</li>
-                    <li>Driver analysis agent: decomposes multi-part questions into sub-tasks; human-in-the-loop plan approval; coordinates SQL agent; synthesizes driver-level performance explanations.</li>
-                  </ul>
-                </li>
-                <li><b>Multi-agent orchestration</b>: Intent recognizer (RAG-augmented intent resolution and agent routing) → Planner (coordinated execution plan with data dependencies) → Finalizer (aggregates outputs, evaluates coverage) → Replanner (iteratively refines plan until resolved).</li>
-                <li>Delivered automated investigative narratives and dashboards accelerating root-cause detection; deployed with Langfuse telemetry and LangGraph orchestration for continuous improvement.</li>
+                <li>Architected and built a multi-agent application for enterprise data analysis, delivering <b>KPI monitoring, root-cause analysis, and actionable recommendations</b>.</li>
+                <li>Combined embedding-based retrieval and keyword/text search with normalized transaction, catalogue, promotion, and inventory data; used SQL templates and an SQL agent for complex queries.</li>
+                <li>Built domain agents for sales decomposition, MCP-based customer segmentation, visualization, and driver analysis; coordinated intent recognition, planning, result evaluation, and replanning through LangGraph.</li>
+                <li>Delivered investigative narratives and dashboards that accelerated root-cause detection; integrated Langfuse telemetry for tracing and continuous improvement.</li>
               </ul>
             </li>
             <li>
               <b>Trend system (agent-driven product discovery and market analysis application)</b>
               <ul class="sub-list">
-                <li>Architected and built a multi-agent platform that discovers trending external products via web search, ranks them against user preferences, and validates market availability across competitors to identify white-space opportunities.</li>
-                <li><b>Trend manager agent</b>: central orchestrator managing session state, routing user intent via confidence-thresholded LLM classification, and supporting multi-turn conversational chaining (e.g., hero SKU results fed directly into white-space analysis).</li>
-                <li><b>Hero SKU search agent</b>: 11-node LangGraph pipeline supporting up to 3 parallel keyword–region search tabs:
-                  <ul class="sub-list">
-                    <li>Product understanding: 4 parallel MCP web searches + LLM extraction with keyword citation matching against an NPD dataset; conditional brand profile generation (origin, channels, price tier, positioning) for brand-type keywords.</li>
-                    <li>LLM-generated follow-up questions (multiple-choice + freeform) to capture user preferences before search.</li>
-                    <li>Region-aware query generation across e-commerce, social media, forums, and magazines; parallel search with depth/time-range/country-filter configurations and confidence-gated re-search.</li>
-                    <li>Final ranking via batch LLM scoring (preferences 60%, regional relevance 20%, attribute match 20%) with brand-diversity penalties and deduplication.</li>
-                    <li>Post-pipeline enrichment: crawled product attributes (halal status, target audience, 3-level product class hierarchy), images, and Lazada sales data.</li>
-                  </ul>
-                </li>
-                <li><b>White-space analysis agent</b>: 6-node pipeline (3 human-in-the-loop + 3 automated); parallel web searches across all SKU–competitor pairs (concurrency-capped at 20) across 9 APAC and Turkey markets; batch LLM classification (exact match vs. white space) with per-competitor reasoning; generates a coverage matrix report; supports fully automated mode for programmatic chaining from the hero SKU agent.</li>
-                <li><b>MCP + search infrastructure</b>: local MCP server with dual-engine support (Tavily and DuckDuckGo fallback); pooled client architecture (4 concurrent sessions) with automatic transport detection and failover.</li>
-                <li><b>Human-in-the-loop</b>: LangGraph interrupt-and-resume for multi-tab keyword forms, editable product understanding and brand profile cards, multiple-choice questionnaires, and SKU list selectors.</li>
-                <li><b>Reactive frontend</b>: AG-UI event streaming for real-time step indicators and log output; rich interactive form cards rendered in the chat stream; result cards with expandable product details, white-space coverage matrices, and a consolidated rankings table with live status updates.</li>
-                <li>Delivered an end-to-end product discovery and competitive intelligence tool replacing manual analyst research workflows; built with LangGraph subgraph composition, AG-UI event streaming, and MCP-based tool abstraction.</li>
+                <li>Architected and built a multi-agent platform that discovered trending products, ranked them against user preferences, and checked competitor availability to identify <b>white-space opportunities</b>.</li>
+                <li>Built product search workflows with region-aware query generation, LLM-based preference capture, and batch ranking; applied brand-diversity penalties and deduplication, and enriched results with product attributes, images, and sales data.</li>
+                <li>Implemented white-space analysis across 9 markets in APAC and Turkey using parallel SKU–competitor searches, batch LLM classification, and coverage matrices; supported automated chaining from product discovery.</li>
+                <li>Built MCP search infrastructure with Tavily and DuckDuckGo fallback, pooled client sessions, automatic transport detection, and failover.</li>
+                <li>Delivered an interactive application with LangGraph human-in-the-loop review and AG-UI event streaming for real-time progress and results, replacing manual analyst research workflows.</li>
               </ul>
             </li>
             <!--
@@ -594,9 +594,9 @@
               <b>Retrieval-Augmented Generation (RAG) System for Schematic Review</b>
               <ul class="sub-list">
                 <li>Designed and implemented a multi-modal data processing pipeline for RAG, supporting various document formats (PDF, DOCX, PPTX, PNG, JPG).</li>
-                <li>Integrated visual LLM models for image-based information extraction alongside text extraction systems.</li>
+                <li>Integrated vision-language models (VLMs) for image-based information extraction alongside text extraction systems.</li>
                 <li>Built a vector database storing both dense and sparse embeddings, enabling advanced semantic and keyword-based search; applied the reciprocal rank fusion (RRF) algorithm and a rerank model to further refine and present the most relevant results.</li>
-                <li>Developed a Gradio-based frontend, allowing users to query PCB chip-related issues with high accuracy. The system is now deployed in production and serves enterprise customers.</li>
+                <li>Developed a Gradio-based frontend that provides accurate answers to users' PCB and chip-related questions. The system is now deployed in production and serves enterprise customers.</li>
               </ul>
             </li>
             <li>
@@ -611,17 +611,17 @@
             <li>
               <b>Deep-semi-sight LLM Project</b>
               <ul class="sub-list">
-                <li>Developed an end-to-end framework for fine-tuning, deploying, and evaluating LLMs, leveraging vllm, vllm-ascend, and LLamaFactory. Supported advanced fine-tuning techniques (Full, LoRA, QLoRA, DPO) and concurrent deployment on non-NVIDIA platforms (e.g., Huawei Ascend hardware).</li>
-                <li>Built an evaluation pipeline for both open-source general datasets and custom domain-specific data. Successfully fine-tuned Qwen3-32B and Qwen2.5-32B-Instruct, achieving an average 9.64% and up to 12.69% improvement in general semiconductor capability while maintaining overall model performance.</li>
+                <li>Developed an end-to-end framework for fine-tuning, deploying, and evaluating LLMs, leveraging vLLM, vLLM-Ascend, and LLaMA-Factory. Supported advanced fine-tuning techniques (Full, LoRA, QLoRA, DPO) and concurrent deployment on non-NVIDIA platforms (e.g., Huawei Ascend hardware).</li>
+                <li>Built an evaluation pipeline for both open-source general datasets and custom domain-specific data. Successfully fine-tuned Qwen3-32B and Qwen2.5-32B-Instruct, achieving <b>an average 9.64% and up to 12.69% improvement</b> on semiconductor-domain evaluations while maintaining overall model performance.</li>
                 <li>Delivered robust, customer-facing LLM solutions and comprehensive evaluation results for enterprise deployment.</li>
               </ul>
             </li>
             <li>
               <b>Yield Loss Data Analysis</b>
               <ul class="sub-list">
-                <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, reducing users' analysis time from half a day to 5 minutes in real-world cases, and significantly lowering the rate of misjudgement caused by excessive highlighting compared to previous methods.</li>
+                <li>Designed two high-efficiency statistical algorithms for single-step yield loss identification, reducing users' analysis time <b>from half a day to 5 minutes</b> in real-world cases, and significantly lowering the rate of misjudgement caused by excessive highlighting compared to previous methods.</li>
                 <li>Validated the algorithms against expert results in a two-week production test, leading to seamless integration into the latest product release.</li>
-                <li>Developed a multi-step yield loss identification algorithm and graphical interface, completing two rounds of feature iteration. This automation replaced manual experience-based analysis, enabling root cause identification time to drop from weeks to hours.</li>
+                <li>Developed a multi-step yield loss identification algorithm and graphical interface, completing two rounds of feature iteration. This automation replaced manual experience-based analysis, enabling root cause identification time to drop <b>from weeks to hours</b>.</li>
                 <li>Demonstrated expert-level accuracy and efficiency in a three-month real-world validation, substantially reducing manual investigation time. Delivered a user-friendly executable application, deployed for customer grey testing and now fully adopted in production environments.</li>
               </ul>
             </li>
@@ -728,13 +728,13 @@
     <hr class="divider">
 
     <div class="cv-section">
-      <div class="section-title">Ability</div>
+      <div class="section-title">Skills</div>
       <ul class="cv-ability-list">
         <li>C, C++, Python, R, SQL.</li>
         <li>Data Science, Machine Learning, Artificial Intelligence, LLM.</li>
         <li>LangChain, LangGraph, Langfuse, vLLM, Ollama, LLaMA-Factory.</li>
         <li>English (Business Professional, TOEFL 109, College English Test-6 677), Mandarin (Native), Cantonese (Business Professional).</li>
-        <li>Debate: Third Place of the Chinese Debate World Cup 2023, Champion of the Chinese College Debate Tournament 2020.</li>
+        <li>Debate: Third Place, Chinese Debate World Cup (2023); Runner-up, World University Debate Tour (2020).</li>
       </ul>
     </div>
     </section>
@@ -783,7 +783,7 @@
       <div class="cv-section">
         <div class="section-title">个人简介</div>
         <ul class="main-list">
-          <li>热衷于<b>人工智能与数据科学</b>领域，具备在科研与产业场景中开展<b>机器学习、大语言模型及数据分析</b>项目的实践经验。</li>
+          <li><b>AI/LLM 工程师</b>，专注<b>Agent 平台与企业级智能应用</b>，具备记忆系统、任务编排、可靠交付、RAG，以及大语言模型微调与评测经验。</li>
         </ul>
       </div>
       <hr class="divider">
@@ -796,27 +796,50 @@
             <span class="job-toggle" onclick="toggleJob(this.parentElement)"></span>
             <div class="job-header-content">
               <div class="job-row">
-                <div class="cv-job-title">OKX, AI原生产品与工程中心, Oli平台</div>
+                <div class="cv-job-title">OKX，AI 原生产品与工程中心，Oli 平台</div>
                 <div class="cv-job-city">中国香港</div>
               </div>
               <div class="job-meta-row">
                 <div class="cv-job-meta">
                   全职｜<b>高级工程师</b>
                 </div>
-                <div class="cv-job-time">2026.8-至今</div>
+                <div class="cv-job-time">2026.8–至今</div>
               </div>
             </div>
           </div>
           <div class="cv-job-details">
             <div class="cv-job-content">
               <ul class="main-list">
-                <li>负责OKClaw、AgentOne与Oli的生产级<b>AI Agent平台能力</b>建设，包括自然语言工作流管理、隔离会话、安全产物交付、会话恢复与异步任务延续。</li>
                 <li>
-                  <b>Agent记忆、代码智能及质量自动化</b>
+                  <b>Agent 记忆体系（OpenViking）</b>
                   <ul class="sub-list">
-                    <li>在OKOne上部署Openviking，集成CI/CD、冒烟测试、服务发现、密钥管理及使用监控；在OKClaw中集成用户级记忆隔离及AgentOne任务活动持久化。</li>
-                    <li>集成代码库智能分析与自然语言链路诊断能力，提升代码香港管任务执行与故障定位效率。</li>
-                    <li>构建可复用的工作流评分及质量检查子Agent与Skill，并在技术设计（TD）编写流程增加可选的代码智能分析。</li>
+                    <li>完成 OpenViking 的内部服务化，适配构建、持久化存储、Nacos、健康检查与部署冒烟；在 Oli 中接入<b>远程记忆管理与语义检索</b>。</li>
+                    <li>基于 <b>PostgreSQL 事务 Outbox</b>、幂等投递、Session Commit 对接、持久化对账与失败重放，构建可靠的会话及上下文采集链路。</li>
+                    <li>实现用户级加密凭据、私聊与群来源边界及准入过滤；通过独立开关、Token 预算、内容版本去重和压缩后可见性复核控制记忆召回。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>定时任务与事件驱动自动化</b>
+                  <ul class="sub-list">
+                    <li>设计统一 <b>Task/Execution 模型与 API</b>，适配 Callback、AgentOne 双引擎，支持自然语言创建、周期/事件/单次任务及按能力选择引擎。</li>
+                    <li>接通 GitLab HTTP/Kafka 事件入口，统一匹配与去重，支持动作、分支、Tag 筛选及多仓库与分支配对。</li>
+                    <li>完善幂等创建、执行租约、Callback 错峰排队与执行取消；<b>分离执行和投递状态</b>，建立异常恢复与持久化失败通知。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>Agent 集成与可靠结果交付</b>
+                  <ul class="sub-list">
+                    <li>接入 AgentOne/AgentTag 命令、SSE 与多轮会话，按页恢复 Web 历史，保留失败轮次、部分输出及消息顺序。</li>
+                    <li>通过<b>共享交付记录、租约与稳定消息标识</b>协调 HTTP 回调、Kafka 和轮询补偿；贯通完整 Markdown 报告、Sandbox 产物与 Lark 交付。</li>
+                    <li>实现 HTTP/SSE 与 ACP 子 Agent 后端，集成 Talos/Swimlane，处理可信上下文透传、会话映射及资源回收。</li>
+                  </ul>
+                </li>
+                <li>
+                  <b>平台扩展与用户体验</b>
+                  <ul class="sub-list">
+                    <li>建设个人/群组 Skill、Lark 文档安装、预览隔离、原子确认与版本快照，并在工具发现和执行阶段<b>落实 MCP 策略</b>。</li>
+                    <li>完善 Lark 模型与推理强度选择、附件与会话连续性、Token 预算及流错误恢复，并扩展 Flow、No-flow 与 Helix 业务场景。</li>
+                    <li>实现<b>原话题人工协助提醒与 CSAT</b>，覆盖评价持久化、去重、统计图表及私聊报告，补齐用户支持与反馈链路。</li>
                   </ul>
                 </li>
               </ul>
@@ -843,13 +866,13 @@
           <div class="cv-job-details">
             <div class="cv-job-content">
               <ul class="main-list">
-                <li>基于Meta Sparkle分布式框架，结合Qwen3-VL模型、Perception Encoder Embedding模型、Mango Video Model模型，为Interactive World模型构建<b>大规模数据筛选与评估流水线</b>。</li>
+                <li>基于Meta Sparkle分布式框架，结合Qwen3-VL、Perception Encoder Embedding、Mango Video Model及运行于Hive之上的RIFT Serving，为交互式世界模型（Interactive World Models）构建<b>大规模数据筛选与评估流水线</b>。</li>
                 <li>
                   <b>数据筛选与评估流水线</b>
                   <ul class="sub-list">
-                    <li><b>VLM-as-Judge标注：</b>构建运行Qwen3-VL模型的Sparkle任务，对经由Perception Encoder模型聚类得到的候选视频，依据运动、视觉质量以及视角、运动状态、环境等结构化属性进行评分。</li>
-                    <li><b>视频层次化描述生成：</b>设计端到端任务流，基于逐帧Perception Encoder Embedding，结合Ward层次聚类与1-hop连通约束构建时间分段树；随后使用Qwen3-VL模型为各节点生成描述，得到用于后续模型训练的结构化视频描述。</li>
-                    <li><b>I2AV生成评测：</b>设计参考视频片段筛选流程；利用Qwen3-VL模型自动为参考视频生成描述；将上述描述与参考视频关键帧作为参数输入Mango模型生成视频；构建评测框架，并结合逐帧PSNR、SSIM算法，涵盖提示词遵循度和第一人称一致性的VLM-as-Judge对结果进行评分。</li>
+                    <li><b>VLM-as-Judge标注：</b>构建运行Qwen3-VL的Sparkle任务，对经由Perception Encoder聚类得到的候选视频，依据自运动、视觉质量以及视角、运动状态、环境等结构化属性进行评分；实现JSON解析与簇间均衡，支持规模化标注质量控制。</li>
+                    <li><b>视频层次化描述生成：</b>设计端到端任务流，基于逐帧Perception Encoder Embedding，结合Ward层次聚类与1-hop连通约束构建时间分段树；随后使用Qwen3-VL为各节点生成描述，得到用于视觉语言世界模型训练的描述增强树。</li>
+                    <li><b>I2AV生成评测：</b>通过环境交错与动作丰富片段采样，构建具备视觉多样性的真实参考视频；利用Qwen3-VL自动生成参考视频描述；构建以首帧为条件调用Mango生成视频的评测框架，结合逐帧PSNR、SSIM、LPIPS指标，以及涵盖真实感、提示词遵循度和第一人称一致性的VLM-as-Judge标准评分。</li>
                   </ul>
                 </li>
               </ul>
@@ -880,41 +903,20 @@
                 <li>
                   <b>品类管理系统（Agent驱动的分析应用）</b>
                   <ul class="sub-list">
-                    <li>负责整体架构设计与落地，构建可接入并分析真实企业数据的多Agent应用，实现KPI监控、根因分析与可执行建议输出。</li>
-                    <li><b>RAG层：</b>结合基于Embedding的检索与关键词及全文检索，为下游Agent提供内部文档、定义与SOP等信息支撑。</li>
-                    <li><b>数据层：</b>Agent负责拉取并标准化交易、商品目录、促销及库存数据，校验数据质量并识别异常；复杂查询场景下采用SQL模板与即时SQL生成相结合的方式。</li>
-                    <li><b>领域Agent：</b>
-                      <ul class="sub-list">
-                        <li>KPI Agent：从时间、商品及客户等维度监控KPI，依据KPI优先级生成告警与变化趋势分析。</li>
-                        <li>销售树Agent：将销售拆解为会员与非会员等不同层级，并将数据变化归因至会员数、人均消费额及单次购买件数等驱动因素，输出后续建议。</li>
-                        <li>客户分群Agent：通过MCP协议调用机器学习模型实行聚类，将客户划分为不同行为群体，用于后续KPI、留存及变现分析。</li>
-                        <li>可视化Agent：生成表格与图表；管理数据缓存以提升生成稳定性，并支持图表类型转换（如折线图转柱状图）。</li>
-                        <li>驱动因素分析Agent：将多部分问题拆解为子任务，支持基于用户反馈更改并执行计划，调用SQL Agent，并生成驱动因素层面的业绩解释。</li>
-                      </ul>
-                    </li>
-                    <li><b>多Agent调控：</b>意图识别（基于RAG的意图解析与Agent路由）→ 规划（制定执行计划）→ 汇总（综合各Agent输出并评估回答质量）→ 重规划（迭代修正计划直至问题解决）。</li>
-                    <li>交付包含根因定位与数据仪表的对话式AI应用；结合Langfuse与LangGraph实现持续优化。</li>
+                    <li>负责整体架构设计与落地，构建面向企业数据分析的多Agent应用，实现<b>KPI监控、根因分析与可执行建议输出</b>。</li>
+                    <li>结合Embedding检索与关键词及全文检索，接入标准化的交易、商品目录、促销及库存数据；通过SQL模板与SQL Agent处理复杂查询。</li>
+                    <li>构建销售拆解、基于MCP的客户分群、可视化及驱动因素分析Agent，通过LangGraph协调意图识别、规划、结果评估与重规划。</li>
+                    <li>交付自动分析报告与仪表盘，加快根因定位；集成Langfuse监控与追踪，支持持续优化。</li>
                   </ul>
                 </li>
                 <li>
                   <b>趋势系统（Agent驱动的产品发现与市场分析应用）</b>
                   <ul class="sub-list">
-                    <li>负责整体架构设计与落地，构建多Agent平台，通过网络搜索发现外部热门产品，结合用户偏好进行排序，并校验竞品市场覆盖情况，以识别市场机会。</li>
-                    <li><b>趋势管理Agent：</b>作为中心Agent管理会话状态，通过基于置信度阈值的LLM分类进行用户意图分析，并支持多轮对话与链式衔接（例如将Hero SKU结果直接传递至市场分析）。</li>
-                    <li><b>Hero SKU搜索Agent：</b>构建包含11节点的LangGraph流水线，支持最多3个并行的“关键词-区域”搜索。
-                      <ul class="sub-list">
-                        <li>产品理解：通过4路并行MCP网络搜索结合LLM信息抽取，将关键词引用与内部数据集进行匹配；针对品牌类关键词按需生成品牌画像（来源地、渠道、价格、定位）。</li>
-                        <li>用户偏好采集：利用LLM生成追问问题用于补充用户偏好。</li>
-                        <li>查询生成：面向电商、社交媒体、论坛及杂志等渠道生成强区域相关查询，并基于时间、国家等条件进行并行搜索；在低置信度场景下触发补充搜索。</li>
-                        <li>排序：通过批量LLM评分完成排序，权重为用户偏好60%、区域相关性20%、属性匹配20%，并加入品牌多样性惩罚与去重机制。</li>
-                        <li>结果增强：补充抓取产品属性（如清真、目标人群、三级产品分类）、图片及销售数据。</li>
-                      </ul>
-                    </li>
-                    <li><b>市场分析Agent：</b>构建6节点流水线；在亚太9个市场范围内，对全部SKU – 竞争对手组合进行并行搜索；采用批量LLM分类判断“精确匹配”或“市场空白”，并输出逐竞品推理结果及覆盖报告；同时支持从Hero SKU Agent进行串联的全自动模式。</li>
-                    <li><b>MCP与搜索：</b>搭建本地MCP Server，支持Tavily引擎与DuckDuckGo引擎；实现多并发会话，具备故障切换能力。</li>
-                    <li><b>Human-in-the-loop设计：</b>通过LangGraph的interrupt-and-resume机制，支持应用在关键词表单、产品理解与品牌画像、追问问题等位置实现用户交互。</li>
-                    <li><b>响应式前端：</b>使用AG-UI事件流实现实时进度更新与日志输出；结果包含产品详情、市场覆盖矩阵及综合排名。</li>
-                    <li>交付端到端Agent产品：替代人工分析研究流程。</li>
+                    <li>负责整体架构设计与落地，构建多Agent平台，发现热门产品、结合用户偏好排序并校验竞品覆盖情况，以识别<b>市场机会</b>。</li>
+                    <li>构建产品搜索工作流，支持区域相关查询生成、基于LLM的偏好采集与批量排序；加入品牌多样性惩罚与去重，并补充产品属性、图片及销售数据。</li>
+                    <li>在亚太地区及土耳其的9个市场开展市场空白分析，通过SKU–竞品并行搜索、批量LLM分类与覆盖矩阵生成报告；支持从产品发现流程自动串联执行。</li>
+                    <li>搭建MCP搜索基础设施，集成Tavily及DuckDuckGo备用引擎、客户端会话池、自动传输检测与故障切换。</li>
+                    <li>交付交互式应用，通过LangGraph支持人工参与审核，结合AG-UI事件流实时展示进度与结果，替代人工分析研究流程。</li>
                   </ul>
                 </li>
               </ul>
@@ -946,7 +948,7 @@
                   <b>面向原理图审查的RAG系统</b>
                   <ul class="sub-list">
                     <li>设计并实现多模态RAG数据处理流水线，支持PDF、DOCX、PPTX、PNG、JPG等多种文档格式。</li>
-                    <li>集成视觉大语言模型处理图像类信息，并与文本抽取协同工作。</li>
+                    <li>集成视觉语言模型（VLM）处理图像类信息，并与文本抽取协同工作。</li>
                     <li>构建同时包含Dense Embedding与Sparse Embedding的向量数据库，支持语义检索与关键词检索；进一步结合RRF算法与rerank模型优化排序结果。</li>
                     <li>开发基于Gradio的前端界面，支持用户高准确率地查询PCB / 芯片相关问题；系统已服务企业客户并满足关键需求。</li>
                   </ul>
@@ -964,16 +966,16 @@
                   <b>Deep-semi-sight LLM 项目</b>
                   <ul class="sub-list">
                     <li>基于vLLM、vLLM-Ascend与LLaMA-Factory，构建涵盖微调、部署与评测的端到端大语言模型框架；支持Full、LoRA、QLoRA、DPO等微调方式，并可在非NVIDIA平台（如华为Ascend）上进行并发部署。</li>
-                    <li>搭建同时面向开源通用数据集与定制领域数据的评测流水线；成功微调Qwen3-32B与Qwen2.5-32B-Instruct，在保持整体模型性能的前提下，使半导体领域通用能力平均提升 9.64%，最高提升12.69%。</li>
-                    <li>交付稳定的大语言模型解决方案，支撑企业级部署。</li>
+                    <li>搭建同时面向开源通用数据集与定制领域数据的评测流水线；成功微调Qwen3-32B与Qwen2.5-32B-Instruct，在保持整体模型性能的前提下，使半导体领域评测表现<b>平均提升 9.64%，最高提升12.69%</b>。</li>
+                    <li>交付稳定、面向客户的大语言模型解决方案及完整评测结果，支撑企业级部署。</li>
                   </ul>
                 </li>
                 <li>
                   <b>良率损失数据分析</b>
                   <ul class="sub-list">
-                    <li>设计两种高效率的单工序良率损失识别方法，在真实案例中将用户分析时间由半天缩短至5分钟；相较既有方法显著降低误判概率。</li>
+                    <li>设计两种高效率的单工序良率损失识别方法，在真实案例中将用户分析时间<b>由半天缩短至5分钟</b>；相较既有方法显著降低误判概率。</li>
                     <li>在为期两周的生产测试中，以专家验证结果为基准完成方法评估，并顺利集成至交付产品。</li>
-                    <li>开发多工序良率损失识别算法及图形界面，完成两轮功能迭代；以自动化方式替代依赖人工经验的分析流程，使根因定位时间由数周缩短至数小时。</li>
+                    <li>开发多工序良率损失识别算法及图形界面，完成两轮功能迭代；以自动化方式替代依赖人工经验的分析流程，使根因定位时间<b>由数周缩短至数小时</b>。</li>
                     <li>在为期三个月的真实环境验证中，结果与人工处理保持一致，显著降低人工排查成本；同时交付具备良好可用性的可执行应用，已完成客户灰度测试并全面投入生产环境。</li>
                   </ul>
                 </li>
@@ -1041,7 +1043,7 @@
           <li>数据科学、机器学习、人工智能、大语言模型</li>
           <li>LangChain、LangGraph、Langfuse、vLLM、Ollama、LLaMA-Factory</li>
           <li>语言能力：英语（商务水平，TOEFL 109，大学英语六级 677），普通话（母语），粤语（商务水平）</li>
-          <li>辩论：2023年华语辩论世界杯季军</li>
+          <li>辩论：2023年华语辩论世界杯季军，2020年世界大学生辩论巡回赛亚军</li>
         </ul>
       </div>
     </section>

@@ -1,4 +1,4 @@
-# Li Miqi's Curriculum Vitae
+# LI Miqi (Mickey)'s Curriculum Vitae
 
 Welcome to the repository for my online CV!  
 View the live version here: [panegyric0926.github.io/curriculum-vitae/](https://panegyric0926.github.io/curriculum-vitae/)
@@ -7,27 +7,40 @@ View the live version here: [panegyric0926.github.io/curriculum-vitae/](https://
 
 ## About
 
-This project contains the source code and deployment for my professional Curriculum Vitae (CV), designed and maintained by **Li Miqi**.
+This repository contains the source code for my bilingual online Curriculum Vitae (CV), designed and maintained by **LI Miqi (Mickey)**. My work focuses on agent platforms and enterprise AI applications, including memory systems, task orchestration, reliable delivery, RAG, and LLM fine-tuning and evaluation.
 
-- **Simple, clean HTML/CSS** for fast loading and high accessibility
+- **Static HTML, CSS, and JavaScript** with no build step or external dependencies
 - **Responsive design**: readable on all screen sizes, including mobile
-- **Up-to-date** work experience, education, and skills
+- **English and Chinese versions** with an in-page language switcher
 
 ---
 
 ## Features
 
+- 🌐 **Bilingual CV:** switch between English and Chinese
+- 📂 **Collapsible work experience:** expand or collapse individual roles
+- 📄 **PDF export:** save the selected language as a PDF through browser printing; mobile instructions are included
 - 📄 **Education:** Beijing University of Posts and Telecommunications (BUPT), The University of Hong Kong (HKU)
 - 💼 **Work Experience:**
-  - OKX, AI-Native Product & Engineering Center, Oli Plaform (Senior Engineer)
+  - OKX, AI-Native Product & Engineering Center, Oli Platform (Senior Engineer)
   - Meta, FAIR Foundations (Research Scientist III)
   - AS Watson Group, DataLab - AI Lab (LLM Developer)  
   - Huawei HK Research Center (R&D Engineer)  
   - BASF East Asia (Data & AI Engineer)  
   - Alibaba Group (Algorithm Engineer Intern)
-- 🛠️ **Skills:** C, C++, Python, R, SQL, Machine Learning, LLM, Multilingual (English, Mandarin, Cantonese)
+- 🛠️ **Technical Skills:** C, C++, Python, R, SQL; agent systems, RAG, machine learning, LLM fine-tuning and evaluation; LangChain, LangGraph, Langfuse, vLLM, Ollama, and LLaMA-Factory
+- 🗣️ **Languages:** English, Mandarin, and Cantonese
 - 🏆 **Awards:** Debate competitions (see CV for details)
 
+---
+
+## Preview and Maintenance
+
+Open [index.html](index.html) in a browser to preview the current CV. No installation or build step is required.
+
+- Update both language sections in `index.html` when changing CV content.
+- Use the language buttons to review each version and the PDF button to check print output.
+- The dated HTML files are archived versions of the CV.
 
 ---
 
